@@ -1,0 +1,421 @@
+[0.021s] Invoking command in '/home/dron/ws_controll/build/custom_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/opt/ros/humble /usr/bin/cmake --build /home/dron/ws_controll/build/custom_msgs -- -j6 -l6
+[0.075s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.381s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.387s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.397s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.470s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.165s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.607s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.189s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.245s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[2.301s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[2.301s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[2.301s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[2.341s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[2.366s] -- Added test 'lint_cmake' to check CMake code style
+[2.368s] -- Added test 'xmllint' to check XML markup files
+[2.373s] -- Configuring done
+[2.459s] -- Generating done
+[2.483s] -- Build files have been written to: /home/dron/ws_controll/build/custom_msgs
+[2.542s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[2.562s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[2.593s] [  2%] Built target ament_cmake_python_copy_custom_msgs
+[3.252s] running egg_info
+[3.255s] writing custom_msgs.egg-info/PKG-INFO
+[3.257s] writing dependency_links to custom_msgs.egg-info/dependency_links.txt
+[3.257s] writing top-level names to custom_msgs.egg-info/top_level.txt
+[3.264s] reading manifest file 'custom_msgs.egg-info/SOURCES.txt'
+[3.267s] writing manifest file 'custom_msgs.egg-info/SOURCES.txt'
+[3.359s] [  2%] Built target ament_cmake_python_build_custom_msgs_egg
+[3.977s] [  2%] Built target custom_msgs__cpp
+[4.021s] [  3%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[4.036s] [  4%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[4.066s] [  5%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[4.068s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_generator_c[0m
+[4.098s] [  9%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/imu_data__functions.c.o[0m
+[4.098s] [  9%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/accel_data__functions.c.o[0m
+[4.098s] [  9%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/gyro_data__functions.c.o[0m
+[4.208s] [ 10%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/estimator_data__functions.c.o[0m
+[4.209s] [ 11%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/speed_data__functions.c.o[0m
+[4.211s] [ 12%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/possition_data__functions.c.o[0m
+[4.320s] [ 13%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/data_xyz__functions.c.o[0m
+[4.336s] [ 14%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/drone_status__functions.c.o[0m
+[4.440s] [ 16%] [32m[1mLinking C shared library libcustom_msgs__rosidl_generator_c.so[0m
+[4.519s] [ 16%] Built target custom_msgs__rosidl_generator_c
+[4.544s] [ 18%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[4.545s] [ 19%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[4.545s] [ 19%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[5.046s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_cpp[0m
+[5.118s] [ 20%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/accel_data__type_support.cpp.o[0m
+[5.428s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_cpp[0m
+[5.520s] [ 21%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/accel_data__type_support.cpp.o[0m
+[5.521s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_c[0m
+[5.560s] [ 22%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/accel_data__type_support.cpp.o[0m
+[5.569s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_cpp[0m
+[5.641s] [ 24%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp.o[0m
+[5.675s] [ 25%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/gyro_data__type_support.cpp.o[0m
+[5.780s] [ 26%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/imu_data__type_support.cpp.o[0m
+[5.844s] [ 27%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/gyro_data__type_support.cpp.o[0m
+[5.847s] [ 28%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/estimator_data__type_support.cpp.o[0m
+[5.915s] [ 29%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/possition_data__type_support.cpp.o[0m
+[5.979s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_c[0m
+[6.009s] [ 31%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/speed_data__type_support.cpp.o[0m
+[6.020s] [ 32%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/accel_data__type_support.c.o[0m
+[6.102s] [ 34%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/data_xyz__type_support.cpp.o[0m
+[6.102s] [ 34%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/gyro_data__type_support.c.o[0m
+[6.104s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_c[0m
+[6.157s] [ 35%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/accel_data__type_support_c.cpp.o[0m
+[6.202s] [ 36%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/drone_status__type_support.cpp.o[0m
+[6.208s] [ 37%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/imu_data__type_support.c.o[0m
+[6.283s] [ 39%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_c.so[0m
+[6.293s] [ 40%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/estimator_data__type_support.c.o[0m
+[6.436s] [ 41%] Built target custom_msgs__rosidl_typesupport_c
+[6.441s] [ 41%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/possition_data__type_support.c.o[0m
+[6.465s] [ 42%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/speed_data__type_support.c.o[0m
+[6.512s] [ 43%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/gyro_data__type_support.cpp.o[0m
+[6.534s] [ 44%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/imu_data__type_support.cpp.o[0m
+[6.562s] [ 45%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/data_xyz__type_support.c.o[0m
+[6.614s] [ 47%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/gyro_data__type_support.cpp.o[0m
+[6.619s] [ 48%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/imu_data__type_support.cpp.o[0m
+[6.665s] [ 49%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/drone_status__type_support.c.o[0m
+[6.755s] [ 50%] [32m[1mLinking C shared library libcustom_msgs__rosidl_typesupport_introspection_c.so[0m
+[6.919s] [ 50%] Built target custom_msgs__rosidl_typesupport_introspection_c
+[6.956s] [ 51%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/estimator_data__type_support.cpp.o[0m
+[6.970s] [ 52%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/gyro_data__type_support_c.cpp.o[0m
+[7.296s] [ 54%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/possition_data__type_support.cpp.o[0m
+[7.535s] [ 55%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/speed_data__type_support.cpp.o[0m
+[7.543s] [ 56%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/estimator_data__type_support.cpp.o[0m
+[7.723s] [ 57%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/imu_data__type_support.cpp.o[0m
+[7.787s] [ 58%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/imu_data__type_support_c.cpp.o[0m
+[7.799s] [ 59%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/data_xyz__type_support.cpp.o[0m
+[7.979s] [ 60%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/drone_status__type_support.cpp.o[0m
+[8.271s] [ 62%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/possition_data__type_support.cpp.o[0m
+[8.459s] [ 63%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/speed_data__type_support.cpp.o[0m
+[8.540s] [ 64%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/data_xyz__type_support.cpp.o[0m
+[8.607s] [ 65%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/estimator_data__type_support_c.cpp.o[0m
+[8.662s] [ 66%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_cpp.so[0m
+[8.794s] [ 66%] Built target custom_msgs__rosidl_typesupport_cpp
+[8.817s] [ 67%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/drone_status__type_support.cpp.o[0m
+[8.895s] [ 68%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/estimator_data__type_support.cpp.o[0m
+[9.260s] [ 70%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/possition_data__type_support.cpp.o[0m
+[9.391s] [ 71%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/speed_data__type_support.cpp.o[0m
+[9.461s] [ 72%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/possition_data__type_support_c.cpp.o[0m
+[9.606s] [ 73%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/speed_data__type_support_c.cpp.o[0m
+[9.786s] [ 74%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[9.995s] [ 74%] Built target custom_msgs__rosidl_typesupport_introspection_cpp
+[10.019s] [ 75%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/data_xyz__type_support.cpp.o[0m
+[10.045s] [ 77%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/drone_status__type_support.cpp.o[0m
+[10.316s] [ 78%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/data_xyz__type_support_c.cpp.o[0m
+[10.354s] [ 79%] [32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/drone_status__type_support_c.cpp.o[0m
+[11.005s] [ 80%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[11.174s] [ 81%] [32m[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[11.190s] [ 81%] Built target custom_msgs__rosidl_typesupport_fastrtps_cpp
+[11.332s] [ 81%] Built target custom_msgs__rosidl_typesupport_fastrtps_c
+[11.376s] [ 81%] Built target custom_msgs
+[11.419s] [ 82%] [34m[1mGenerating Python code for ROS interfaces[0m
+[13.352s] [ 82%] Built target custom_msgs__py
+[13.376s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_generator_py[0m
+[13.418s] [ 86%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_gyro_data_s.c.o[0m
+[13.419s] [ 86%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_accel_data_s.c.o[0m
+[13.419s] [ 86%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_estimator_data_s.c.o[0m
+[13.419s] [ 87%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_imu_data_s.c.o[0m
+[13.420s] [ 88%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_possition_data_s.c.o[0m
+[13.421s] [ 89%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_speed_data_s.c.o[0m
+[13.659s] [ 90%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_data_xyz_s.c.o[0m
+[13.664s] [ 91%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_drone_status_s.c.o[0m
+[13.879s] [ 93%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/libcustom_msgs__rosidl_generator_py.so[0m
+[13.965s] [ 93%] Built target custom_msgs__rosidl_generator_py
+[13.987s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_c__pyext[0m
+[13.988s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_c__pyext[0m
+[13.989s] [35m[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_c__pyext[0m
+[14.022s] [ 94%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[14.024s] [ 95%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[14.025s] [ 96%] [32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[14.316s] [ 97%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[14.378s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[14.432s] [100%] [32m[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[14.455s] [100%] Built target custom_msgs__rosidl_typesupport_introspection_c__pyext
+[14.481s] [100%] Built target custom_msgs__rosidl_typesupport_c__pyext
+[14.585s] [100%] Built target custom_msgs__rosidl_typesupport_fastrtps_c__pyext
+[14.669s] Invoked command in '/home/dron/ws_controll/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/opt/ros/humble /usr/bin/cmake --build /home/dron/ws_controll/build/custom_msgs -- -j6 -l6
+[14.688s] Invoking command in '/home/dron/ws_controll/build/custom_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/opt/ros/humble /usr/bin/cmake --install /home/dron/ws_controll/build/custom_msgs
+[14.710s] -- Install configuration: ""
+[14.710s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/rosidl_interfaces/custom_msgs
+[14.720s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs
+[14.720s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[14.721s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drone_status.h
+[14.721s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_generator_c__visibility_control.h
+[14.721s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/gyro_data.h
+[14.721s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/imu_data.h
+[14.721s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/speed_data.h
+[14.721s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/data_xyz.h
+[14.721s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/estimator_data.h
+[14.722s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[14.722s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__struct.h
+[14.722s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__functions.h
+[14.722s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__struct.h
+[14.722s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__functions.h
+[14.722s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.h
+[14.722s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__struct.h
+[14.723s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.h
+[14.723s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__struct.h
+[14.723s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__functions.c
+[14.723s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.h
+[14.723s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.h
+[14.723s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__functions.c
+[14.724s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__struct.h
+[14.724s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__functions.h
+[14.724s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__functions.c
+[14.724s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.h
+[14.726s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__functions.c
+[14.727s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.h
+[14.730s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__functions.c
+[14.731s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__functions.h
+[14.731s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__functions.h
+[14.731s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__functions.c
+[14.732s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__functions.h
+[14.732s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__functions.h
+[14.732s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__functions.c
+[14.732s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__functions.h
+[14.733s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__struct.h
+[14.733s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__functions.c
+[14.733s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.h
+[14.734s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.h
+[14.734s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__struct.h
+[14.734s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__struct.h
+[14.734s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/accel_data.h
+[14.735s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/possition_data.h
+[14.735s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/library_path.sh
+[14.735s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/library_path.dsv
+[14.736s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so
+[14.737s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so" to ""
+[14.737s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs
+[14.737s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[14.738s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[14.738s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[14.738s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_fastrtps_c.h
+[14.738s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_fastrtps_c.h
+[14.738s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_fastrtps_c.h
+[14.739s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_c.h
+[14.739s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_c.h
+[14.739s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_c.h
+[14.739s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_fastrtps_c.h
+[14.739s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_fastrtps_c.h
+[14.744s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so
+[14.745s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[14.745s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs
+[14.746s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[14.747s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[14.752s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[14.753s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.c
+[14.753s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.c
+[14.753s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.c
+[14.754s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_introspection_c.h
+[14.754s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_introspection_c.h
+[14.754s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.c
+[14.754s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_introspection_c.h
+[14.755s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.c
+[14.755s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.c
+[14.755s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_introspection_c.h
+[14.755s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.c
+[14.755s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_introspection_c.h
+[14.756s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.c
+[14.756s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_introspection_c.h
+[14.756s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_introspection_c.h
+[14.756s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_introspection_c.h
+[14.759s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so
+[14.760s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so" to ""
+[14.760s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so
+[14.760s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so" to ""
+[14.760s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs
+[14.760s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[14.761s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drone_status.hpp
+[14.761s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/gyro_data.hpp
+[14.761s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[14.761s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/imu_data.hpp
+[14.762s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/data_xyz.hpp
+[14.762s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/estimator_data.hpp
+[14.762s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/possition_data.hpp
+[14.762s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/speed_data.hpp
+[14.762s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/accel_data.hpp
+[14.762s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[14.762s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__traits.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__struct.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__traits.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__struct.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__traits.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__builder.hpp
+[14.763s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__builder.hpp
+[14.764s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.hpp
+[14.764s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__builder.hpp
+[14.764s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__builder.hpp
+[14.764s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__traits.hpp
+[14.764s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__struct.hpp
+[14.767s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__builder.hpp
+[14.768s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.hpp
+[14.769s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__traits.hpp
+[14.770s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.hpp
+[14.770s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.hpp
+[14.771s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__builder.hpp
+[14.772s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__struct.hpp
+[14.789s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.hpp
+[14.790s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.hpp
+[14.791s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__traits.hpp
+[14.791s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__builder.hpp
+[14.792s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__traits.hpp
+[14.793s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__struct.hpp
+[14.794s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__builder.hpp
+[14.794s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__struct.hpp
+[14.795s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__struct.hpp
+[14.796s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__struct.hpp
+[14.796s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.hpp
+[14.798s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__traits.hpp
+[14.800s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs
+[14.800s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[14.800s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[14.801s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[14.801s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_fastrtps_cpp.hpp
+[14.802s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_fastrtps_cpp.hpp
+[14.803s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/dds_fastrtps
+[14.803s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_cpp.hpp
+[14.804s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_cpp.hpp
+[14.805s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_fastrtps_cpp.hpp
+[14.806s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_fastrtps_cpp.hpp
+[14.806s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_cpp.hpp
+[14.807s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_fastrtps_cpp.hpp
+[14.821s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so
+[14.823s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[14.823s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs
+[14.824s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg
+[14.824s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail
+[14.825s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.cpp
+[14.825s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.cpp
+[14.826s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_introspection_cpp.hpp
+[14.827s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.cpp
+[14.828s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_introspection_cpp.hpp
+[14.828s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.cpp
+[14.829s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.cpp
+[14.830s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_introspection_cpp.hpp
+[14.830s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_introspection_cpp.hpp
+[14.831s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_introspection_cpp.hpp
+[14.832s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.cpp
+[14.833s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_introspection_cpp.hpp
+[14.833s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.cpp
+[14.834s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_introspection_cpp.hpp
+[14.835s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_introspection_cpp.hpp
+[14.836s] -- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.cpp
+[14.837s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_cpp.so
+[14.838s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[14.839s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_cpp.so
+[14.840s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_cpp.so" to ""
+[14.840s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/pythonpath.sh
+[14.852s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/pythonpath.dsv
+[14.854s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info
+[14.854s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/SOURCES.txt
+[14.855s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/dependency_links.txt
+[14.856s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/top_level.txt
+[14.856s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/PKG-INFO
+[14.857s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs
+[14.858s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[14.858s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[14.859s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[14.860s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg
+[14.861s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz.py
+[14.861s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status_s.c
+[14.862s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status.py
+[14.863s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data_s.c
+[14.863s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data_s.c
+[14.864s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data.py
+[14.865s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data.py
+[14.865s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz_s.c
+[14.866s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data.py
+[14.867s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data_s.c
+[14.868s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data.py
+[14.868s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data_s.c
+[14.869s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data_s.c
+[14.870s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data_s.c
+[14.871s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data.py
+[14.871s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data.py
+[14.881s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/__init__.py
+[14.881s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[14.882s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/libcustom_msgs__rosidl_generator_py.so
+[14.883s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[14.884s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c
+[14.885s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/__init__.py
+[15.031s] Listing '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs'...
+[15.031s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/__init__.py'...
+[15.032s] Listing '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg'...
+[15.032s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/__init__.py'...
+[15.032s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data.py'...
+[15.032s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz.py'...
+[15.032s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status.py'...
+[15.032s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data.py'...
+[15.033s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data.py'...
+[15.033s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data.py'...
+[15.033s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data.py'...
+[15.033s] Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data.py'...
+[15.046s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[15.046s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so" to ""
+[15.047s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[15.047s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so" to ""
+[15.048s] -- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[15.049s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so" to ""
+[15.049s] -- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_py.so
+[15.050s] -- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_py.so" to ""
+[15.050s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/AccelData.idl
+[15.050s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/GyroData.idl
+[15.050s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/ImuData.idl
+[15.051s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/EstimatorData.idl
+[15.051s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/PossitionData.idl
+[15.051s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/SpeedData.idl
+[15.051s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DataXYZ.idl
+[15.051s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DroneStatus.idl
+[15.052s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/AccelData.msg
+[15.052s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/GyroData.msg
+[15.052s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/ImuData.msg
+[15.052s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/EstimatorData.msg
+[15.052s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/PossitionData.msg
+[15.052s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/SpeedData.msg
+[15.053s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DataXYZ.msg
+[15.053s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DroneStatus.msg
+[15.053s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/package_run_dependencies/custom_msgs
+[15.053s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/parent_prefix_path/custom_msgs
+[15.054s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.sh
+[15.054s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.dsv
+[15.054s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/path.sh
+[15.054s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/path.dsv
+[15.054s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.bash
+[15.054s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.sh
+[15.055s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.zsh
+[15.055s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.dsv
+[15.055s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/package.dsv
+[15.055s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/packages/custom_msgs
+[15.056s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cExport.cmake
+[15.056s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cExport-noconfig.cmake
+[15.056s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[15.057s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[15.057s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cExport.cmake
+[15.057s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[15.057s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cExport.cmake
+[15.057s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[15.058s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cppExport.cmake
+[15.058s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[15.058s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[15.059s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[15.059s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[15.059s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cppExport.cmake
+[15.059s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[15.059s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_pyExport.cmake
+[15.059s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_pyExport-noconfig.cmake
+[15.060s] -- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake-extras.cmake
+[15.060s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[15.060s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[15.060s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[15.060s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[15.060s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[15.060s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[15.061s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgsConfig.cmake
+[15.061s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgsConfig-version.cmake
+[15.061s] -- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/package.xml
+[15.068s] Invoked command in '/home/dron/ws_controll/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/opt/ros/humble /usr/bin/cmake --install /home/dron/ws_controll/build/custom_msgs

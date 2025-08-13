@@ -1,0 +1,17 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from custom_msgs/msg/DroneStatus.msg
+// generated code does not contain a copyright notice
+
+#include "custom_msgs/msg/GeoData.idl"
+
+module custom_msgs {
+  module msg {
+    struct DroneStatus {
+      boolean is_autonomy_active;
+
+      float battery_voltage;
+
+      custom_msgs::msg::GeoData ekf_position;
+    };
+  };
+};

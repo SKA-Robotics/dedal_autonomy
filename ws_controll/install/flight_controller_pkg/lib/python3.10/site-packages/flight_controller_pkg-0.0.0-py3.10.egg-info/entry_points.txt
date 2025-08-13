@@ -1,0 +1,3 @@
+[console_scripts]
+fc_reader = flight_controller_pkg.fc_reader:main
+

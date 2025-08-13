@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel Drona (offline-ready)</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='leaflet/leaflet.css') }}">
+  <style>
+    body { background: #0b1020; color: #e9edf1; }
+    .card { background: #111831; border: none; }
+    #map { height: 320px; border-radius: 1rem; background: #0f162e; }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex align-items-center mb-4">
+      <h1 class="h3 mb-0">Panel Drona</h1>
+      <span id="status-pill" class="badge ms-3 bg-secondary">Łączenie…</span>
+      <span id="ts" class="ms-3 text-muted small"></span>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12 col-lg-8">
+        <div class="card p-3 h-100">
+          <h2 class="h6">Napięcie baterii (ostatnie 60 s)</h2>
+          <canvas id="voltageChart" height="140"></canvas>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card p-3 h-100">
+          <h2 class="h6">Wysokość (ostatnie 60 s)</h2>
+          <canvas id="altChart" height="140"></canvas>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card p-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="h6 mb-0">Pozycja</h2>
+            <form method="POST" class="d-flex gap-2">
+              <button class="btn btn-outline-light btn-sm" name="start" value="Start" type="submit">Start logowania</button>
+              <button class="btn btn-danger btn-sm" name="reset" value="Reset" type="submit">Reset</button>
+            </form>
+          </div>
+          <div id="map" class="mt-3"></div>
+          <div class="mt-3 small text-muted" id="pos-text">Lat —, Lon —, Alt —</div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card p-3">
+          <h2 class="h6">Ostatnie próbki</h2>
+          <div class="table-responsive">
+            <table class="table table-sm table-dark align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>UTC</th>
+                  <th>Autonomia</th>
+                  <th>Napięcie [V]</th>
+                  <th>Lat</th>
+                  <th>Lon</th>
+                  <th>Alt [m]</th>
+                </tr>
+              </thead>
+              <tbody id="data-rows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lokalne biblioteki -->
+  <script src="{{ url_for('static', filename='js/chart.umd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/date-fns.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chartjs-adapter-date-fns.umd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/sw-register.js') }}"></script>
+
+  <script>
+    // ====== Charts (czasowa oś X – mamy lokalny adapter) ======
+    const voltageCtx = document.getElementById('voltageChart').getContext('2d');
+    const altCtx = document.getElementById('altChart').getContext('2d');
+
+    const voltageChart = new Chart(voltageCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [
+            {
+                label: 'Vbat',
+                data: [],
+                tension: 0.3,
+                pointRadius: 0,
+                borderColor: 'rgb(54, 162, 235)'
+            },
+            {
+                label: 'Próg rozładowania (LiPo 4S)',
+                data: [], // będzie wypełniane wartością progu dla wszystkich punktów
+                borderColor: 'rgb(255, 99, 132)',
+                borderDash: [5,5],
+                pointRadius: 0
+            }
+            ]
+        },
+        options: {
+            animation: false,
+            responsive: true,
+            scales: {
+            x: {
+                type: 'category', // lub 'time' jeśli działa adapter
+                ticks: {
+                callback: function(value) {
+                    const label = this.getLabelForValue(value);
+                    return new Date(label).toLocaleTimeString();
+                }
+                }
+            },
+            y: {
+                min: 14,
+                max: 18,
+                title: { display: true, text: 'Napięcie [V]' }
+            }
+            }
+        }
+        });
+
+    const altChartObj = new Chart(altCtx, {
+      type: 'line',
+      data: { labels: [], datasets: [{ label: 'Alt [m]', data: [], tension: .3, pointRadius: 0 }] },
+      options: {
+        animation: false,
+        responsive: true,
+        scales: {
+            x: {
+                type: 'category',
+                ticks: {
+                    callback: function(value, index, ticks) {
+                    const label = this.getLabelForValue(value);
+                    return new Date(label).toLocaleTimeString(); // lub własny format
+                    }
+                }
+                },
+            y: { beginAtZero: false }
+        }
+      }
+    });
+
+    // ====== Leaflet z offline fallback ======
+    const map = L.map('map');
+    let marker = null;
+
+    function addOnlineTiles() {
+      return L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+    }
+
+    let tilesLayer = null;
+    if (navigator.onLine) {
+      try { tilesLayer = addOnlineTiles(); } catch (e) { /* offline */ }
+    }
+    // Jeśli brak internetu – zostaw pustą, ciemną planszę; marker i zoom i tak działają.
+
+    function updateMap(lat, lon) {
+      if (!isFinite(lat) || !isFinite(lon)) return;
+      const pos = [lat, lon];
+      if (!marker) {
+        marker = L.marker(pos).addTo(map);
+        map.setView(pos, tilesLayer ? 16 : 4); // offline: mniejszy zoom, bez kafelków
+      } else {
+        marker.setLatLng(pos);
+      }
+    }
+
+    // ====== UI helpers ======
+    const statusPill = document.getElementById('status-pill');
+    const tsEl = document.getElementById('ts');
+    const posText = document.getElementById('pos-text');
+    const rowsEl = document.getElementById('data-rows');
+
+    function setStatus(ok) {
+      statusPill.className = 'badge ms-3 ' + (ok ? 'bg-success' : 'bg-secondary');
+      statusPill.textContent = ok ? 'ONLINE' : 'OFFLINE';
+    }
+
+    async function fetchLatest() {
+      try {
+        const r = await fetch('/api/latest', { cache: 'no-store' });
+        const j = await r.json();
+        if (!j.available) { setStatus(false); return; }
+        setStatus(true);
+        tsEl.textContent = new Date(j.t).toLocaleTimeString();
+        posText.textContent = `Lat ${j.lat.toFixed(6)}, Lon ${j.lon.toFixed(6)}, Alt ${j.alt.toFixed(1)} m`;
+        updateMap(j.lat, j.lon);
+      } catch (e) { setStatus(false); }
+    }
+
+    async function fetchSeries() {
+      try {
+        const r = await fetch('/api/data', { cache: 'no-store' });
+        const series = await r.json();
+        const labels = series.map(s => s.t);
+        const vb = series.map(s => s.voltage);
+        const alt = series.map(s => s.alt);
+        voltageChart.data.labels = labels;
+        const cutoffVoltage = 14.8; // próg rozładowania LiPo 4S (3.7V na celę)
+        voltageChart.data.datasets[0].data = vb; // główne napięcie
+        voltageChart.data.datasets[1].data = new Array(vb.length).fill(cutoffVoltage); // linia progu
+        voltageChart.update();
+        altChartObj.data.labels = labels;
+        altChartObj.data.datasets[0].data = alt;
+        altChartObj.update();
+        const last = series.slice(-20).reverse();
+        rowsEl.innerHTML = last.map(s => `
+          <tr>
+            <td>${new Date(s.t).toISOString()}</td>
+            <td>${s.autonomy ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
+            <td>${Number(s.voltage).toFixed(2)}</td>
+            <td>${Number(s.lat).toFixed(6)}</td>
+            <td>${Number(s.lon).toFixed(6)}</td>
+            <td>${Number(s.alt).toFixed(1)}</td>
+          </tr>
+        `).join('');
+      } catch (e) { /* offline? zostaw poprzedni stan */ }
+    }
+
+    fetchLatest();
+    fetchSeries();
+    setInterval(fetchLatest, 1000);
+    setInterval(fetchSeries, 1000);
+  </script>
+</body>
+</html>

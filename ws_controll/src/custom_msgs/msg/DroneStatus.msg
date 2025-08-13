@@ -1,0 +1,3 @@
+bool is_autonomy_active
+float32 battery_voltage
+GeoData ekf_position

@@ -1,0 +1,727 @@
+[0.000000] (-) TimerEvent: {}
+[0.000697] (custom_msgs) JobQueued: {'identifier': 'custom_msgs', 'dependencies': OrderedDict()}
+[0.000808] (flask_pkg) JobQueued: {'identifier': 'flask_pkg', 'dependencies': OrderedDict([('custom_msgs', '/home/dron/ws_controll/install/custom_msgs')])}
+[0.001373] (flight_controller_pkg) JobQueued: {'identifier': 'flight_controller_pkg', 'dependencies': OrderedDict([('custom_msgs', '/home/dron/ws_controll/install/custom_msgs')])}
+[0.001656] (log_data_pkg) JobQueued: {'identifier': 'log_data_pkg', 'dependencies': OrderedDict([('custom_msgs', '/home/dron/ws_controll/install/custom_msgs')])}
+[0.001940] (custom_msgs) JobStarted: {'identifier': 'custom_msgs'}
+[0.018322] (custom_msgs) JobProgress: {'identifier': 'custom_msgs', 'progress': 'cmake'}
+[0.019670] (custom_msgs) JobProgress: {'identifier': 'custom_msgs', 'progress': 'build'}
+[0.020939] (custom_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/dron/ws_controll/build/custom_msgs', '--', '-j6', '-l6'], 'cwd': '/home/dron/ws_controll/build/custom_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'dron'), ('SSH_CLIENT', '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/dron/ws_controll/install/custom_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('BROWSER', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/dron'), ('OLDPWD', '/home/dron/.vscode-server'), ('TERM_PROGRAM_VERSION', '1.102.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-b75d2777-ac8b-49d8-b1e9-a9a312b42b39.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/libs/debugpy'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/dron/ws_controll/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'dron'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12.6/bin:/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/remote-cli:/home/dron/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin:/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/scripts/noConfigScripts:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/.noConfigDebugAdapterEndpoints/endpoint-fc9b2e5ec693c6c5.txt'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-9978954ebb.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/home/dron/ws_controll/install/custom_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/dron/ws_controll/build/custom_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 2a00:f41:1c70:b57:38a5:e84b:641f:db80 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/dron/ws_controll/install/custom_msgs:/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/opt/ros/humble')]), 'shell': False}
+[0.078599] (custom_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099361] (-) TimerEvent: {}
+[0.200220] (-) TimerEvent: {}
+[0.300877] (-) TimerEvent: {}
+[0.383616] (custom_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[0.390010] (custom_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.399988] (custom_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.400991] (-) TimerEvent: {}
+[0.471441] (custom_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.501160] (-) TimerEvent: {}
+[0.601795] (-) TimerEvent: {}
+[0.702447] (-) TimerEvent: {}
+[0.803095] (-) TimerEvent: {}
+[0.903706] (-) TimerEvent: {}
+[1.004370] (-) TimerEvent: {}
+[1.105040] (-) TimerEvent: {}
+[1.170721] (custom_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[1.205179] (-) TimerEvent: {}
+[1.305783] (-) TimerEvent: {}
+[1.406388] (-) TimerEvent: {}
+[1.507012] (-) TimerEvent: {}
+[1.607630] (-) TimerEvent: {}
+[1.623421] (custom_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.707793] (-) TimerEvent: {}
+[1.808426] (-) TimerEvent: {}
+[1.909046] (-) TimerEvent: {}
+[2.009701] (-) TimerEvent: {}
+[2.110415] (-) TimerEvent: {}
+[2.209900] (custom_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.210663] (-) TimerEvent: {}
+[2.268663] (custom_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[2.310847] (-) TimerEvent: {}
+[2.325389] (custom_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[2.326072] (custom_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[2.326421] (custom_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so\n'}
+[2.363507] (custom_msgs) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[2.385499] (custom_msgs) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.387424] (custom_msgs) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.391021] (custom_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.410919] (-) TimerEvent: {}
+[2.477328] (custom_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[2.501778] (custom_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/dron/ws_controll/build/custom_msgs\n'}
+[2.511044] (-) TimerEvent: {}
+[2.559099] (custom_msgs) StdoutLine: {'line': b'[  1%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[2.581478] (custom_msgs) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[2.606430] (custom_msgs) StdoutLine: {'line': b'[  2%] Built target ament_cmake_python_copy_custom_msgs\n'}
+[2.611193] (-) TimerEvent: {}
+[2.712205] (-) TimerEvent: {}
+[2.812874] (-) TimerEvent: {}
+[2.913504] (-) TimerEvent: {}
+[3.014161] (-) TimerEvent: {}
+[3.114806] (-) TimerEvent: {}
+[3.215404] (-) TimerEvent: {}
+[3.229209] (custom_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[3.230559] (custom_msgs) StdoutLine: {'line': b'writing custom_msgs.egg-info/PKG-INFO\n'}
+[3.232364] (custom_msgs) StdoutLine: {'line': b'writing dependency_links to custom_msgs.egg-info/dependency_links.txt\n'}
+[3.232676] (custom_msgs) StdoutLine: {'line': b'writing top-level names to custom_msgs.egg-info/top_level.txt\n'}
+[3.236955] (custom_msgs) StdoutLine: {'line': b"reading manifest file 'custom_msgs.egg-info/SOURCES.txt'\n"}
+[3.238907] (custom_msgs) StdoutLine: {'line': b"writing manifest file 'custom_msgs.egg-info/SOURCES.txt'\n"}
+[3.312776] (custom_msgs) StdoutLine: {'line': b'[  2%] Built target ament_cmake_python_build_custom_msgs_egg\n'}
+[3.317663] (-) TimerEvent: {}
+[3.418622] (-) TimerEvent: {}
+[3.519331] (-) TimerEvent: {}
+[3.620011] (-) TimerEvent: {}
+[3.720709] (-) TimerEvent: {}
+[3.821428] (-) TimerEvent: {}
+[3.922177] (-) TimerEvent: {}
+[4.024806] (-) TimerEvent: {}
+[4.125550] (-) TimerEvent: {}
+[4.222508] (custom_msgs) StdoutLine: {'line': b'[  2%] Built target custom_msgs__cpp\n'}
+[4.225685] (-) TimerEvent: {}
+[4.247115] (custom_msgs) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[4.265674] (custom_msgs) StdoutLine: {'line': b'[  4%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[4.270819] (custom_msgs) StdoutLine: {'line': b'[  5%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[4.325854] (-) TimerEvent: {}
+[4.350054] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_generator_c\x1b[0m\n'}
+[4.426039] (-) TimerEvent: {}
+[4.430218] (custom_msgs) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/accel_data__functions.c.o\x1b[0m\n'}
+[4.449915] (custom_msgs) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/gyro_data__functions.c.o\x1b[0m\n'}
+[4.491380] (custom_msgs) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/imu_data__functions.c.o\x1b[0m\n'}
+[4.526225] (-) TimerEvent: {}
+[4.626881] (-) TimerEvent: {}
+[4.665034] (custom_msgs) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/estimator_data__functions.c.o\x1b[0m\n'}
+[4.691356] (custom_msgs) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/possition_data__functions.c.o\x1b[0m\n'}
+[4.727045] (-) TimerEvent: {}
+[4.795819] (custom_msgs) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/speed_data__functions.c.o\x1b[0m\n'}
+[4.827210] (-) TimerEvent: {}
+[4.927841] (-) TimerEvent: {}
+[4.950345] (custom_msgs) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/drone_status__functions.c.o\x1b[0m\n'}
+[4.982111] (custom_msgs) StdoutLine: {'line': b'[ 14%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/data_xyz__functions.c.o\x1b[0m\n'}
+[5.028012] (-) TimerEvent: {}
+[5.128680] (-) TimerEvent: {}
+[5.229335] (-) TimerEvent: {}
+[5.240247] (custom_msgs) StdoutLine: {'line': b'[ 16%] \x1b[32m\x1b[1mLinking C shared library libcustom_msgs__rosidl_generator_c.so\x1b[0m\n'}
+[5.329544] (-) TimerEvent: {}
+[5.430231] (-) TimerEvent: {}
+[5.436034] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_cpp\x1b[0m\n'}
+[5.457441] (custom_msgs) StdoutLine: {'line': b'[ 16%] Built target custom_msgs__rosidl_generator_c\n'}
+[5.506310] (custom_msgs) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[5.528292] (custom_msgs) StdoutLine: {'line': b'[ 18%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[5.530366] (-) TimerEvent: {}
+[5.560768] (custom_msgs) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[5.571693] (custom_msgs) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/accel_data__type_support.cpp.o\x1b[0m\n'}
+[5.630697] (-) TimerEvent: {}
+[5.731356] (-) TimerEvent: {}
+[5.832010] (-) TimerEvent: {}
+[5.932697] (-) TimerEvent: {}
+[6.033425] (-) TimerEvent: {}
+[6.089783] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[6.133627] (-) TimerEvent: {}
+[6.203400] (custom_msgs) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/accel_data__type_support.cpp.o\x1b[0m\n'}
+[6.233832] (-) TimerEvent: {}
+[6.334546] (-) TimerEvent: {}
+[6.435197] (-) TimerEvent: {}
+[6.535840] (-) TimerEvent: {}
+[6.622883] (custom_msgs) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/gyro_data__type_support.cpp.o\x1b[0m\n'}
+[6.636033] (-) TimerEvent: {}
+[6.736739] (-) TimerEvent: {}
+[6.837452] (-) TimerEvent: {}
+[6.905490] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[6.937660] (-) TimerEvent: {}
+[6.975992] (custom_msgs) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp.o\x1b[0m\n'}
+[7.037889] (-) TimerEvent: {}
+[7.094849] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_c\x1b[0m\n'}
+[7.138096] (-) TimerEvent: {}
+[7.169972] (custom_msgs) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/accel_data__type_support.cpp.o\x1b[0m\n'}
+[7.238323] (-) TimerEvent: {}
+[7.274288] (custom_msgs) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/gyro_data__type_support.cpp.o\x1b[0m\n'}
+[7.338501] (-) TimerEvent: {}
+[7.351368] (custom_msgs) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/imu_data__type_support.cpp.o\x1b[0m\n'}
+[7.394323] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[7.419498] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[7.435583] (custom_msgs) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/accel_data__type_support.c.o\x1b[0m\n'}
+[7.438665] (-) TimerEvent: {}
+[7.454919] (custom_msgs) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/estimator_data__type_support.cpp.o\x1b[0m\n'}
+[7.461925] (custom_msgs) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/imu_data__type_support.cpp.o\x1b[0m\n'}
+[7.483886] (custom_msgs) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/accel_data__type_support_c.cpp.o\x1b[0m\n'}
+[7.507327] (custom_msgs) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/gyro_data__type_support.cpp.o\x1b[0m\n'}
+[7.538278] (custom_msgs) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/possition_data__type_support.cpp.o\x1b[0m\n'}
+[7.538858] (-) TimerEvent: {}
+[7.542233] (custom_msgs) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/gyro_data__type_support.c.o\x1b[0m\n'}
+[7.623966] (custom_msgs) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/imu_data__type_support.c.o\x1b[0m\n'}
+[7.639078] (-) TimerEvent: {}
+[7.713077] (custom_msgs) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/estimator_data__type_support.c.o\x1b[0m\n'}
+[7.716384] (custom_msgs) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/speed_data__type_support.cpp.o\x1b[0m\n'}
+[7.739290] (-) TimerEvent: {}
+[7.807055] (custom_msgs) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/possition_data__type_support.c.o\x1b[0m\n'}
+[7.839442] (-) TimerEvent: {}
+[7.893200] (custom_msgs) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/data_xyz__type_support.cpp.o\x1b[0m\n'}
+[7.939641] (-) TimerEvent: {}
+[7.948450] (custom_msgs) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/speed_data__type_support.c.o\x1b[0m\n'}
+[8.030829] (custom_msgs) StdoutLine: {'line': b'[ 43%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/custom_msgs/msg/drone_status__type_support.cpp.o\x1b[0m\n'}
+[8.039838] (-) TimerEvent: {}
+[8.062553] (custom_msgs) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/data_xyz__type_support.c.o\x1b[0m\n'}
+[8.127030] (custom_msgs) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/gyro_data__type_support.cpp.o\x1b[0m\n'}
+[8.140001] (-) TimerEvent: {}
+[8.169085] (custom_msgs) StdoutLine: {'line': b'[ 47%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_c.so\x1b[0m\n'}
+[8.187519] (custom_msgs) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/estimator_data__type_support.cpp.o\x1b[0m\n'}
+[8.190344] (custom_msgs) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/custom_msgs/msg/detail/drone_status__type_support.c.o\x1b[0m\n'}
+[8.240229] (-) TimerEvent: {}
+[8.341608] (-) TimerEvent: {}
+[8.345801] (custom_msgs) StdoutLine: {'line': b'[ 49%] Built target custom_msgs__rosidl_typesupport_c\n'}
+[8.374042] (custom_msgs) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/gyro_data__type_support_c.cpp.o\x1b[0m\n'}
+[8.378868] (custom_msgs) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libcustom_msgs__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[8.441822] (-) TimerEvent: {}
+[8.543201] (-) TimerEvent: {}
+[8.547020] (custom_msgs) StdoutLine: {'line': b'[ 51%] Built target custom_msgs__rosidl_typesupport_introspection_c\n'}
+[8.583361] (custom_msgs) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/imu_data__type_support.cpp.o\x1b[0m\n'}
+[8.592253] (custom_msgs) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/estimator_data__type_support.cpp.o\x1b[0m\n'}
+[8.622593] (custom_msgs) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/imu_data__type_support.cpp.o\x1b[0m\n'}
+[8.643382] (-) TimerEvent: {}
+[8.744132] (-) TimerEvent: {}
+[8.845601] (-) TimerEvent: {}
+[8.947064] (-) TimerEvent: {}
+[9.049351] (-) TimerEvent: {}
+[9.056083] (custom_msgs) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/possition_data__type_support.cpp.o\x1b[0m\n'}
+[9.149591] (-) TimerEvent: {}
+[9.251556] (-) TimerEvent: {}
+[9.352933] (-) TimerEvent: {}
+[9.371767] (custom_msgs) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/imu_data__type_support_c.cpp.o\x1b[0m\n'}
+[9.393526] (custom_msgs) StdoutLine: {'line': b'[ 58%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/possition_data__type_support.cpp.o\x1b[0m\n'}
+[9.453129] (-) TimerEvent: {}
+[9.554637] (-) TimerEvent: {}
+[9.651619] (custom_msgs) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/speed_data__type_support.cpp.o\x1b[0m\n'}
+[9.654772] (-) TimerEvent: {}
+[9.758075] (-) TimerEvent: {}
+[9.798641] (custom_msgs) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/estimator_data__type_support.cpp.o\x1b[0m\n'}
+[9.858311] (-) TimerEvent: {}
+[9.924679] (custom_msgs) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/possition_data__type_support.cpp.o\x1b[0m\n'}
+[9.958482] (-) TimerEvent: {}
+[10.059390] (-) TimerEvent: {}
+[10.075078] (custom_msgs) StdoutLine: {'line': b'[ 63%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/speed_data__type_support.cpp.o\x1b[0m\n'}
+[10.159589] (-) TimerEvent: {}
+[10.260625] (-) TimerEvent: {}
+[10.361696] (-) TimerEvent: {}
+[10.412920] (custom_msgs) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/estimator_data__type_support_c.cpp.o\x1b[0m\n'}
+[10.461914] (-) TimerEvent: {}
+[10.563369] (-) TimerEvent: {}
+[10.664849] (-) TimerEvent: {}
+[10.768324] (-) TimerEvent: {}
+[10.869799] (-) TimerEvent: {}
+[10.888274] (custom_msgs) StdoutLine: {'line': b'[ 65%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/speed_data__type_support.cpp.o\x1b[0m\n'}
+[10.915677] (custom_msgs) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/data_xyz__type_support.cpp.o\x1b[0m\n'}
+[10.940230] (custom_msgs) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/drone_status__type_support.cpp.o\x1b[0m\n'}
+[10.970023] (-) TimerEvent: {}
+[11.071265] (-) TimerEvent: {}
+[11.074854] (custom_msgs) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/data_xyz__type_support.cpp.o\x1b[0m\n'}
+[11.135318] (custom_msgs) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/data_xyz__type_support.cpp.o\x1b[0m\n'}
+[11.171484] (-) TimerEvent: {}
+[11.272702] (-) TimerEvent: {}
+[11.374192] (-) TimerEvent: {}
+[11.475494] (-) TimerEvent: {}
+[11.576946] (-) TimerEvent: {}
+[11.678398] (-) TimerEvent: {}
+[11.766901] (custom_msgs) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/possition_data__type_support_c.cpp.o\x1b[0m\n'}
+[11.779085] (-) TimerEvent: {}
+[11.880333] (-) TimerEvent: {}
+[11.917819] (custom_msgs) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/custom_msgs/msg/drone_status__type_support.cpp.o\x1b[0m\n'}
+[11.980555] (-) TimerEvent: {}
+[12.081875] (-) TimerEvent: {}
+[12.082888] (custom_msgs) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/speed_data__type_support_c.cpp.o\x1b[0m\n'}
+[12.114012] (custom_msgs) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/drone_status__type_support.cpp.o\x1b[0m\n'}
+[12.120795] (custom_msgs) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[12.182119] (-) TimerEvent: {}
+[12.287037] (-) TimerEvent: {}
+[12.303912] (custom_msgs) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/data_xyz__type_support_c.cpp.o\x1b[0m\n'}
+[12.387216] (-) TimerEvent: {}
+[12.400209] (custom_msgs) StdoutLine: {'line': b'[ 77%] Built target custom_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[12.471141] (custom_msgs) StdoutLine: {'line': b'[ 78%] \x1b[32mBuilding CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/drone_status__type_support_c.cpp.o\x1b[0m\n'}
+[12.487432] (-) TimerEvent: {}
+[12.588855] (-) TimerEvent: {}
+[12.682921] (custom_msgs) StdoutLine: {'line': b'[ 79%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[12.689087] (-) TimerEvent: {}
+[12.790453] (-) TimerEvent: {}
+[12.891189] (custom_msgs) StdoutLine: {'line': b'[ 79%] Built target custom_msgs__rosidl_typesupport_cpp\n'}
+[12.891739] (-) TimerEvent: {}
+[12.992831] (-) TimerEvent: {}
+[13.093942] (-) TimerEvent: {}
+[13.106041] (custom_msgs) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[13.194117] (-) TimerEvent: {}
+[13.266283] (custom_msgs) StdoutLine: {'line': b'[ 80%] Built target custom_msgs__rosidl_typesupport_introspection_cpp\n'}
+[13.294273] (-) TimerEvent: {}
+[13.346348] (custom_msgs) StdoutLine: {'line': b'[ 81%] \x1b[32m\x1b[1mLinking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[13.394486] (-) TimerEvent: {}
+[13.495339] (-) TimerEvent: {}
+[13.522197] (custom_msgs) StdoutLine: {'line': b'[ 81%] Built target custom_msgs__rosidl_typesupport_fastrtps_c\n'}
+[13.565327] (custom_msgs) StdoutLine: {'line': b'[ 81%] Built target custom_msgs\n'}
+[13.595517] (-) TimerEvent: {}
+[13.611788] (custom_msgs) StdoutLine: {'line': b'[ 82%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[13.695684] (-) TimerEvent: {}
+[13.796362] (-) TimerEvent: {}
+[13.897036] (-) TimerEvent: {}
+[13.997724] (-) TimerEvent: {}
+[14.098420] (-) TimerEvent: {}
+[14.199130] (-) TimerEvent: {}
+[14.299799] (-) TimerEvent: {}
+[14.400458] (-) TimerEvent: {}
+[14.501135] (-) TimerEvent: {}
+[14.601803] (-) TimerEvent: {}
+[14.702497] (-) TimerEvent: {}
+[14.803197] (-) TimerEvent: {}
+[14.903870] (-) TimerEvent: {}
+[15.004565] (-) TimerEvent: {}
+[15.105305] (-) TimerEvent: {}
+[15.206007] (-) TimerEvent: {}
+[15.306687] (-) TimerEvent: {}
+[15.407367] (-) TimerEvent: {}
+[15.508026] (-) TimerEvent: {}
+[15.608785] (-) TimerEvent: {}
+[15.646435] (custom_msgs) StdoutLine: {'line': b'[ 82%] Built target custom_msgs__py\n'}
+[15.672546] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_generator_py\x1b[0m\n'}
+[15.708980] (-) TimerEvent: {}
+[15.716499] (custom_msgs) StdoutLine: {'line': b'[ 86%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_imu_data_s.c.o\x1b[0m\n'}
+[15.718059] (custom_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_estimator_data_s.c.o\x1b[0m\n'}
+[15.718455] (custom_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_gyro_data_s.c.o\x1b[0m\n'}
+[15.719153] (custom_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_accel_data_s.c.o\x1b[0m\n'}
+[15.721526] (custom_msgs) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_possition_data_s.c.o\x1b[0m\n'}
+[15.732243] (custom_msgs) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_speed_data_s.c.o\x1b[0m\n'}
+[15.809185] (-) TimerEvent: {}
+[15.909979] (-) TimerEvent: {}
+[16.005704] (custom_msgs) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_data_xyz_s.c.o\x1b[0m\n'}
+[16.010164] (-) TimerEvent: {}
+[16.034139] (custom_msgs) StdoutLine: {'line': b'[ 91%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_drone_status_s.c.o\x1b[0m\n'}
+[16.110338] (-) TimerEvent: {}
+[16.211477] (-) TimerEvent: {}
+[16.264695] (custom_msgs) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_msgs/libcustom_msgs__rosidl_generator_py.so\x1b[0m\n'}
+[16.311642] (-) TimerEvent: {}
+[16.354237] (custom_msgs) StdoutLine: {'line': b'[ 93%] Built target custom_msgs__rosidl_generator_py\n'}
+[16.378770] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[16.379538] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[16.379762] (custom_msgs) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target custom_msgs__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[16.409674] (custom_msgs) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[16.411750] (-) TimerEvent: {}
+[16.413358] (custom_msgs) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[16.413844] (custom_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding C object CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[16.511986] (-) TimerEvent: {}
+[16.613048] (-) TimerEvent: {}
+[16.688666] (custom_msgs) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[16.713237] (-) TimerEvent: {}
+[16.723396] (custom_msgs) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[16.758961] (custom_msgs) StdoutLine: {'line': b'[ 98%] Built target custom_msgs__rosidl_typesupport_c__pyext\n'}
+[16.787650] (custom_msgs) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\x1b[0m\n'}
+[16.798388] (custom_msgs) StdoutLine: {'line': b'[100%] Built target custom_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[16.813390] (-) TimerEvent: {}
+[16.861558] (custom_msgs) StdoutLine: {'line': b'[100%] Built target custom_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[16.891941] (custom_msgs) CommandEnded: {'returncode': 0}
+[16.894853] (custom_msgs) JobProgress: {'identifier': 'custom_msgs', 'progress': 'install'}
+[16.913628] (-) TimerEvent: {}
+[16.914622] (custom_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/dron/ws_controll/build/custom_msgs'], 'cwd': '/home/dron/ws_controll/build/custom_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'dron'), ('SSH_CLIENT', '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/dron/ws_controll/install/custom_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64:'), ('BROWSER', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/dron'), ('OLDPWD', '/home/dron/.vscode-server'), ('TERM_PROGRAM_VERSION', '1.102.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-b75d2777-ac8b-49d8-b1e9-a9a312b42b39.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/libs/debugpy'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/dron/ws_controll/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'dron'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12.6/bin:/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/remote-cli:/home/dron/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin:/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/scripts/noConfigScripts:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/.noConfigDebugAdapterEndpoints/endpoint-fc9b2e5ec693c6c5.txt'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-9978954ebb.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/home/dron/ws_controll/install/custom_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/dron/ws_controll/build/custom_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 2a00:f41:1c70:b57:38a5:e84b:641f:db80 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/dron/ws_controll/install/custom_msgs:/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/opt/ros/humble')]), 'shell': False}
+[16.940757] (custom_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.960712] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/rosidl_interfaces/custom_msgs\n'}
+[16.961220] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs\n'}
+[16.961534] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg\n'}
+[16.962269] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drone_status.h\n'}
+[16.962491] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[16.963227] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/gyro_data.h\n'}
+[16.963792] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/imu_data.h\n'}
+[16.964356] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/speed_data.h\n'}
+[16.965226] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/data_xyz.h\n'}
+[16.965423] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/estimator_data.h\n'}
+[16.965586] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail\n'}
+[16.965773] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__struct.h\n'}
+[16.966894] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__functions.h\n'}
+[16.967504] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__struct.h\n'}
+[16.970287] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__functions.h\n'}
+[16.973111] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.h\n'}
+[16.973626] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__struct.h\n'}
+[16.974264] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.h\n'}
+[16.975923] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__struct.h\n'}
+[16.976872] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__functions.c\n'}
+[16.977481] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.h\n'}
+[16.978786] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.h\n'}
+[16.980646] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__functions.c\n'}
+[16.983153] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__struct.h\n'}
+[16.984223] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__functions.h\n'}
+[16.985091] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__functions.c\n'}
+[16.986027] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.h\n'}
+[16.993178] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__functions.c\n'}
+[16.993480] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.h\n'}
+[16.993654] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__functions.c\n'}
+[16.993885] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__functions.h\n'}
+[16.994058] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__functions.h\n'}
+[16.994211] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__functions.c\n'}
+[16.994359] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__functions.h\n'}
+[16.994500] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__functions.h\n'}
+[17.000016] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__functions.c\n'}
+[17.000316] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__functions.h\n'}
+[17.000570] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__struct.h\n'}
+[17.000751] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__functions.c\n'}
+[17.001042] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.h\n'}
+[17.001273] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.h\n'}
+[17.001534] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__struct.h\n'}
+[17.001705] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__struct.h\n'}
+[17.001865] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/accel_data.h\n'}
+[17.002017] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/possition_data.h\n'}
+[17.002252] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/library_path.sh\n'}
+[17.002413] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/library_path.dsv\n'}
+[17.002599] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so\n'}
+[17.003397] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so" to ""\n'}
+[17.003561] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs\n'}
+[17.003712] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg\n'}
+[17.003894] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[17.004042] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail\n'}
+[17.004184] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_fastrtps_c.h\n'}
+[17.004327] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_fastrtps_c.h\n'}
+[17.004473] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_fastrtps_c.h\n'}
+[17.004614] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_c.h\n'}
+[17.004753] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_c.h\n'}
+[17.004890] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_c.h\n'}
+[17.005036] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_fastrtps_c.h\n'}
+[17.005174] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_fastrtps_c.h\n'}
+[17.005311] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[17.005480] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[17.005654] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs\n'}
+[17.005798] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg\n'}
+[17.005937] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[17.006078] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail\n'}
+[17.006222] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.c\n'}
+[17.006361] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.c\n'}
+[17.006499] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.c\n'}
+[17.006668] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_introspection_c.h\n'}
+[17.006817] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_introspection_c.h\n'}
+[17.006970] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.c\n'}
+[17.007114] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_introspection_c.h\n'}
+[17.007258] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.c\n'}
+[17.007403] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.c\n'}
+[17.007543] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_introspection_c.h\n'}
+[17.007685] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.c\n'}
+[17.007824] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_introspection_c.h\n'}
+[17.007972] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.c\n'}
+[17.008112] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_introspection_c.h\n'}
+[17.008252] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_introspection_c.h\n'}
+[17.008392] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_introspection_c.h\n'}
+[17.008539] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so\n'}
+[17.008695] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so" to ""\n'}
+[17.008834] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so\n'}
+[17.008971] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so" to ""\n'}
+[17.009118] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs\n'}
+[17.009256] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg\n'}
+[17.009399] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/drone_status.hpp\n'}
+[17.009539] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/gyro_data.hpp\n'}
+[17.009678] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[17.009817] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/imu_data.hpp\n'}
+[17.009954] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/data_xyz.hpp\n'}
+[17.010093] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/estimator_data.hpp\n'}
+[17.010231] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/possition_data.hpp\n'}
+[17.010396] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/speed_data.hpp\n'}
+[17.032602] (-) TimerEvent: {}
+[17.033053] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/accel_data.hpp\n'}
+[17.033391] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail\n'}
+[17.033572] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__traits.hpp\n'}
+[17.033739] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.hpp\n'}
+[17.033910] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__struct.hpp\n'}
+[17.034100] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__traits.hpp\n'}
+[17.034260] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__struct.hpp\n'}
+[17.034413] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__traits.hpp\n'}
+[17.042990] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__builder.hpp\n'}
+[17.043305] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__builder.hpp\n'}
+[17.043481] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.hpp\n'}
+[17.043688] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__builder.hpp\n'}
+[17.044957] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__builder.hpp\n'}
+[17.045905] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__traits.hpp\n'}
+[17.046204] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__struct.hpp\n'}
+[17.046379] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__builder.hpp\n'}
+[17.046573] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.hpp\n'}
+[17.046740] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__traits.hpp\n'}
+[17.046889] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.hpp\n'}
+[17.047035] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.hpp\n'}
+[17.047184] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__builder.hpp\n'}
+[17.047326] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__struct.hpp\n'}
+[17.047467] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.hpp\n'}
+[17.047607] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.hpp\n'}
+[17.047754] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__traits.hpp\n'}
+[17.047896] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__builder.hpp\n'}
+[17.048034] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__traits.hpp\n'}
+[17.048172] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__struct.hpp\n'}
+[17.048317] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__builder.hpp\n'}
+[17.048456] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__struct.hpp\n'}
+[17.048595] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__struct.hpp\n'}
+[17.048735] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__struct.hpp\n'}
+[17.048932] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.hpp\n'}
+[17.049076] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__traits.hpp\n'}
+[17.049232] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs\n'}
+[17.049374] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg\n'}
+[17.049539] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[17.049685] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail\n'}
+[17.049826] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.049965] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.050110] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/dds_fastrtps\n'}
+[17.050251] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.050391] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.050554] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.050712] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.050855] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.050996] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[17.051137] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[17.051285] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[17.051426] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs\n'}
+[17.051565] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg\n'}
+[17.051705] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail\n'}
+[17.051848] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__type_support.cpp\n'}
+[17.051988] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.cpp\n'}
+[17.052130] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.052268] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.cpp\n'}
+[17.052417] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.052589] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.cpp\n'}
+[17.052733] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.cpp\n'}
+[17.052873] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.053021] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.053164] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.053304] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.cpp\n'}
+[17.053476] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.053637] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.cpp\n'}
+[17.053779] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.053921] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[17.054061] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.cpp\n'}
+[17.054208] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[17.054349] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[17.054488] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_cpp.so\n'}
+[17.075603] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_cpp.so" to ""\n'}
+[17.075867] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/pythonpath.sh\n'}
+[17.076040] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/pythonpath.dsv\n'}
+[17.076200] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info\n'}
+[17.076358] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[17.076522] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[17.076670] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[17.076814] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[17.076999] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs\n'}
+[17.077155] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.077302] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.077443] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[17.077585] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg\n'}
+[17.077732] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz.py\n'}
+[17.077874] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status_s.c\n'}
+[17.078013] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status.py\n'}
+[17.078165] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data_s.c\n'}
+[17.078312] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data_s.c\n'}
+[17.078453] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data.py\n'}
+[17.078636] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data.py\n'}
+[17.078784] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz_s.c\n'}
+[17.078933] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data.py\n'}
+[17.079099] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data_s.c\n'}
+[17.079274] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data.py\n'}
+[17.079418] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data_s.c\n'}
+[17.079565] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data_s.c\n'}
+[17.079707] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data_s.c\n'}
+[17.079846] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data.py\n'}
+[17.079985] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data.py\n'}
+[17.080129] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/__init__.py\n'}
+[17.080287] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[17.080432] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/libcustom_msgs__rosidl_generator_py.so\n'}
+[17.080573] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.080723] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[17.080861] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/__init__.py\n'}
+[17.132779] (-) TimerEvent: {}
+[17.143560] (custom_msgs) StdoutLine: {'line': b"Listing '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs'...\n"}
+[17.144035] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/__init__.py'...\n"}
+[17.144228] (custom_msgs) StdoutLine: {'line': b"Listing '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg'...\n"}
+[17.144390] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/__init__.py'...\n"}
+[17.144549] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data.py'...\n"}
+[17.144698] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz.py'...\n"}
+[17.144843] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status.py'...\n"}
+[17.144985] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data.py'...\n"}
+[17.145132] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data.py'...\n"}
+[17.145275] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data.py'...\n"}
+[17.145416] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data.py'...\n"}
+[17.145560] (custom_msgs) StdoutLine: {'line': b"Compiling '/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data.py'...\n"}
+[17.157772] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.158411] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so" to ""\n'}
+[17.158869] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.159597] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so" to ""\n'}
+[17.159989] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[17.160694] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/custom_msgs_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so" to ""\n'}
+[17.161027] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_py.so\n'}
+[17.161880] (custom_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/dron/ws_controll/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_py.so" to ""\n'}
+[17.162241] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/AccelData.idl\n'}
+[17.162610] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/GyroData.idl\n'}
+[17.162912] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/ImuData.idl\n'}
+[17.163084] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/EstimatorData.idl\n'}
+[17.163367] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/PossitionData.idl\n'}
+[17.163719] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/SpeedData.idl\n'}
+[17.163992] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DataXYZ.idl\n'}
+[17.164154] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DroneStatus.idl\n'}
+[17.164431] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/AccelData.msg\n'}
+[17.164720] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/GyroData.msg\n'}
+[17.164888] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/ImuData.msg\n'}
+[17.165188] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/EstimatorData.msg\n'}
+[17.165361] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/PossitionData.msg\n'}
+[17.165692] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/SpeedData.msg\n'}
+[17.165920] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DataXYZ.msg\n'}
+[17.166128] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/msg/DroneStatus.msg\n'}
+[17.166295] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/package_run_dependencies/custom_msgs\n'}
+[17.166507] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/parent_prefix_path/custom_msgs\n'}
+[17.166710] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.sh\n'}
+[17.166958] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.dsv\n'}
+[17.167164] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/path.sh\n'}
+[17.167359] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/environment/path.dsv\n'}
+[17.167600] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.bash\n'}
+[17.167814] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.sh\n'}
+[17.168014] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.zsh\n'}
+[17.168211] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/local_setup.dsv\n'}
+[17.168452] (custom_msgs) StdoutLine: {'line': b'-- Installing: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/package.dsv\n'}
+[17.168687] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/ament_index/resource_index/packages/custom_msgs\n'}
+[17.168846] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cExport.cmake\n'}
+[17.169088] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[17.169319] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[17.169572] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[17.169850] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[17.170101] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[17.170342] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cExport.cmake\n'}
+[17.170561] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[17.170720] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_cppExport.cmake\n'}
+[17.170870] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[17.171090] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[17.171243] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[17.171384] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[17.171521] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[17.171659] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[17.171802] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_pyExport.cmake\n'}
+[17.171963] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/export_custom_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[17.172102] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[17.172237] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[17.172380] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[17.172520] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[17.172655] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[17.172789] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[17.172930] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[17.173070] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgsConfig.cmake\n'}
+[17.173205] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/cmake/custom_msgsConfig-version.cmake\n'}
+[17.173339] (custom_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/dron/ws_controll/install/custom_msgs/share/custom_msgs/package.xml\n'}
+[17.186182] (custom_msgs) CommandEnded: {'returncode': 0}
+[17.242694] (-) TimerEvent: {}
+[17.280267] (custom_msgs) JobEnded: {'identifier': 'custom_msgs', 'rc': 0}
+[17.282009] (flask_pkg) JobStarted: {'identifier': 'flask_pkg'}
+[17.315147] (flight_controller_pkg) JobStarted: {'identifier': 'flight_controller_pkg'}
+[17.342845] (-) TimerEvent: {}
+[17.351019] (log_data_pkg) JobStarted: {'identifier': 'log_data_pkg'}
+[17.443028] (-) TimerEvent: {}
+[17.543714] (-) TimerEvent: {}
+[17.644393] (-) TimerEvent: {}
+[17.745848] (-) TimerEvent: {}
+[17.846855] (-) TimerEvent: {}
+[17.947591] (-) TimerEvent: {}
+[18.048285] (-) TimerEvent: {}
+[18.149431] (-) TimerEvent: {}
+[18.250140] (-) TimerEvent: {}
+[18.351439] (-) TimerEvent: {}
+[18.453031] (-) TimerEvent: {}
+[18.553747] (-) TimerEvent: {}
+[18.654427] (-) TimerEvent: {}
+[18.755179] (-) TimerEvent: {}
+[18.855921] (-) TimerEvent: {}
+[18.956663] (-) TimerEvent: {}
+[19.057389] (-) TimerEvent: {}
+[19.158100] (-) TimerEvent: {}
+[19.258777] (-) TimerEvent: {}
+[19.359449] (-) TimerEvent: {}
+[19.460125] (-) TimerEvent: {}
+[19.560822] (-) TimerEvent: {}
+[19.661513] (-) TimerEvent: {}
+[19.762255] (-) TimerEvent: {}
+[19.868278] (-) TimerEvent: {}
+[19.968996] (-) TimerEvent: {}
+[20.069657] (-) TimerEvent: {}
+[20.170360] (-) TimerEvent: {}
+[20.271060] (-) TimerEvent: {}
+[20.371722] (-) TimerEvent: {}
+[20.472376] (-) TimerEvent: {}
+[20.573049] (-) TimerEvent: {}
+[20.673721] (-) TimerEvent: {}
+[20.774430] (-) TimerEvent: {}
+[20.875146] (-) TimerEvent: {}
+[20.975843] (-) TimerEvent: {}
+[21.076508] (-) TimerEvent: {}
+[21.177247] (-) TimerEvent: {}
+[21.202678] (flight_controller_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/flight_controller_pkg', 'build', '--build-base', '/home/dron/ws_controll/build/flight_controller_pkg/build', 'install', '--record', '/home/dron/ws_controll/build/flight_controller_pkg/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/dron/ws_controll/src/flight_controller_pkg', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'dron', 'SSH_CLIENT': '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/dron/ws_controll/install/custom_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64', 'BROWSER': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/dron', 'OLDPWD': '/home/dron/.vscode-server', 'TERM_PROGRAM_VERSION': '1.102.2', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-b75d2777-ac8b-49d8-b1e9-a9a312b42b39.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/node', 'SSL_CERT_FILE': '/usr/lib/ssl/certs/ca-certificates.crt', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/libs/debugpy', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/dron/ws_controll/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'dron', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '2', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda-12.6/bin:/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/remote-cli:/home/dron/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin:/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/scripts/noConfigScripts:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'SSL_CERT_DIR': '/usr/lib/ssl/certs', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/.noConfigDebugAdapterEndpoints/endpoint-fc9b2e5ec693c6c5.txt', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-9978954ebb.sock', 'TERM_PROGRAM': 'vscode', 'AMENT_PREFIX_PATH': '/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/home/dron/ws_controll/install/custom_msgs:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/dron/ws_controll/build/flight_controller_pkg', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 2a00:f41:1c70:b57:38a5:e84b:641f:db80 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/dron/ws_controll/build/flight_controller_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/dron/ws_controll/install/custom_msgs'}, 'shell': False}
+[21.278065] (log_data_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/log_data_pkg', 'build', '--build-base', '/home/dron/ws_controll/build/log_data_pkg/build', 'install', '--record', '/home/dron/ws_controll/build/log_data_pkg/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/dron/ws_controll/src/log_data_pkg', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'dron', 'SSH_CLIENT': '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/dron/ws_controll/install/custom_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64', 'BROWSER': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/dron', 'OLDPWD': '/home/dron/.vscode-server', 'TERM_PROGRAM_VERSION': '1.102.2', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-b75d2777-ac8b-49d8-b1e9-a9a312b42b39.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/node', 'SSL_CERT_FILE': '/usr/lib/ssl/certs/ca-certificates.crt', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/libs/debugpy', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/dron/ws_controll/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'dron', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '2', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda-12.6/bin:/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/remote-cli:/home/dron/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin:/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/scripts/noConfigScripts:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'SSL_CERT_DIR': '/usr/lib/ssl/certs', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/.noConfigDebugAdapterEndpoints/endpoint-fc9b2e5ec693c6c5.txt', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-9978954ebb.sock', 'TERM_PROGRAM': 'vscode', 'AMENT_PREFIX_PATH': '/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/home/dron/ws_controll/install/custom_msgs:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/dron/ws_controll/build/log_data_pkg', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 2a00:f41:1c70:b57:38a5:e84b:641f:db80 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/dron/ws_controll/build/log_data_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/dron/ws_controll/install/custom_msgs'}, 'shell': False}
+[21.281713] (-) TimerEvent: {}
+[21.301576] (flask_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/flask_pkg', 'build', '--build-base', '/home/dron/ws_controll/build/flask_pkg/build', 'install', '--record', '/home/dron/ws_controll/build/flask_pkg/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/dron/ws_controll/src/flask_pkg', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'dron', 'SSH_CLIENT': '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/dron/ws_controll/install/custom_msgs/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-12.6/lib64', 'BROWSER': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/dron', 'OLDPWD': '/home/dron/.vscode-server', 'TERM_PROGRAM_VERSION': '1.102.2', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-b75d2777-ac8b-49d8-b1e9-a9a312b42b39.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/node', 'SSL_CERT_FILE': '/usr/lib/ssl/certs/ca-certificates.crt', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/libs/debugpy', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/dron/ws_controll/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'dron', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '2', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/usr/local/cuda-12.6/bin:/home/dron/.vscode-server/cli/servers/Stable-c306e94f98122556ca081f527b466015e1bc37b0/server/bin/remote-cli:/home/dron/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin:/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/bundled/scripts/noConfigScripts:/home/dron/ardu_ws/Micro-XRCE-DDS-Gen/scripts:/home/dron/.local/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'SSL_CERT_DIR': '/usr/lib/ssl/certs', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/dron/.vscode-server/extensions/ms-python.debugpy-2025.10.0/.noConfigDebugAdapterEndpoints/endpoint-fc9b2e5ec693c6c5.txt', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-9978954ebb.sock', 'TERM_PROGRAM': 'vscode', 'AMENT_PREFIX_PATH': '/home/dron/ws_controll/install/log_data_pkg:/home/dron/ws_controll/install/flight_controller_pkg:/home/dron/ws_controll/install/flask_pkg:/home/dron/ws_controll/install/custom_msgs:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/dron/ws_controll/build/flask_pkg', 'LC_ALL': 'en_US.UTF-8', 'SSH_CONNECTION': '2a00:f41:1c70:b57:20bc:5eac:6c43:3f2f 50433 2a00:f41:1c70:b57:38a5:e84b:641f:db80 22', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/dron/ws_controll/build/flask_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controll/install/custom_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/dron/ws_controll/install/custom_msgs'}, 'shell': False}
+[21.381934] (-) TimerEvent: {}
+[21.482670] (-) TimerEvent: {}
+[21.583343] (-) TimerEvent: {}
+[21.684036] (-) TimerEvent: {}
+[21.784758] (-) TimerEvent: {}
+[21.885478] (-) TimerEvent: {}
+[21.910062] (flight_controller_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[21.911670] (flight_controller_pkg) StdoutLine: {'line': b'writing ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/PKG-INFO\n'}
+[21.912253] (flight_controller_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/dependency_links.txt\n'}
+[21.912604] (flight_controller_pkg) StdoutLine: {'line': b'writing entry points to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/entry_points.txt\n'}
+[21.912898] (flight_controller_pkg) StdoutLine: {'line': b'writing requirements to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/requires.txt\n'}
+[21.913186] (flight_controller_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/top_level.txt\n'}
+[21.918283] (flight_controller_pkg) StdoutLine: {'line': b"reading manifest file '../../build/flight_controller_pkg/flight_controller_pkg.egg-info/SOURCES.txt'\n"}
+[21.925884] (flight_controller_pkg) StdoutLine: {'line': b"writing manifest file '../../build/flight_controller_pkg/flight_controller_pkg.egg-info/SOURCES.txt'\n"}
+[21.926697] (flight_controller_pkg) StdoutLine: {'line': b'running build\n'}
+[21.926955] (flight_controller_pkg) StdoutLine: {'line': b'running build_py\n'}
+[21.927232] (flight_controller_pkg) StdoutLine: {'line': b'copying flight_controller_pkg/fc_reader.py -> /home/dron/ws_controll/build/flight_controller_pkg/build/lib/flight_controller_pkg\n'}
+[21.928042] (flight_controller_pkg) StdoutLine: {'line': b'running install\n'}
+[21.928841] (flight_controller_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[21.931025] (flight_controller_pkg) StdoutLine: {'line': b'copying /home/dron/ws_controll/build/flight_controller_pkg/build/lib/flight_controller_pkg/fc_reader.py -> /home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg\n'}
+[21.932723] (flight_controller_pkg) StdoutLine: {'line': b'byte-compiling /home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg/fc_reader.py to fc_reader.cpython-310.pyc\n'}
+[21.935175] (flight_controller_pkg) StdoutLine: {'line': b'running install_data\n'}
+[21.935644] (flight_controller_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[21.940225] (flight_controller_pkg) StdoutLine: {'line': b"removing '/home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[21.941074] (flight_controller_pkg) StdoutLine: {'line': b'Copying ../../build/flight_controller_pkg/flight_controller_pkg.egg-info to /home/dron/ws_controll/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg-0.0.0-py3.10.egg-info\n'}
+[21.958187] (flight_controller_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[21.985676] (-) TimerEvent: {}
+[22.040400] (flight_controller_pkg) StdoutLine: {'line': b'Installing fc_reader script to /home/dron/ws_controll/install/flight_controller_pkg/lib/flight_controller_pkg\n'}
+[22.041404] (flight_controller_pkg) StdoutLine: {'line': b"writing list of installed files to '/home/dron/ws_controll/build/flight_controller_pkg/install.log'\n"}
+[22.085853] (-) TimerEvent: {}
+[22.101166] (flask_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[22.104026] (flask_pkg) StdoutLine: {'line': b'writing ../../build/flask_pkg/flask_pkg.egg-info/PKG-INFO\n'}
+[22.105583] (flask_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/flask_pkg/flask_pkg.egg-info/dependency_links.txt\n'}
+[22.106900] (flask_pkg) StdoutLine: {'line': b'writing entry points to ../../build/flask_pkg/flask_pkg.egg-info/entry_points.txt\n'}
+[22.108091] (flask_pkg) StdoutLine: {'line': b'writing requirements to ../../build/flask_pkg/flask_pkg.egg-info/requires.txt\n'}
+[22.109113] (flask_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/flask_pkg/flask_pkg.egg-info/top_level.txt\n'}
+[22.117079] (flask_pkg) StdoutLine: {'line': b"reading manifest file '../../build/flask_pkg/flask_pkg.egg-info/SOURCES.txt'\n"}
+[22.119748] (flask_pkg) StdoutLine: {'line': b"writing manifest file '../../build/flask_pkg/flask_pkg.egg-info/SOURCES.txt'\n"}
+[22.120932] (flask_pkg) StdoutLine: {'line': b'running build\n'}
+[22.122666] (flask_pkg) StdoutLine: {'line': b'running build_py\n'}
+[22.124262] (flask_pkg) StdoutLine: {'line': b'running install\n'}
+[22.126963] (flask_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[22.134014] (log_data_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[22.134777] (flask_pkg) StdoutLine: {'line': b'running install_data\n'}
+[22.135014] (flask_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[22.135191] (log_data_pkg) StdoutLine: {'line': b'writing ../../build/log_data_pkg/log_data_pkg.egg-info/PKG-INFO\n'}
+[22.135362] (log_data_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/log_data_pkg/log_data_pkg.egg-info/dependency_links.txt\n'}
+[22.135521] (log_data_pkg) StdoutLine: {'line': b'writing entry points to ../../build/log_data_pkg/log_data_pkg.egg-info/entry_points.txt\n'}
+[22.135670] (log_data_pkg) StdoutLine: {'line': b'writing requirements to ../../build/log_data_pkg/log_data_pkg.egg-info/requires.txt\n'}
+[22.135818] (log_data_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/log_data_pkg/log_data_pkg.egg-info/top_level.txt\n'}
+[22.144550] (log_data_pkg) StdoutLine: {'line': b"reading manifest file '../../build/log_data_pkg/log_data_pkg.egg-info/SOURCES.txt'\n"}
+[22.145217] (log_data_pkg) StdoutLine: {'line': b"writing manifest file '../../build/log_data_pkg/log_data_pkg.egg-info/SOURCES.txt'\n"}
+[22.145431] (log_data_pkg) StdoutLine: {'line': b'running build\n'}
+[22.145601] (log_data_pkg) StdoutLine: {'line': b'running build_py\n'}
+[22.145757] (log_data_pkg) StdoutLine: {'line': b'running install\n'}
+[22.145912] (log_data_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[22.148160] (log_data_pkg) StdoutLine: {'line': b'running install_data\n'}
+[22.148656] (log_data_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[22.151408] (flask_pkg) StdoutLine: {'line': b"removing '/home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages/flask_pkg-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[22.153991] (log_data_pkg) StdoutLine: {'line': b"removing '/home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages/log_data_pkg-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[22.160094] (flask_pkg) StdoutLine: {'line': b'Copying ../../build/flask_pkg/flask_pkg.egg-info to /home/dron/ws_controll/install/flask_pkg/lib/python3.10/site-packages/flask_pkg-0.0.0-py3.10.egg-info\n'}
+[22.162779] (log_data_pkg) StdoutLine: {'line': b'Copying ../../build/log_data_pkg/log_data_pkg.egg-info to /home/dron/ws_controll/install/log_data_pkg/lib/python3.10/site-packages/log_data_pkg-0.0.0-py3.10.egg-info\n'}
+[22.165136] (log_data_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[22.165613] (flight_controller_pkg) CommandEnded: {'returncode': 0}
+[22.169706] (flask_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[22.186022] (-) TimerEvent: {}
+[22.211664] (flight_controller_pkg) JobEnded: {'identifier': 'flight_controller_pkg', 'rc': 0}
+[22.213159] (log_data_pkg) StdoutLine: {'line': b'Installing data_collector script to /home/dron/ws_controll/install/log_data_pkg/lib/log_data_pkg\n'}
+[22.214267] (log_data_pkg) StdoutLine: {'line': b"writing list of installed files to '/home/dron/ws_controll/build/log_data_pkg/install.log'\n"}
+[22.258638] (flask_pkg) StdoutLine: {'line': b'Installing flask_server script to /home/dron/ws_controll/install/flask_pkg/lib/flask_pkg\n'}
+[22.260588] (flask_pkg) StdoutLine: {'line': b"writing list of installed files to '/home/dron/ws_controll/build/flask_pkg/install.log'\n"}
+[22.286626] (-) TimerEvent: {}
+[22.327694] (log_data_pkg) CommandEnded: {'returncode': 0}
+[22.358130] (log_data_pkg) JobEnded: {'identifier': 'log_data_pkg', 'rc': 0}
+[22.386817] (-) TimerEvent: {}
+[22.436250] (flask_pkg) CommandEnded: {'returncode': 0}
+[22.487150] (-) TimerEvent: {}
+[22.489557] (flask_pkg) JobEnded: {'identifier': 'flask_pkg', 'rc': 0}
+[22.491995] (-) EventReactorShutdown: {}
