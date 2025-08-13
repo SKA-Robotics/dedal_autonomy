@@ -41,18 +41,44 @@
       </div>
     </div>
 
-    <!-- Sterowanie (ODDZIELONA SEKCJA Z PRZYCISKAMI) -->
+    <!-- Sterowanie (podział na 3 kategorie w jednym rzędzie) -->
     <div class="row g-3 mt-1">
       <div class="col-12">
-        <div class="card p-3 d-flex flex-wrap align-items-center justify-content-between">
-          <h2 class="h6 panel-title mb-2 mb-sm-0">Sterowanie</h2>
-          <form method="POST" class="d-flex gap-2">
-            <button class="btn btn-outline-light btn-sm" name="start" value="Start" type="submit">Start logowania</button>
-            <button class="btn btn-danger btn-sm" name="reset" value="Reset" type="submit">Reset</button>
-          </form>
+        <div class="card p-3">
+          <h2 class="h6 panel-title mb-3">Sterowanie</h2>
+          <div class="row g-3">
+
+            <!-- Uzbrajanie -->
+            <div class="col-12 col-md-4">
+              <h3 class="h6 text-info">Uzbrajanie</h3>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="arm" value="Arm" type="submit">Uzbrój</button>
+                <button class="btn btn-danger btn-sm" name="disarm" value="Disarm" type="submit">Rozbrój</button>
+              </form>
+            </div>
+
+            <!-- Tryby lotu -->
+            <div class="col-12 col-md-4">
+              <h3 class="h6 text-info">Tryby lotu</h3>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="stabilize" value="Stabilize" type="submit">Stabilizuj</button>
+                <button class="btn btn-outline-light btn-sm" name="land" value="Land" type="submit">Ląduj</button>
+              </form>
+            </div>
+
+            <!-- Inne -->
+            <div class="col-12 col-md-4">
+              <h3 class="h6 text-info">Inne</h3>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="play_barka" value="Play_barka" type="submit">Graj Barke</button>
+              </form>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
+
 
     <!-- Mapa + Kamera -->
     <div class="row g-3 mt-1">

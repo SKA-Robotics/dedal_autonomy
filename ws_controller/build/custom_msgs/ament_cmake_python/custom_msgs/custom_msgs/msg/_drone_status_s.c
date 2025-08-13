@@ -52,13 +52,13 @@ bool custom_msgs__msg__drone_status__convert_from_py(PyObject * _pymsg, void * _
     assert(strncmp("custom_msgs.msg._drone_status.DroneStatus", full_classname_dest, 41) == 0);
   }
   custom_msgs__msg__DroneStatus * ros_message = _ros_message;
-  {  // is_authonomy_active
-    PyObject * field = PyObject_GetAttrString(_pymsg, "is_authonomy_active");
+  {  // is_autonomy_active
+    PyObject * field = PyObject_GetAttrString(_pymsg, "is_autonomy_active");
     if (!field) {
       return false;
     }
     assert(PyBool_Check(field));
-    ros_message->is_authonomy_active = (Py_True == field);
+    ros_message->is_autonomy_active = (Py_True == field);
     Py_DECREF(field);
   }
   {  // battery_voltage
@@ -103,11 +103,11 @@ PyObject * custom_msgs__msg__drone_status__convert_to_py(void * raw_ros_message)
     }
   }
   custom_msgs__msg__DroneStatus * ros_message = (custom_msgs__msg__DroneStatus *)raw_ros_message;
-  {  // is_authonomy_active
+  {  // is_autonomy_active
     PyObject * field = NULL;
-    field = PyBool_FromLong(ros_message->is_authonomy_active ? 1 : 0);
+    field = PyBool_FromLong(ros_message->is_autonomy_active ? 1 : 0);
     {
-      int rc = PyObject_SetAttrString(_pymessage, "is_authonomy_active", field);
+      int rc = PyObject_SetAttrString(_pymessage, "is_autonomy_active", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

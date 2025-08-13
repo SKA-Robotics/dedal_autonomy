@@ -4,6 +4,7 @@ from rclpy.node import Node
 from pymavlink import mavutil
 from pymavlink.dialects.v20 import ardupilotmega as mavlink2
 from custom_msgs.msg import DroneStatus, GeoData
+from example_interfaces.msg import String
 
 # ==============================================================================
 # -- MavLink ---------------------------------------------------------------
@@ -77,6 +78,77 @@ class MavLinkConfigurator:
             tune2.encode()
         )
 
+    def play_Barka(self):
+        tune= "t200 o2 a8 a4"
+        #tune = "T140 o3 e2 p8 l4 e d e f e d c c2 p4 d2 e2 f2 f2 p16 f16 f f e d2 d2"
+        target_system = self.master.target_system
+        target_component = self.master.target_component
+
+        # Podział melodii na dwie części, jeśli jest dłuższa niż 30 znaków
+        tune1 = tune[:30]
+        tune2 = tune[30:]
+
+        # Wysłanie wiadomości
+        self.master.mav.play_tune_send(
+            target_system,
+            target_component,
+            tune1.encode(),
+            tune2.encode()
+        )
+
+    def arm_drone(self):
+        self.master.mav.command_long_send(
+            self.master.target_system,
+            self.master.target_component,
+            mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
+            0,
+            1,    # param1 = 1 --> arm
+            0,    # param2 = 0 --> normal arm (sprawdza safety + prearm)
+            0,0,0,0,0
+        )
+        #print("Wysłano polecenie arm, czekam na potwierdzenie...")
+        #self.master.motors_armed_wait()
+        print("✅ Drone uzbrojony!")
+
+
+    def disarm_drone(self):
+        """
+        Rozbraja drona, wysyłając MAV_CMD_COMPONENT_ARM_DISARM z param1=0.
+        Czeka na potwierdzenie, że silniki są wyłączone.
+        """
+        self.master.mav.command_long_send(
+            self.master.target_system,
+            self.master.target_component,
+            mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
+            0,
+            0,    # param1 = 0 -> disarm
+            0,    # param2 = 0 -> standardowe rozbrojenie
+            0,0,0,0,0
+        )
+        print("Wysłano polecenie disarm, oczekuję na potwierdzenie...")
+        self.master.motors_disarmed_wait()
+        print("✅ Drone rozbrojony!")
+
+    def set_landing_mode(self):
+        m = self.master
+        if 'LAND' not in m.mode_mapping():
+            raise RuntimeError("Tryb LAND nie dostępny")
+        mode_id = m.mode_mapping()['LAND']
+        m.mav.set_mode_send(m.target_system,
+                            mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED,
+                            mode_id)
+        print("➡️ Przełączono do LAND")
+
+    def set_stabilize_mode(self):
+        m = self.master
+        if 'STABILIZE' not in m.mode_mapping():
+            raise RuntimeError("Tryb STABILIZE nie dostępny")
+        mode_id = m.mode_mapping()['STABILIZE']
+        m.mav.set_mode_send(m.target_system,
+                            mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED,
+                            mode_id)
+        print("➡️ Przełączono do STABILIZE")
+
     def show_me_everything(self):
         while True:
             mes = self.master.recv_msg()
@@ -128,16 +200,48 @@ class imuReaderNode(Node):
         
         self.public_data = MainData()
 
+        self.timer_ = self.create_timer(1/1, self.timer_function)
+
+        self.flaskSubscription = self.create_subscription(
+            String,
+            'flask_commands',
+            self.listener_flask_callback,
+            10)
+        
+        self.flaskSubscription
         self.publisher_ = self.create_publisher(DroneStatus, "drone_status", 100)
 
-        self.timer_ = self.create_timer(1/1, self.timer_function)
 
     def timer_function(self):
         msg = self.public_data.do_magic()
         self.publisher_.publish(msg)
         #self.get_logger().info("Topic publication")
         
-    
+    def listener_flask_callback(self, msg):
+        if(msg.data == 'set_disarm'):
+            print('Disarmed')
+            self.public_data.connection.disarm_drone()
+
+        elif(msg.data == 'start_logging'):
+            print('Logging started')
+
+
+        elif(msg.data == 'set_arm'):
+            print('Arm toggled')
+            self.public_data.connection.arm_drone()
+
+        elif(msg.data == 'land_now'):
+            print('Landing')
+            self.public_data.connection.set_landing_mode()
+
+        elif(msg.data == 'stabilize'):
+            print('Stabilizing')
+            self.public_data.connection.set_stabilize_mode()
+
+        elif(msg.data == 'play_Barka'):
+            print('Barking xd')
+            self.public_data.connection.play_Barka()
+
 
 # ==============================================================================
 # -- Main ---------------------------------------------------------------

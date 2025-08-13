@@ -55,12 +55,11 @@ class ServerNode(Node):
         # Zapis z lockiem (NEW)
         with data_lock:
             data_buffer.append(sample)
-            print(len(data_buffer))
             cutoff = timestamp - timedelta(seconds=60)
             # Zostaw tylko ostatnie 60 s danych
             while data_buffer and data_buffer[0][0] < cutoff:
                 data_buffer.pop(0)
-        self.get_logger().info(f'Odebrano nap. baterii: {msg.battery_voltage}')
+        #self.get_logger().info(f'Odebrano nap. baterii: {msg.battery_voltage}')
 
     def publish_message(self, command: str):
         msg = String()
@@ -82,10 +81,17 @@ ros2_thread.start()
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        if request.form.get('reset') == 'Reset':
-            ros2_node.publish_message('reset')
-        elif request.form.get('start') == 'Start':
+        print("Obebrano POST")
+        if request.form.get('logging') == 'Logging':
             ros2_node.publish_message('start_logging')
+        elif request.form.get('arm') == 'Arm':
+            ros2_node.publish_message('set_arm')
+        elif request.form.get('disarm') == 'Disarm':
+            ros2_node.publish_message('set_disarm')
+        elif request.form.get('land') == 'Land':
+            ros2_node.publish_message('land_now')
+        elif request.form.get('play_barka') == 'Play_barka':
+            ros2_node.publish_message('play_Barka')
     return render_template('index.html')
 
 # NEW: API – zwróć okno danych (ostatnie ~60 s)

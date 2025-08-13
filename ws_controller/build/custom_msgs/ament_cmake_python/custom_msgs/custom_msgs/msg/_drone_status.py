@@ -61,13 +61,13 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     """Message class 'DroneStatus'."""
 
     __slots__ = [
-        '_is_authonomy_active',
+        '_is_autonomy_active',
         '_battery_voltage',
         '_ekf_position',
     ]
 
     _fields_and_field_types = {
-        'is_authonomy_active': 'boolean',
+        'is_autonomy_active': 'boolean',
         'battery_voltage': 'float',
         'ekf_position': 'custom_msgs/GeoData',
     }
@@ -82,7 +82,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.is_authonomy_active = kwargs.get('is_authonomy_active', bool())
+        self.is_autonomy_active = kwargs.get('is_autonomy_active', bool())
         self.battery_voltage = kwargs.get('battery_voltage', float())
         from custom_msgs.msg import GeoData
         self.ekf_position = kwargs.get('ekf_position', GeoData())
@@ -116,7 +116,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.is_authonomy_active != other.is_authonomy_active:
+        if self.is_autonomy_active != other.is_autonomy_active:
             return False
         if self.battery_voltage != other.battery_voltage:
             return False
@@ -130,17 +130,17 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         return copy(cls._fields_and_field_types)
 
     @builtins.property
-    def is_authonomy_active(self):
-        """Message field 'is_authonomy_active'."""
-        return self._is_authonomy_active
+    def is_autonomy_active(self):
+        """Message field 'is_autonomy_active'."""
+        return self._is_autonomy_active
 
-    @is_authonomy_active.setter
-    def is_authonomy_active(self, value):
+    @is_autonomy_active.setter
+    def is_autonomy_active(self, value):
         if __debug__:
             assert \
                 isinstance(value, bool), \
-                "The 'is_authonomy_active' field must be of type 'bool'"
-        self._is_authonomy_active = value
+                "The 'is_autonomy_active' field must be of type 'bool'"
+        self._is_autonomy_active = value
 
     @builtins.property
     def battery_voltage(self):
