@@ -7,13 +7,17 @@ import mimetypes
 import threading
 import os
 from datetime import datetime, timedelta
+import csv
+import io
+import uuid
+
 
 # Ścieżka do katalogu danych (niewykorzystywana tutaj, zostawiamy jak było)
 BASE_DIR = '/home/dron'  # Zmień na odpowiednią ścieżkę
 
 # Katalog szablonów
-template_dir = os.path.join(os.path.expanduser('~'), 'ws_controll/src/flask_pkg/flask_pkg/templates')
-static_dir = os.path.join(os.path.expanduser('~'), 'ws_controll/src/flask_pkg/flask_pkg/static')
+template_dir = os.path.join(os.path.expanduser('~'), 'ws_controller/src/flask_pkg/flask_pkg/templates')
+static_dir = os.path.join(os.path.expanduser('~'), 'ws_controller/src/flask_pkg/flask_pkg/static')
 
 # Flask
 app = Flask(__name__, template_folder=template_dir)
@@ -41,6 +45,8 @@ class ServerNode(Node):
             100
         )
         self.publisher_ = self.create_publisher(String, 'flask_commands', 10)
+        self.geo_pub = self.create_publisher(GeoData, 'geo_points', 10)
+
 
     def listener_callback(self, msg: DroneStatus):
         timestamp = datetime.utcnow()
@@ -92,6 +98,10 @@ def index():
             ros2_node.publish_message('land_now')
         elif request.form.get('play_barka') == 'Play_barka':
             ros2_node.publish_message('play_Barka')
+        elif request.form.get('remove_geo') == 'Remove_geo':
+            ros2_node.publish_message('remove_geo')
+        elif request.form.get('set_geo') == 'Set_geo':
+            ros2_node.publish_message('set_geo')
     return render_template('index.html')
 
 # NEW: API – zwróć okno danych (ostatnie ~60 s)
@@ -151,6 +161,67 @@ def service_worker():
         resp = make_response(f.read())
         resp.headers['Content-Type'] = 'application/javascript'
         return resp
+
+@app.route('/api/upload-csv', methods=['POST'])
+def upload_csv():
+    """
+    Przyjmuje plik CSV (multipart/form-data: file=<csv>),
+    parsuje kolumny lat, lon, [alt] i publikuje je na topic 'geo_points' jako GeoData.
+    Zwraca liczbę opublikowanych punktów.
+    """
+    if 'file' not in request.files:
+        return jsonify({'error': 'Brak pliku w żądaniu (pole "file").'}), 400
+
+    file = request.files['file']
+    if not file.filename.lower().endswith('.csv'):
+        return jsonify({'error': 'Dozwolone są tylko pliki .csv'}), 400
+
+    # Opcjonalnie zapisz kopię na dysk (dla logów / re-użycia)
+    uploads_dir = '/tmp/uploads'
+    os.makedirs(uploads_dir, exist_ok=True)
+    safe_name = f"{datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex}.csv"
+    save_path = os.path.join(uploads_dir, safe_name)
+    file.stream.seek(0)
+    file.save(save_path)
+
+    # Wczytaj do pamięci do parsowania
+    file.stream.seek(0)
+    file.stream.flush()
+    file.stream.seek(0)
+    content = file.read().decode('utf-8', errors='replace')
+    reader = csv.DictReader(io.StringIO(content))
+
+    count = 0
+    errors = 0
+
+    required = {'lat', 'lon'}
+    # Sprawdź czy nagłówki mają przynajmniej lat, lon
+    if not required.issubset({h.strip().lower() for h in reader.fieldnames or []}):
+        return jsonify({'error': 'CSV musi zawierać nagłówki kolumn: lat, lon (alt opcjonalne).'}), 400
+
+    for i, row in enumerate(reader, start=1):
+        try:
+            lat = float(str(row.get('lat', '')).strip())
+            lon = float(str(row.get('lon', '')).strip())
+            alt_str = row.get('alt', '')
+            alt = float(str(alt_str).strip()) if (alt_str is not None and str(alt_str).strip() != '') else 0.0
+
+            msg = GeoData()
+            msg.latitude = lat
+            msg.longitude = lon
+            msg.altitude = alt
+            ros2_node.geo_pub.publish(msg)
+            count += 1
+        except Exception:
+            errors += 1
+            continue
+
+    return jsonify({
+        'ok': True,
+        'points': count,
+        'errors': errors,
+        'filename': os.path.basename(save_path)
+    }), 200
 
 
 def main():

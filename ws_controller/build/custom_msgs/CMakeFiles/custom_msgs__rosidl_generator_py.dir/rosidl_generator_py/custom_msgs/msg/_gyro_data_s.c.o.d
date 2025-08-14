@@ -1,5 +1,5 @@
 CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/msg/_gyro_data_s.c.o: \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_gyro_data_s.c \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_gyro_data_s.c \
  /usr/include/stdc-predef.h /usr/include/python3.10/Python.h \
  /usr/include/python3.10/patchlevel.h /usr/include/python3.10/pyconfig.h \
  /usr/include/aarch64-linux-gnu/python3.10/pyconfig.h \
@@ -207,6 +207,6 @@ CMakeFiles/custom_msgs__rosidl_generator_py.dir/rosidl_generator_py/custom_msgs/
  /usr/include/python3.10/numpy/_neighborhood_iterator_imp.h \
  /usr/include/python3.10/numpy/__multiarray_api.h \
  /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/gyro_data__struct.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/gyro_data__functions.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/rosidl_generator_c__visibility_control.h
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/gyro_data__struct.h \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/gyro_data__functions.h \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/rosidl_generator_c__visibility_control.h

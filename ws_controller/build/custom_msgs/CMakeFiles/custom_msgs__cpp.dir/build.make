@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dron/ws_controll/src/custom_msgs
+CMAKE_SOURCE_DIR = /home/dron/ws_controller/src/custom_msgs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dron/ws_controll/build/custom_msgs
+CMAKE_BINARY_DIR = /home/dron/ws_controller/build/custom_msgs
 
 # Utility rule file for custom_msgs__cpp.
 
@@ -137,8 +137,8 @@ rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp: rosidl_adapter/custom_msgs/
 rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp: rosidl_adapter/custom_msgs/msg/DataXYZ.idl
 rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp: rosidl_adapter/custom_msgs/msg/DroneStatus.idl
 rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp: rosidl_adapter/custom_msgs/msg/GeoData.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/dron/ws_controll/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
-	/usr/bin/python3 /opt/ros/humble/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp__arguments.json
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/dron/ws_controller/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
+	/usr/bin/python3 /opt/ros/humble/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp__arguments.json
 
 rosidl_generator_cpp/custom_msgs/msg/detail/accel_data__builder.hpp: rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/custom_msgs/msg/detail/accel_data__builder.hpp
@@ -330,6 +330,6 @@ CMakeFiles/custom_msgs__cpp.dir/clean:
 .PHONY : CMakeFiles/custom_msgs__cpp.dir/clean
 
 CMakeFiles/custom_msgs__cpp.dir/depend:
-	cd /home/dron/ws_controll/build/custom_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dron/ws_controll/src/custom_msgs /home/dron/ws_controll/src/custom_msgs /home/dron/ws_controll/build/custom_msgs /home/dron/ws_controll/build/custom_msgs /home/dron/ws_controll/build/custom_msgs/CMakeFiles/custom_msgs__cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dron/ws_controller/build/custom_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dron/ws_controller/src/custom_msgs /home/dron/ws_controller/src/custom_msgs /home/dron/ws_controller/build/custom_msgs /home/dron/ws_controller/build/custom_msgs /home/dron/ws_controller/build/custom_msgs/CMakeFiles/custom_msgs__cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/custom_msgs__cpp.dir/depend
 

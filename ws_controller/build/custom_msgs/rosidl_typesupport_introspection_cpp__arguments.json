@@ -1,17 +1,17 @@
 {
   "package_name": "custom_msgs",
-  "output_dir": "/home/dron/ws_controll/build/custom_msgs/rosidl_typesupport_introspection_cpp/custom_msgs",
+  "output_dir": "/home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_introspection_cpp/custom_msgs",
   "template_dir": "/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/resource",
   "idl_tuples": [
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/AccelData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/GyroData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/ImuData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/EstimatorData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/PossitionData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/SpeedData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/DataXYZ.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/DroneStatus.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs:msg/GeoData.idl"
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/AccelData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/GyroData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/ImuData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/EstimatorData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/PossitionData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/SpeedData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/DataXYZ.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/DroneStatus.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/GeoData.idl"
   ],
   "target_dependencies": [
     "/opt/ros/humble/lib/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp",
@@ -22,14 +22,14 @@
     "/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/resource/msg__type_support.cpp.em",
     "/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/resource/srv__rosidl_typesupport_introspection_cpp.hpp.em",
     "/opt/ros/humble/share/rosidl_typesupport_introspection_cpp/resource/srv__type_support.cpp.em",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/AccelData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/GyroData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/ImuData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/EstimatorData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/PossitionData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/SpeedData.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/DataXYZ.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/DroneStatus.idl",
-    "/home/dron/ws_controll/build/custom_msgs/rosidl_adapter/custom_msgs/msg/GeoData.idl"
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/AccelData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/GyroData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/ImuData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/EstimatorData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/PossitionData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/SpeedData.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/DataXYZ.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/DroneStatus.idl",
+    "/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs/msg/GeoData.idl"
   ]
 }

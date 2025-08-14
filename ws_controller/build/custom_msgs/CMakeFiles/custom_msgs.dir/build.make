@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dron/ws_controll/src/custom_msgs
+CMAKE_SOURCE_DIR = /home/dron/ws_controller/src/custom_msgs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dron/ws_controll/build/custom_msgs
+CMAKE_BINARY_DIR = /home/dron/ws_controller/build/custom_msgs
 
 # Utility rule file for custom_msgs.
 
@@ -66,15 +66,15 @@ include CMakeFiles/custom_msgs.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/custom_msgs.dir/progress.make
 
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/AccelData.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/GyroData.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/ImuData.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/EstimatorData.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/PossitionData.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/SpeedData.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/DataXYZ.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/DroneStatus.msg
-CMakeFiles/custom_msgs: /home/dron/ws_controll/src/custom_msgs/msg/GeoData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/AccelData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/GyroData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/ImuData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/EstimatorData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/PossitionData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/SpeedData.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/DataXYZ.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/DroneStatus.msg
+CMakeFiles/custom_msgs: /home/dron/ws_controller/src/custom_msgs/msg/GeoData.msg
 
 custom_msgs: CMakeFiles/custom_msgs
 custom_msgs: CMakeFiles/custom_msgs.dir/build.make
@@ -89,6 +89,6 @@ CMakeFiles/custom_msgs.dir/clean:
 .PHONY : CMakeFiles/custom_msgs.dir/clean
 
 CMakeFiles/custom_msgs.dir/depend:
-	cd /home/dron/ws_controll/build/custom_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dron/ws_controll/src/custom_msgs /home/dron/ws_controll/src/custom_msgs /home/dron/ws_controll/build/custom_msgs /home/dron/ws_controll/build/custom_msgs /home/dron/ws_controll/build/custom_msgs/CMakeFiles/custom_msgs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dron/ws_controller/build/custom_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dron/ws_controller/src/custom_msgs /home/dron/ws_controller/src/custom_msgs /home/dron/ws_controller/build/custom_msgs /home/dron/ws_controller/build/custom_msgs /home/dron/ws_controller/build/custom_msgs/CMakeFiles/custom_msgs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/custom_msgs.dir/depend
 

@@ -22,7 +22,8 @@
     <div class="d-flex align-items-center mb-4">
       <h1 class="h3 mb-0">Panel Drona</h1>
       <span id="status-pill" class="badge ms-3 bg-secondary">Łączenie…</span>
-      <span id="ts" class="ms-3 text-muted small"></span>
+      <span id="ts" class="ms-3 panel-title small"></span>
+
     </div>
 
     <!-- Wykresy -->
@@ -71,6 +72,7 @@
               <h3 class="h6 text-info">Inne</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="play_barka" value="Play_barka" type="submit">Graj Barke</button>
+                <button class="btn btn-outline-light btn-sm" name="logging" value="Logging" type="submit">Inne</button>
               </form>
             </div>
 
@@ -99,6 +101,36 @@
             <img id="camera-img" src="https://s3.eu-central-1.amazonaws.com/cdn.koty.pl-migration/shutterstock_330164483_e1512500490608_a647b098fd.jpg" alt="Podgląd kamery">
             <!-- Jeśli w przyszłości będzie stream, podmień na <video src="..." autoplay muted playsinline></video> -->
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import trasy (CSV) -->
+    <div class="row g-3 mt-1">
+      <div class="col-12 col-md-2">
+        <div class="card p-3">
+          <h2 class="h6 panel-title">Sterowanie GeoFencing</h2>
+          <form method="POST" class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-light btn-sm" name="remove_geo" value="Remove_geo" type="submit">Usuń punkty</button>
+            <button class="btn btn-outline-light btn-sm" name="set_geo" value="Set_geo" type="submit">Zatwierdź punkty</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 col-md-10">
+        <div class="card p-3">           
+          <h2 class="h6 panel-title">Import GeoFencing (CSV)</h2>
+          
+            <div class="tab-pane fade show active" id="importCsv">
+              <form id="csvForm" class="d-flex align-items-center gap-2 flex-wrap">
+                <input class="form-control form-control-sm w-auto" type="file" id="csvFile" accept=".csv">
+                <button class="btn btn-primary btn-sm" id="sendCsv" type="submit">Wyślij do serwera</button>
+                <span class="panel-title" id="csvStatus" class="small text-muted"></span>
+              </form>
+              <div class="form-text mt-2">
+                <h8 class="panel-title">Oczekiwany format: kolumny <code>lat lon</code> (nagłówek dozwolony).</h8>
+              </div>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -134,6 +166,8 @@
   <script src="{{ url_for('static', filename='js/chartjs-adapter-date-fns.umd.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
   <script src="{{ url_for('static', filename='js/sw-register.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
   <script>
     // ====== Charts ======
@@ -253,6 +287,36 @@
     fetchSeries();
     setInterval(fetchLatest, 1000);
     setInterval(fetchSeries, 1000);
+
+    // ====== CSV upload ======
+    const csvForm = document.getElementById('csvForm');
+    const csvFile = document.getElementById('csvFile');
+    const csvStatus = document.getElementById('csvStatus');
+
+    if (csvForm) {
+      csvForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        csvStatus.textContent = '';
+        const file = csvFile?.files?.[0];
+        if (!file) { csvStatus.textContent = 'Wybierz plik CSV.'; return; }
+
+        const fd = new FormData();
+        fd.append('file', file);
+
+        try {
+          const r = await fetch('/api/upload-csv', { method: 'POST', body: fd });
+          const j = await r.json();
+          if (!r.ok) throw new Error(j?.error || 'Błąd wysyłki');
+          csvStatus.textContent = `OK — przetworzono ${j.points} punktów (${j.filename || 'plik'})`;
+          csvStatus.classList.remove('text-danger');
+          csvStatus.classList.add('text-success');
+        } catch (err) {
+          csvStatus.textContent = `Błąd: ${err.message}`;
+          csvStatus.classList.remove('text-success');
+          csvStatus.classList.add('text-danger');
+        }
+      });
+  }
   </script>
 </body>
 </html>

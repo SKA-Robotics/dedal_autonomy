@@ -1,14 +1,14 @@
 {
   "package_name": "custom_msgs",
   "non_idl_tuples": [
-    "/home/dron/ws_controll/src/custom_msgs:msg/AccelData.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/GyroData.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/ImuData.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/EstimatorData.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/PossitionData.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/SpeedData.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/DataXYZ.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/DroneStatus.msg",
-    "/home/dron/ws_controll/src/custom_msgs:msg/GeoData.msg"
+    "/home/dron/ws_controller/src/custom_msgs:msg/AccelData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/GyroData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/ImuData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/EstimatorData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/PossitionData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/SpeedData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/DataXYZ.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/DroneStatus.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/GeoData.msg"
   ]
 }

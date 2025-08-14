@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from pymavlink import mavutil
+from pymavlink import mavutil, mavwp
 from pymavlink.dialects.v20 import ardupilotmega as mavlink2
 from custom_msgs.msg import DroneStatus, GeoData
 from example_interfaces.msg import String
+from typing import Iterable, List, Sequence, Tuple, Optional
+import time
+import math
+LatLon = Tuple[float, float]
+POLYGON = []
 
 # ==============================================================================
 # -- MavLink ---------------------------------------------------------------
@@ -13,6 +18,7 @@ class MavLinkConfigurator:
     def __init__(self, conn_str='udpin:0.0.0.0:14550'):
         self.master = mavutil.mavlink_connection(conn_str)
         self.master.wait_heartbeat()
+        
         print("✅ Połączono – heartbeat odebrany")
 
     def end_connection(self):
@@ -27,7 +33,7 @@ class MavLinkConfigurator:
             0, # 1: gyro calibration, 3: gyro temperature calibration
             0, # 1: magnetometer calibration
             0, # 1: ground pressure calibration
-            0, # 1: radio RC calibration, 2: RC trim calibration
+            0, # 1: radio RC calibration, 2: RC trims calibration
             2, # 1: accelerometer calibration, 2: board level calibration, 3: accelerometer temperature calibration, 4: simple accelerometer calibration
             0, # 1: APM: compass/motor interference calibration, 2: airspeed calibration
             0  # 1: ESC calibration, 3: barometer temperature calibration
@@ -106,16 +112,9 @@ class MavLinkConfigurator:
             0,    # param2 = 0 --> normal arm (sprawdza safety + prearm)
             0,0,0,0,0
         )
-        #print("Wysłano polecenie arm, czekam na potwierdzenie...")
-        #self.master.motors_armed_wait()
         print("✅ Drone uzbrojony!")
 
-
     def disarm_drone(self):
-        """
-        Rozbraja drona, wysyłając MAV_CMD_COMPONENT_ARM_DISARM z param1=0.
-        Czeka na potwierdzenie, że silniki są wyłączone.
-        """
         self.master.mav.command_long_send(
             self.master.target_system,
             self.master.target_component,
@@ -130,24 +129,134 @@ class MavLinkConfigurator:
         print("✅ Drone rozbrojony!")
 
     def set_landing_mode(self):
-        m = self.master
-        if 'LAND' not in m.mode_mapping():
+        if 'LAND' not in self.master.mode_mapping():
             raise RuntimeError("Tryb LAND nie dostępny")
-        mode_id = m.mode_mapping()['LAND']
-        m.mav.set_mode_send(m.target_system,
+        mode_id = self.master.mode_mapping()['LAND']
+        self.master.mav.set_mode_send(self.master.target_system,
                             mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED,
                             mode_id)
         print("➡️ Przełączono do LAND")
 
     def set_stabilize_mode(self):
-        m = self.master
-        if 'STABILIZE' not in m.mode_mapping():
+        if 'STABILIZE' not in self.master.mode_mapping():
             raise RuntimeError("Tryb STABILIZE nie dostępny")
-        mode_id = m.mode_mapping()['STABILIZE']
-        m.mav.set_mode_send(m.target_system,
+        mode_id = self.master.mode_mapping()['STABILIZE']
+        self.master.mav.set_mode_send(self.master.target_system,
                             mavutil.mavlink.MAV_MODE_FLAG_CUSTOM_MODE_ENABLED,
                             mode_id)
         print("➡️ Przełączono do STABILIZE")
+
+    def takeoff_and_hover(self, altitude=5.0):
+        self.master.mav.command_long_send(
+            self.master.target_system,
+            self.master.target_component,
+            mavutil.mavlink.MAV_CMD_NAV_TAKEOFF,
+            0, 0,0,0,0,0,0, altitude)
+        print(f"📍 Start do {altitude} m")
+        while True:
+            msg = self.master.recv_match(type='LOCAL_POSITION_NED', blocking=True, timeout=5)
+            if not msg:
+                print("❗ Brak LOCAL_POSITION_NED")
+                break
+            z = -msg.z
+            print(f"Wysokość: {z:.1f} m")
+            if z >= altitude*0.95:
+                print("✅ Osiągnięto wysokość – zawis")
+                break
+            time.sleep(0.5)
+
+    def upload_mission(self, waypoints):
+        """
+        waypoints: lista krotek (lat, lon, alt)
+        Uploaduje misję: najpierw clear, count, potem wysyła MISSION_ITEM
+        """
+        wp_loader = mavwp.MAVWPLoader()
+        seq = 0
+        frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
+        
+        # opcjonalnie dodać punkt TAKEOFF jako pierwszy, tu pomijamy
+        for lat, lon, alt in waypoints:
+            msg = mavutil.mavlink.MAVLink_mission_item_int_message(
+                self.master.target_system, self.master.target_component,
+                seq, frame,
+                mavutil.mavlink.MAV_CMD_NAV_WAYPOINT,
+                0, 1, 0, 0, 0, 0,
+                int(lat*1e7), int(lon*1e7), alt
+            )
+            wp_loader.add(msg)
+            seq += 1
+        
+        print(f"🔄 Wysyłam {wp_loader.count()} waypointy")
+        self.master.waypoint_clear_all_send()
+        self.master.waypoint_count_send(wp_loader.count())
+
+        for _ in range(wp_loader.count()):
+            req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST_INT'], blocking=True)
+            print(f"Prośba o waypoint seq {req.seq}")
+            self.master.mav.send(wp_loader.wp(req.seq))
+
+        ack = self.master.recv_match(type=['MISSION_ACK'], blocking=True, timeout=10)
+        print(f"✅ ACK: {ack.type}" if ack else "❗ Brak ACK")
+    
+    def offset_to_latlon(self, lat, lon, dx, dy):
+        """
+        lat, lon – punkt startowy (stopnie)
+        dx – przesunięcie wschód (metry)
+        dy – przesunięcie północ (metry)
+        zwraca: (new_lat, new_lon)
+        """
+        dlat = dy / 111111.0
+        dlon = dx / (111111.0 * math.cos(math.radians(lat)))
+        return lat + dlat, lon + dlon
+
+    def read_fence(self, msg):
+        POLYGON.append([msg.latitude, msg.longitude])
+
+    def clear_fence(self):
+        if len(POLYGON) != 0:
+            for i in range(len(POLYGON)):
+                POLYGON.pop()
+
+    def set_fence(self):
+        sysid, compid = self.master.target_system, self.master.target_component
+
+        # --- BUDOWA ELEMENTÓW FENCE (MISSION_ITEM_INT) ---
+        items = []
+        vertex_count = len(POLYGON)
+
+        for seq, (lat, lon) in enumerate(POLYGON):
+            items.append(mavutil.mavlink.MAVLink_mission_item_int_message(
+                sysid, compid, seq,
+                mavutil.mavlink.MAV_FRAME_GLOBAL,
+                mavutil.mavlink.MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION,  # keep-in polygon
+                0, 0,
+                float(vertex_count), 0, 0, 0,                                  # param1 = liczba wierzchołków
+                int(lat * 1e7), int(lon * 1e7), 0.0,
+                mavutil.mavlink.MAV_MISSION_TYPE_FENCE
+            ))
+
+        # --- UPLOAD PRZEZ MISSION PROTOCOL DLA TYPU FENCE ---
+        self.master.mav.mission_count_send(sysid, compid, len(items), mavutil.mavlink.MAV_MISSION_TYPE_FENCE)
+
+        sent = 0
+        while sent < len(items):
+            req = self.master.recv_match(type=['MISSION_REQUEST_INT', 'MISSION_REQUEST'], blocking=True, timeout=5)
+            if not req:
+                raise RuntimeError("Timeout: brak MISSION_REQUEST(INT) podczas uploadu geofence.")
+            idx = int(req.seq)
+            if 0 <= idx < len(items):
+                self.master.mav.send(items[idx])
+                sent += 1
+
+        ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=5)
+        if not ack or ack.type != mavutil.mavlink.MAV_MISSION_ACCEPTED:
+            raise RuntimeError(f"MISSION_ACK niepowodzenie (type={getattr(ack,'type',None)})")
+
+        # --- WŁĄCZENIE GEOFENCINGU W ARDUPILOCIE ---
+        self.master.mav.param_set_send(sysid, compid, b"FENCE_ENABLE", 1, mavutil.mavlink.MAV_PARAM_TYPE_INT8)
+        print("Gotowe: wgrano keep-in fence i włączono FENCE_ENABLE = 1.")
+
+
 
     def show_me_everything(self):
         while True:
@@ -201,11 +310,17 @@ class imuReaderNode(Node):
         self.public_data = MainData()
 
         self.timer_ = self.create_timer(1/1, self.timer_function)
-
+        
         self.flaskSubscription = self.create_subscription(
             String,
             'flask_commands',
             self.listener_flask_callback,
+            10)
+        
+        self.flaskSubscription = self.create_subscription(
+            GeoData,
+            'geo_points',
+            self.listener_geo_points,
             10)
         
         self.flaskSubscription
@@ -215,8 +330,11 @@ class imuReaderNode(Node):
     def timer_function(self):
         msg = self.public_data.do_magic()
         self.publisher_.publish(msg)
-        #self.get_logger().info("Topic publication")
-        
+
+    def listener_geo_points(self, msg):
+        self.public_data.connection.read_fence(msg)
+        print('Fence data received')
+
     def listener_flask_callback(self, msg):
         if(msg.data == 'set_disarm'):
             print('Disarmed')
@@ -224,7 +342,7 @@ class imuReaderNode(Node):
 
         elif(msg.data == 'start_logging'):
             print('Logging started')
-
+            self.public_data.connection.set_fence()
 
         elif(msg.data == 'set_arm'):
             print('Arm toggled')
@@ -237,6 +355,14 @@ class imuReaderNode(Node):
         elif(msg.data == 'stabilize'):
             print('Stabilizing')
             self.public_data.connection.set_stabilize_mode()
+
+        elif(msg.data == 'set_geo'):
+            print('Fence saved')
+            self.public_data.connection.set_fence()
+
+        elif(msg.data == 'remove_geo'):
+            print('Fence removed')
+            self.public_data.connection.clear_fence()
 
         elif(msg.data == 'play_Barka'):
             print('Barking xd')

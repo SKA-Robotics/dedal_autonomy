@@ -1,5 +1,5 @@
 CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/imu_data__type_support.cpp.o: \
- /home/dron/ws_controll/build/custom_msgs/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/imu_data__type_support.cpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/imu_data__type_support.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/array \
  /usr/include/c++/11/utility \
  /usr/include/aarch64-linux-gnu/c++/11/bits/c++config.h \
@@ -138,7 +138,7 @@ CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupp
  /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h \
  /opt/ros/humble/include/rosidl_typesupport_interface/rosidl_typesupport_interface/macros.h \
  /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/imu_data__struct.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/imu_data__struct.hpp \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
@@ -177,8 +177,8 @@ CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupp
  /usr/include/c++/11/stdexcept \
  /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_runtime_cpp/message_initialization.hpp \
  /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_initialization.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/accel_data__struct.hpp \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/gyro_data__struct.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/accel_data__struct.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/gyro_data__struct.hpp \
  /opt/ros/humble/include/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp/field_types.hpp \
  /opt/ros/humble/include/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c/field_types.h \
  /opt/ros/humble/include/rosidl_typesupport_introspection_cpp/rosidl_typesupport_introspection_cpp/identifier.hpp \

@@ -1,12 +1,12 @@
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/imu_data__type_support.cpp.o: \
- /home/dron/ws_controll/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/imu_data__type_support.cpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/imu_data__type_support.cpp \
  /usr/include/stdc-predef.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_cpp.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_cpp.hpp \
  /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_type_support_struct.h \
  /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h \
  /opt/ros/humble/include/rosidl_typesupport_interface/rosidl_typesupport_interface/macros.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/imu_data__struct.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/imu_data__struct.hpp \
  /usr/include/c++/11/algorithm /usr/include/c++/11/utility \
  /usr/include/aarch64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/11/bits/os_defines.h \
@@ -163,8 +163,8 @@ CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_f
  /usr/include/c++/11/stdexcept \
  /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_runtime_cpp/message_initialization.hpp \
  /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_initialization.h \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/accel_data__struct.hpp \
- /home/dron/ws_controll/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/gyro_data__struct.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/accel_data__struct.hpp \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/gyro_data__struct.hpp \
  /opt/ros/humble/include/fastcdr/fastcdr/Cdr.h \
  /opt/ros/humble/include/fastcdr/fastcdr/fastcdr_dll.h \
  /opt/ros/humble/include/fastcdr/fastcdr/config.h \
