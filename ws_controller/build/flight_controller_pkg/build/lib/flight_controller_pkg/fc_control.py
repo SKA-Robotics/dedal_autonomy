@@ -253,8 +253,12 @@ class MavLinkConfigurator:
             raise RuntimeError(f"MISSION_ACK niepowodzenie (type={getattr(ack,'type',None)})")
 
         # --- WŁĄCZENIE GEOFENCINGU W ARDUPILOCIE ---
-        self.master.mav.param_set_send(sysid, compid, b"FENCE_ENABLE", 1, mavutil.mavlink.MAV_PARAM_TYPE_INT8)
-        print("Gotowe: wgrano keep-in fence i włączono FENCE_ENABLE = 1.")
+        if vertex_count == 0:
+            self.master.mav.param_set_send(sysid, compid, b"FENCE_ENABLE", 0, mavutil.mavlink.MAV_PARAM_TYPE_INT8)
+            print("Wyłączono FENCE_ENABLE = 0.")
+        elif vertex_count != 0:
+            self.master.mav.param_set_send(sysid, compid, b"FENCE_ENABLE", 1, mavutil.mavlink.MAV_PARAM_TYPE_INT8)
+            print("Wgrano keep-in fence i włączono FENCE_ENABLE = 1.")
 
 
 
@@ -336,34 +340,52 @@ class imuReaderNode(Node):
         print('Fence data received')
 
     def listener_flask_callback(self, msg):
+        #   DISARM
         if(msg.data == 'set_disarm'):
             print('Disarmed')
             self.public_data.connection.disarm_drone()
 
+        #   
         elif(msg.data == 'start_logging'):
             print('Logging started')
             self.public_data.connection.set_fence()
 
+        #   ARM
         elif(msg.data == 'set_arm'):
             print('Arm toggled')
             self.public_data.connection.arm_drone()
 
+        #   LANDING mode
         elif(msg.data == 'land_now'):
             print('Landing')
             self.public_data.connection.set_landing_mode()
 
+        #   STABILIZE mode
         elif(msg.data == 'stabilize'):
             print('Stabilizing')
             self.public_data.connection.set_stabilize_mode()
+        
+        #   Start mission and hower
+        elif(msg.data == 'start_hower'):
+            print('Autonomy start')
+            self.public_data.connection.takeoff_and_hover()
 
+        #   Cancel mission
+        elif(msg.data == 'cancel_mission'):
+            print('Mission cancel')
+            
+
+        #   Send GeoFence to FC
         elif(msg.data == 'set_geo'):
             print('Fence saved')
             self.public_data.connection.set_fence()
 
+        #   Remove GeoFence points
         elif(msg.data == 'remove_geo'):
             print('Fence removed')
             self.public_data.connection.clear_fence()
 
+        #   Play Barka
         elif(msg.data == 'play_Barka'):
             print('Barking xd')
             self.public_data.connection.play_Barka()

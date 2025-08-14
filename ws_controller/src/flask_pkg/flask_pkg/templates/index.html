@@ -50,7 +50,7 @@
           <div class="row g-3">
 
             <!-- Uzbrajanie -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-3">
               <h3 class="h6 text-info">Uzbrajanie</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="arm" value="Arm" type="submit">Uzbrój</button>
@@ -59,16 +59,25 @@
             </div>
 
             <!-- Tryby lotu -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-3">
               <h3 class="h6 text-info">Tryby lotu</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="stabilize" value="Stabilize" type="submit">Stabilizuj</button>
                 <button class="btn btn-outline-light btn-sm" name="land" value="Land" type="submit">Ląduj</button>
               </form>
             </div>
+            
+            <!-- Autonomia -->
+            <div class="col-12 col-md-3">
+              <h3 class="h6 text-info">Autonomy</h3>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="start_hower" value="Start_Hower" type="submit">Start i zawis</button>
+                <button class="btn btn-outline-light btn-sm" name="cancel" value="Cancel" type="submit">Anuluj</button>
+              </form>
+            </div>
 
             <!-- Inne -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-3">
               <h3 class="h6 text-info">Inne</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="play_barka" value="Play_barka" type="submit">Graj Barke</button>
@@ -107,7 +116,7 @@
 
     <!-- Import trasy (CSV) -->
     <div class="row g-3 mt-1">
-      <div class="col-12 col-md-2">
+      <div class="col-12 col-md-3">
         <div class="card p-3">
           <h2 class="h6 panel-title">Sterowanie GeoFencing</h2>
           <form method="POST" class="d-flex gap-2 flex-wrap">
@@ -116,7 +125,7 @@
           </form>
         </div>
       </div>
-      <div class="col-12 col-md-10">
+      <div class="col-12 col-md-9">
         <div class="card p-3">           
           <h2 class="h6 panel-title">Import GeoFencing (CSV)</h2>
           

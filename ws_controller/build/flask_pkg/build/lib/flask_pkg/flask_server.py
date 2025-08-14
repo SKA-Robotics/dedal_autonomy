@@ -90,18 +90,30 @@ def index():
         print("Obebrano POST")
         if request.form.get('logging') == 'Logging':
             ros2_node.publish_message('start_logging')
+
         elif request.form.get('arm') == 'Arm':
             ros2_node.publish_message('set_arm')
         elif request.form.get('disarm') == 'Disarm':
             ros2_node.publish_message('set_disarm')
+
         elif request.form.get('land') == 'Land':
             ros2_node.publish_message('land_now')
+        elif request.form.get('stabilize') == 'Stabilize':
+            ros2_node.publish_message('stabilize')
+
+        elif request.form.get('start_hower') == 'Start_Hower':
+            ros2_node.publish_message('start_hower')
+        elif request.form.get('cancel') == 'Cancel':
+            ros2_node.publish_message('cancel_mission')
+
         elif request.form.get('play_barka') == 'Play_barka':
             ros2_node.publish_message('play_Barka')
+
         elif request.form.get('remove_geo') == 'Remove_geo':
             ros2_node.publish_message('remove_geo')
         elif request.form.get('set_geo') == 'Set_geo':
             ros2_node.publish_message('set_geo')
+
     return render_template('index.html')
 
 # NEW: API – zwróć okno danych (ostatnie ~60 s)
