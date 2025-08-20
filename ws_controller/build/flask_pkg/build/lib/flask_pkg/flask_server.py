@@ -101,9 +101,13 @@ def index():
             ros2_node.publish_message('land_now')
         elif request.form.get('stabilize') == 'Stabilize':
             ros2_node.publish_message('stabilize')
+        elif request.form.get('auto') == 'Auto':
+            ros2_node.publish_message('auto')
+        elif request.form.get('guided') == 'Guided':
+            ros2_node.publish_message('guided')
 
-        elif request.form.get('start_hower') == 'Start_Hower':
-            ros2_node.publish_message('start_hower')
+        elif request.form.get('start_hover') == 'Start_Hover':
+            ros2_node.publish_message('start_hover')
         elif request.form.get('cancel') == 'Cancel':
             ros2_node.publish_message('cancel_mission')
 
