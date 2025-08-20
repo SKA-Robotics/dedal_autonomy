@@ -1,5 +1,6 @@
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import QoSProfile, qos_profile_sensor_data
 from custom_msgs.msg import DroneStatus, GeoData
 from example_interfaces.msg import String
 from flask import Flask, render_template, jsonify, request, make_response
@@ -42,7 +43,7 @@ class ServerNode(Node):
             DroneStatus,
             'drone_status',
             self.listener_callback,
-            100
+            qos_profile_sensor_data
         )
         self.publisher_ = self.create_publisher(String, 'flask_commands', 10)
         self.geo_pub = self.create_publisher(GeoData, 'geo_points', 10)

@@ -8,7 +8,7 @@ from typing import Tuple, Optional, List
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import SensorDataQoS
+from rclpy.qos import QoSProfile, qos_profile_sensor_data
 
 from pymavlink import mavutil, mavwp
 from custom_msgs.msg import DroneStatus, GeoData
@@ -91,7 +91,7 @@ class MavLinkConfigurator:
             self.master.target_system,
             self.master.target_component,
             mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
-            0, 1, 0, 0, 0, 0, 0
+            0, 1, 0, 0, 0, 0, 0, 0
         )
         self._log('info', '✅ Drone uzbrojony!')
 
@@ -100,10 +100,10 @@ class MavLinkConfigurator:
             self.master.target_system,
             self.master.target_component,
             mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
-            0, 0, 0, 0, 0, 0, 0
+            0, 0, 0, 0, 0, 0, 0, 0
         )
-        self._log('info', 'Wysłano polecenie disarm, oczekuję na potwierdzenie...')
-        self.master.motors_disarmed_wait()
+        # self._log('info', 'Wysłano polecenie disarm, oczekuję na potwierdzenie...')
+        # self.master.motors_disarmed_wait()
         self._log('info', '✅ Drone rozbrojony!')
 
     # ------------------------------- Mission ----------------------------------
@@ -148,14 +148,17 @@ class MavLinkConfigurator:
 
     def set_fence(self) -> None:
         vertex_count = len(self._polygon)
-        if vertex_count == 0:
-            # Wyłączenie geofencingu, jeśli nie ma wierzchołków
-            self.master.param_set_send(b'FENCE_ENABLE', 0, mavutil.mavlink.MAV_PARAM_TYPE_INT32)
-            self._log('info', 'FENCE_ENABLE=0 (brak wierzchołków)')
-            return
 
         sysid = self.master.target_system
         compid = self.master.target_component
+
+        if vertex_count == 0:
+            # Wyłączenie geofencingu, jeśli nie ma wierzchołków
+            #self.master.param_set_send(b'FENCE_ENABLE', 0, mavutil.mavlink.MAV_PARAM_TYPE_INT32)
+            self.master.mav.param_set_send(sysid, compid, b"FENCE_ENABLE", 0, mavutil.mavlink.MAV_PARAM_TYPE_INT8)
+            self._log('info', 'FENCE_ENABLE=0 (brak wierzchołków)')
+            return
+
         items = []
 
         # Punkt HOME (wymagany przez ArduPilot dla FENCE)
@@ -202,6 +205,33 @@ class MavLinkConfigurator:
         self.master.param_set_send(b'FENCE_ENABLE', 1, mavutil.mavlink.MAV_PARAM_TYPE_INT32)
         self._log('info', f'✅ GeoFence ustawiony ({vertex_count} punktów)')
 
+    # ------------------------------ Inne - dźwięki ----------------------------------
+
+    def tune_short(self, tune= "t200 o2 a8 a4") -> None:
+        sysid = self.master.target_system
+        compid = self.master.target_component
+
+        self.master.mav.play_tune_send(sysid, compid, tune.encode())
+    
+    def tune_long(self, tune= "t100 o2 a8 a4 a8 a4") -> None:
+        sysid = self.master.target_system
+        compid = self.master.target_component
+
+        # Podział melodii na dwie części, jeśli jest dłuższa niż 30 znaków
+        tune1 = tune[:30]
+        tune2 = tune[30:]
+
+        self.master.mav.play_tune_send(sysid, compid, tune1.encode(), tune2.encode())
+
+    def play_Barka(self) -> None:
+        tune = "T140 o3 e2 p8 l4 e d e f e d c c2 p4 d2 e2 f2 f2 p16 f16 f f e d2 d2"
+        sysid = self.master.target_system
+        compid = self.master.target_component
+
+        tune1 = tune[:30]
+        tune2 = tune[30:]
+
+        self.master.mav.play_tune_send(sysid, compid, tune1.encode(), tune2.encode())
 
 # =============================================================================
 # -- Warstwa stanu/telemetrii -------------------------------------------------
@@ -261,7 +291,6 @@ class MainData:
     def set_fence(self) -> None:
         self.connection.set_fence()
 
-
 # =============================================================================
 # -- ROS2 Node ----------------------------------------------------------------
 # =============================================================================
@@ -273,7 +302,7 @@ class FlightControllerNode(Node):
         self.public_data = MainData(logger=self.get_logger())
 
         # Publikator telemetrii – QoS pod dane sensorowe
-        self.publisher_ = self.create_publisher(DroneStatus, 'drone_status', SensorDataQoS())
+        self.publisher_ = self.create_publisher(DroneStatus, 'drone_status', qos_profile_sensor_data)
 
         # Subskrypcje; nie trzeba przechowywać referencji w polach
         self.create_subscription(String, 'flask_commands', self.listener_flask_callback, 10)
@@ -283,7 +312,7 @@ class FlightControllerNode(Node):
         self.timer_ = self.create_timer(1.0, self.timer_function)
 
         # Sprzątanie
-        self.add_on_shutdown(self._on_shutdown)
+        #rclpy.on_shutdown(self._on_shutdown)
 
     # ---- Callbacks -----------------------------------------------------------
     def _on_shutdown(self) -> None:
@@ -300,26 +329,29 @@ class FlightControllerNode(Node):
         cmd = msg.data
         self.get_logger().info(f'cmd: {cmd}')
 
-        if cmd == 'arm_now':
+        if cmd == 'set_arm':
             self.public_data.connection.arm_drone()
-        elif cmd == 'disarm_now':
+        elif cmd == 'set_disarm':
             self.public_data.connection.disarm_drone()
         elif cmd == 'land_now':
             self.public_data.connection.set_landing_mode()
         elif cmd == 'stabilize':
             self.public_data.connection.set_stabilize_mode()
         elif cmd == 'start_hover':
-            # w oryginale: 'start_hower'
-            # TODO: dołącz logikę startu misji/hover jeśli istnieje w systemie
+            # TODO
             self.get_logger().info('Autonomy start (hover)')
         elif cmd == 'cancel_mission':
+            # TODO
             self.get_logger().info('Mission cancel (not implemented here)')
         elif cmd == 'set_geo':
             self.public_data.set_fence()
+            self.get_logger().info('Geofence data set')
         elif cmd == 'remove_geo':
             self.public_data.clear_fence()
-        elif cmd == 'barka':
-            self.get_logger().info('🎵 Barka (placeholder)')
+            self.get_logger().info('Geofence data cleared')
+        elif cmd == 'play_Barka':
+            self.public_data.connection.play_Barka()
+            self.get_logger().info('🎵 Barka')
         else:
             self.get_logger().warn(f'Nieznane polecenie: {cmd}')
 
