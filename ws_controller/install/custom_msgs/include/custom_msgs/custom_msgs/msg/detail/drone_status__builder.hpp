@@ -72,13 +72,29 @@ private:
 class Init_DroneStatus_is_autonomy_active
 {
 public:
-  Init_DroneStatus_is_autonomy_active()
-  : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
+  explicit Init_DroneStatus_is_autonomy_active(::custom_msgs::msg::DroneStatus & msg)
+  : msg_(msg)
   {}
   Init_DroneStatus_is_moving is_autonomy_active(::custom_msgs::msg::DroneStatus::_is_autonomy_active_type arg)
   {
     msg_.is_autonomy_active = std::move(arg);
     return Init_DroneStatus_is_moving(msg_);
+  }
+
+private:
+  ::custom_msgs::msg::DroneStatus msg_;
+};
+
+class Init_DroneStatus_is_armed
+{
+public:
+  Init_DroneStatus_is_armed()
+  : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
+  {}
+  Init_DroneStatus_is_autonomy_active is_armed(::custom_msgs::msg::DroneStatus::_is_armed_type arg)
+  {
+    msg_.is_armed = std::move(arg);
+    return Init_DroneStatus_is_autonomy_active(msg_);
   }
 
 private:
@@ -96,7 +112,7 @@ template<>
 inline
 auto build<::custom_msgs::msg::DroneStatus>()
 {
-  return custom_msgs::msg::builder::Init_DroneStatus_is_autonomy_active();
+  return custom_msgs::msg::builder::Init_DroneStatus_is_armed();
 }
 
 }  // namespace custom_msgs

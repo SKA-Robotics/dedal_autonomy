@@ -61,6 +61,11 @@ static bool _DroneStatus__cdr_serialize(
     return false;
   }
   const _DroneStatus__ros_msg_type * ros_message = static_cast<const _DroneStatus__ros_msg_type *>(untyped_ros_message);
+  // Field name: is_armed
+  {
+    cdr << (ros_message->is_armed ? true : false);
+  }
+
   // Field name: is_autonomy_active
   {
     cdr << (ros_message->is_autonomy_active ? true : false);
@@ -102,6 +107,13 @@ static bool _DroneStatus__cdr_deserialize(
     return false;
   }
   _DroneStatus__ros_msg_type * ros_message = static_cast<_DroneStatus__ros_msg_type *>(untyped_ros_message);
+  // Field name: is_armed
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->is_armed = tmp ? true : false;
+  }
+
   // Field name: is_autonomy_active
   {
     uint8_t tmp;
@@ -152,6 +164,12 @@ size_t get_serialized_size_custom_msgs__msg__DroneStatus(
   (void)padding;
   (void)wchar_size;
 
+  // field.name is_armed
+  {
+    size_t item_size = sizeof(ros_message->is_armed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // field.name is_autonomy_active
   {
     size_t item_size = sizeof(ros_message->is_autonomy_active);
@@ -203,6 +221,13 @@ size_t max_serialized_size_custom_msgs__msg__DroneStatus(
   full_bounded = true;
   is_plain = true;
 
+  // member: is_armed
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
   // member: is_autonomy_active
   {
     size_t array_size = 1;

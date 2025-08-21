@@ -56,6 +56,8 @@ cdr_serialize(
   const custom_msgs::msg::DroneStatus & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
+  // Member: is_armed
+  cdr << (ros_message.is_armed ? true : false);
   // Member: is_autonomy_active
   cdr << (ros_message.is_autonomy_active ? true : false);
   // Member: is_moving
@@ -75,6 +77,13 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   custom_msgs::msg::DroneStatus & ros_message)
 {
+  // Member: is_armed
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.is_armed = tmp ? true : false;
+  }
+
   // Member: is_autonomy_active
   {
     uint8_t tmp;
@@ -112,6 +121,12 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
+  // Member: is_armed
+  {
+    size_t item_size = sizeof(ros_message.is_armed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // Member: is_autonomy_active
   {
     size_t item_size = sizeof(ros_message.is_autonomy_active);
@@ -158,6 +173,14 @@ max_serialized_size_DroneStatus(
   full_bounded = true;
   is_plain = true;
 
+
+  // Member: is_armed
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
   // Member: is_autonomy_active
   {

@@ -14,3 +14,4 @@ custom_msgs/msg/_gyro_data.py
 custom_msgs/msg/_imu_data.py
 custom_msgs/msg/_possition_data.py
 custom_msgs/msg/_speed_data.py
+custom_msgs/msg/_tag_location.py

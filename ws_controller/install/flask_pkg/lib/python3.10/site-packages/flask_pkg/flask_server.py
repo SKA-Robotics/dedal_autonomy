@@ -53,6 +53,7 @@ class ServerNode(Node):
         timestamp = datetime.utcnow()
         sample = (
             timestamp,
+            msg.is_armed,
             msg.is_autonomy_active,
             msg.is_moving,
             msg.battery_voltage,
@@ -107,13 +108,23 @@ def index():
         elif request.form.get('guided') == 'Guided':
             ros2_node.publish_message('guided')
 
-        elif request.form.get('start_hover') == 'Start_Hover':
-            ros2_node.publish_message('start_hover')
-        elif request.form.get('cancel') == 'Cancel':
-            ros2_node.publish_message('cancel_mission')
+        elif request.form.get('takeoff') == 'Takeoff':
+            ros2_node.publish_message('takeoff')
+        elif request.form.get('autonomy_on') == 'Autonomy_on':
+            ros2_node.publish_message('autonomy_on')
+        elif request.form.get('autonomy_off') == 'Autonomy_off':
+            ros2_node.publish_message('autonomy_off')
+        elif request.form.get('test_1') == 'Test_1':
+            ros2_node.publish_message('test_1')
+        elif request.form.get('test_2') == 'Test_2':
+            ros2_node.publish_message('test_2')
+        elif request.form.get('test_3') == 'Test_3':
+            ros2_node.publish_message('test_3')
 
         elif request.form.get('play_barka') == 'Play_barka':
             ros2_node.publish_message('play_Barka')
+        elif request.form.get('inne') == 'Inne':
+            ros2_node.publish_message('inne')
 
         elif request.form.get('remove_geo') == 'Remove_geo':
             ros2_node.publish_message('remove_geo')
@@ -129,6 +140,7 @@ def api_data():
         payload = [
             {
                 't': ts.isoformat() + 'Z',
+                'armed': bool(arm),
                 'autonomy': bool(auth),
                 'moving': bool(move),
                 'voltage': float(voltage),
@@ -136,7 +148,7 @@ def api_data():
                 'lon': float(lon),
                 'alt': float(alt),
             }
-            for (ts, auth, move, voltage, lat, lon, alt) in data_buffer
+            for (ts, arm, auth, move, voltage, lat, lon, alt) in data_buffer
         ]
     return jsonify(payload)
 
@@ -146,10 +158,11 @@ def api_latest():
     with data_lock:
         if not data_buffer:
             return jsonify({'available': False}), 200
-        ts, auth, move, voltage, lat, lon, alt = data_buffer[-1]
+        ts, arm, auth, move, voltage, lat, lon, alt = data_buffer[-1]
         return jsonify({
             'available': True,
             't': ts.isoformat() + 'Z',
+            'armed': bool(arm),
             'autonomy': bool(auth),
             'moving': bool(move),
             'voltage': float(voltage),
@@ -166,7 +179,7 @@ def api_health():
 @app.route('/api/mock')
 def api_mock():
     ts = datetime.utcnow()
-    sample = (ts, True, False, 11.9, 52.2297, 21.0122, 120.0)  # przykładowe dane
+    sample = (ts, True, True, False, 11.9, 52.2297, 21.0122, 120.0)  # przykładowe dane
     with data_lock:
         data_buffer.append(sample)
     return jsonify({'ok': True})

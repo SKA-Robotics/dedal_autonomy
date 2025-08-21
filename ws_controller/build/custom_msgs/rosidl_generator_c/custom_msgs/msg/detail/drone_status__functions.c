@@ -21,6 +21,7 @@ custom_msgs__msg__DroneStatus__init(custom_msgs__msg__DroneStatus * msg)
   if (!msg) {
     return false;
   }
+  // is_armed
   // is_autonomy_active
   // is_moving
   // battery_voltage
@@ -38,6 +39,7 @@ custom_msgs__msg__DroneStatus__fini(custom_msgs__msg__DroneStatus * msg)
   if (!msg) {
     return;
   }
+  // is_armed
   // is_autonomy_active
   // is_moving
   // battery_voltage
@@ -49,6 +51,10 @@ bool
 custom_msgs__msg__DroneStatus__are_equal(const custom_msgs__msg__DroneStatus * lhs, const custom_msgs__msg__DroneStatus * rhs)
 {
   if (!lhs || !rhs) {
+    return false;
+  }
+  // is_armed
+  if (lhs->is_armed != rhs->is_armed) {
     return false;
   }
   // is_autonomy_active
@@ -80,6 +86,8 @@ custom_msgs__msg__DroneStatus__copy(
   if (!input || !output) {
     return false;
   }
+  // is_armed
+  output->is_armed = input->is_armed;
   // is_autonomy_active
   output->is_autonomy_active = input->is_autonomy_active;
   // is_moving

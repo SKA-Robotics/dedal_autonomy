@@ -268,8 +268,17 @@ CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generato
   rosidl_generator_c/custom_msgs/msg/detail/geo_data__struct.h \
   rosidl_generator_c/custom_msgs/msg/detail/drone_status__functions.h \
   rosidl_generator_c/custom_msgs/msg/detail/geo_data__type_support.h \
-  rosidl_generator_c/custom_msgs/msg/detail/geo_data__functions.h
+  rosidl_generator_c/custom_msgs/msg/detail/geo_data__functions.h \
+  rosidl_generator_c/custom_msgs/msg/detail/tag_location__type_support.h \
+  rosidl_generator_c/custom_msgs/msg/detail/tag_location__struct.h \
+  rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.h
 
+
+rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.h:
+
+rosidl_generator_c/custom_msgs/msg/detail/tag_location__struct.h:
+
+rosidl_generator_c/custom_msgs/msg/detail/tag_location__type_support.h:
 
 rosidl_generator_c/custom_msgs/msg/detail/geo_data__type_support.h:
 

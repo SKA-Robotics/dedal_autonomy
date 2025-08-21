@@ -24,6 +24,7 @@ extern "C"
 /// Struct defined in msg/DroneStatus in the package custom_msgs.
 typedef struct custom_msgs__msg__DroneStatus
 {
+  bool is_armed;
   bool is_autonomy_active;
   bool is_moving;
   float battery_voltage;

@@ -29,6 +29,13 @@ inline void to_flow_style_yaml(
   std::ostream & out)
 {
   out << "{";
+  // member: is_armed
+  {
+    out << "is_armed: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_armed, out);
+    out << ", ";
+  }
+
   // member: is_autonomy_active
   {
     out << "is_autonomy_active: ";
@@ -62,6 +69,16 @@ inline void to_block_style_yaml(
   const DroneStatus & msg,
   std::ostream & out, size_t indentation = 0)
 {
+  // member: is_armed
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "is_armed: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_armed, out);
+    out << "\n";
+  }
+
   // member: is_autonomy_active
   {
     if (indentation > 0) {

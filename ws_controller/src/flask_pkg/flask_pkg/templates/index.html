@@ -45,79 +45,93 @@
     <!-- Sterowanie (podział na 3 kategorie w jednym rzędzie) -->
     <div class="row g-3 mt-1">
       <div class="col-12">
-        <div class="card p-3">
-          <h2 class="h6 panel-title mb-3">Sterowanie</h2>
-          <div class="row g-3">
+        <h2 class="h7 panel-title mb-3">Sterowanie</h2>
+      </div>
+    </div> 
+             
+    <div class="row g-1 mt-1">
 
+      <div class="col-3">
+        <div class="card p-3">
+          <div class="row g-3">
             <!-- Uzbrajanie -->
-            <div class="col-12 col-md-3">
-              <h3 class="h6 text-info">Uzbrajanie</h3>
+            <div class="col-12 col-md-12">
+              <h3 class="h6 text-info">Bezpieczeństwo</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="arm" value="Arm" type="submit">Uzbrój</button>
+              </form>
+              <br>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-danger btn-sm" name="disarm" value="Disarm" type="submit">Rozbrój</button>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
 
+
+      <div class="col-3">
+        <div class="card p-3">
+          <div class="row g-3">
             <!-- Tryby lotu -->
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-12">
               <h3 class="h6 text-info">Tryby lotu</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="stabilize" value="Stabilize" type="submit">Stabilizuj</button>
                 <button class="btn btn-outline-light btn-sm" name="land" value="Land" type="submit">Ląduj</button>
+              </form>
+              <br>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="auto" value="Auto" type="submit">Auto</button>
                 <button class="btn btn-outline-light btn-sm" name="guided" value="Guided" type="submit">Guided</button>
               </form>
             </div>
-            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card p-3">
+          <div class="row g-3">      
             <!-- Autonomia -->
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-12">
               <h3 class="h6 text-info">Autonomy</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-outline-light btn-sm" name="start_hover" value="Start_Hover" type="submit">Start i zawis</button>
-                <button class="btn btn-outline-light btn-sm" name="cancel" value="Cancel" type="submit">Anuluj</button>
+                <button class="btn btn-outline-light btn-sm" name="takeoff" value="Takeoff" type="submit">Takeoff</button>
+                <button class="btn btn-outline-light btn-sm" name="autonomy_on" value="Autonomy_on" type="submit">Włącz</button>
+                <button class="btn btn-outline-light btn-sm" name="autonomy_off" value="Autonomy_off" type="submit">Wyłącz</button>
+              </form>
+              <br>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="mode_1" value="Mode_1" type="submit">Test 1</button>
+                <button class="btn btn-outline-light btn-sm" name="mode_2" value="Mode_2" type="submit">Test 2</button>
+                <button class="btn btn-outline-light btn-sm" name="mode_3" value="Mode_3" type="submit">Test 3</button>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
 
+
+      <div class="col-3">
+        <div class="card p-3">
+          <div class="row g-3">
             <!-- Inne -->
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-12">
               <h3 class="h6 text-info">Inne</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="play_barka" value="Play_barka" type="submit">Graj Barke</button>
-                <button class="btn btn-outline-light btn-sm" name="logging" value="Logging" type="submit">Inne</button>
+                <button class="btn btn-outline-light btn-sm" name="inne" value="Inne" type="submit">Inne</button>
               </form>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Mapa + Kamera -->
-    <div class="row g-3 mt-1">
-      <div class="col-12 col-lg-8">
-        <div class="card p-3 h-100">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="h6 panel-title mb-0">Pozycja</h2>
-          </div>
-          <div id="map" class="mt-3"></div>
-          <div class="mt-3 small text-muted" id="pos-text">Lat —, Lon —, Alt —</div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div class="card p-3 h-100">
-          <h2 class="h6 panel-title mb-3">Kamera</h2>
-          <div class="camera-frame">
-            <!-- Tymczasowy placeholder: kot -->
-            <img id="camera-img" src="https://s3.eu-central-1.amazonaws.com/cdn.koty.pl-migration/shutterstock_330164483_e1512500490608_a647b098fd.jpg" alt="Podgląd kamery">
-            <!-- Jeśli w przyszłości będzie stream, podmień na <video src="..." autoplay muted playsinline></video> -->
           </div>
         </div>
       </div>
     </div>
 
     <!-- Import trasy (CSV) -->
-    <div class="row g-3 mt-1">
+    <div class="row g-1 mt-0">
       <div class="col-12 col-md-3">
         <div class="card p-3">
           <h2 class="h6 panel-title">Sterowanie GeoFencing</h2>
@@ -131,20 +145,57 @@
         <div class="card p-3">           
           <h2 class="h6 panel-title">Import GeoFencing (CSV)</h2>
           
-            <div class="tab-pane fade show active" id="importCsv">
-              <form id="csvForm" class="d-flex align-items-center gap-2 flex-wrap">
-                <input class="form-control form-control-sm w-auto" type="file" id="csvFile" accept=".csv">
-                <button class="btn btn-primary btn-sm" id="sendCsv" type="submit">Wyślij do serwera</button>
-                <span class="panel-title" id="csvStatus" class="small text-muted"></span>
-              </form>
-              <div class="form-text mt-2">
-                <h8 class="panel-title">Oczekiwany format: kolumny <code>lat lon</code> (nagłówek dozwolony).</h8>
-              </div>
+          <div class="tab-pane fade show active" id="importCsv">
+            <form id="csvForm" class="d-flex align-items-center gap-2 flex-wrap">
+              <input class="form-control form-control-sm w-auto" type="file" id="csvFile" accept=".csv">
+              <button class="btn btn-primary btn-sm" id="sendCsv" type="submit">Wyślij do serwera</button>
+              <span class="panel-title" id="csvStatus" class="small text-muted"></span>
+            </form>
+            <div class="form-text mt-2">
+              <h8 class="panel-title">Oczekiwany format: kolumny <code>lat lon</code> (nagłówek dozwolony).</h8>
             </div>
+          </div>
           
         </div>
       </div>
     </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-12">
+        <h2 class="h7 panel-title mb-3">Podgląd</h2>
+      </div>
+    </div> 
+
+    <!-- Mapa + Kamera -->
+    <div class="row g-3 mt-1">
+      <div class="col-12 col-lg-6">
+        <div class="card p-3 h-100">
+          <h2 class="h6 panel-title mb-3">Kamera</h2>
+          <div class="camera-frame">
+            <!-- Tymczasowy placeholder: kot -->
+            <img id="camera-img" src="https://s3.eu-central-1.amazonaws.com/cdn.koty.pl-migration/shutterstock_330164483_e1512500490608_a647b098fd.jpg" alt="Podgląd kamery">
+            <!-- Jeśli w przyszłości będzie stream, podmień na <video src="..." autoplay muted playsinline></video> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="card p-3 h-100">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="h6 panel-title mb-0">Pozycja</h2>
+          </div>
+          <div id="map" class="mt-3"></div>
+          <div class="panel-title mt-3 small" id="pos-text">Lat —, Lon —, Alt —</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-12">
+        <h2 class="h7 panel-title mb-3">Raporty</h2>
+      </div>
+    </div> 
 
     <!-- Tabela danych -->
     <div class="row g-3 mt-1">
@@ -156,6 +207,7 @@
               <thead>
                 <tr>
                   <th>UTC</th>
+                  <th>ARMED</th>
                   <th>Autonomia</th>
                   <th>W ruchu</th>
                   <th>Napięcie [V]</th>
@@ -285,6 +337,7 @@
         rowsEl.innerHTML = last.map(s => `
           <tr>
             <td>${new Date(s.t).toISOString()}</td>
+            <td>${s.armed ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${s.autonomy ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${s.moving ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${Number(s.voltage).toFixed(2)}</td>

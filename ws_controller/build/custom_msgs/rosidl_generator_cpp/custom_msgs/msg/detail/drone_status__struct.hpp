@@ -43,6 +43,7 @@ struct DroneStatus_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
+      this->is_armed = false;
       this->is_autonomy_active = false;
       this->is_moving = false;
       this->battery_voltage = 0.0f;
@@ -55,6 +56,7 @@ struct DroneStatus_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
+      this->is_armed = false;
       this->is_autonomy_active = false;
       this->is_moving = false;
       this->battery_voltage = 0.0f;
@@ -62,6 +64,9 @@ struct DroneStatus_
   }
 
   // field types and members
+  using _is_armed_type =
+    bool;
+  _is_armed_type is_armed;
   using _is_autonomy_active_type =
     bool;
   _is_autonomy_active_type is_autonomy_active;
@@ -76,6 +81,12 @@ struct DroneStatus_
   _ekf_position_type ekf_position;
 
   // setters for named parameter idiom
+  Type & set__is_armed(
+    const bool & _arg)
+  {
+    this->is_armed = _arg;
+    return *this;
+  }
   Type & set__is_autonomy_active(
     const bool & _arg)
   {
@@ -143,6 +154,9 @@ struct DroneStatus_
   // comparison operators
   bool operator==(const DroneStatus_ & other) const
   {
+    if (this->is_armed != other.is_armed) {
+      return false;
+    }
     if (this->is_autonomy_active != other.is_autonomy_active) {
       return false;
     }

@@ -486,6 +486,16 @@ class MavLinkConfigurator:
             message_id, 1e6 / frequency_hz, 0, 0, 0, 0, 0
         )
 
+    def is_drone_armed(self) -> bool:
+        msg = self.master.recv_match(type='HEARTBEAT', blocking=True)
+        state = msg.to_dict()
+
+        armed = state['base_mode'] & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED
+
+        if armed:
+            return True
+        else:
+            return False
     # ---------------------- Przykładowe polecenia trybów ----------------------
     def set_mode(self, mode = 'AUTO') -> None:
         if mode not in self.master.mode_mapping():
@@ -591,6 +601,7 @@ class MainData:
         msg.ekf_position = GeoData()
         msg.is_autonomy_active = missionStatus.autonomyOn
         msg.is_moving = missionStatus.movementOn
+        msg.is_armed = self.connection.is_drone_armed()
         msg.battery_voltage = getattr(self._last_status, 'battery_voltage', float('nan'))
         msg.ekf_position.latitude = self._last_status.ekf_position.latitude
         msg.ekf_position.longitude = self._last_status.ekf_position.longitude
@@ -626,7 +637,7 @@ class FlightControllerNode(Node):
         self.create_subscription(TagLocation, 'tag_location_now', self.listener_tag_location, 10)
 
         # Timer (1 Hz): publikacja ostatniego znanego stanu (bez blokowania)
-        self.timer_ = self.create_timer(1.0, self.timer_function)
+        self.timer_ = self.create_timer(0.25, self.timer_function)
         self.timer__ = self.create_timer(0.1, self.mission_timer)
 
         # Sprzątanie
@@ -662,6 +673,8 @@ class FlightControllerNode(Node):
                         self.get_logger().info('✅ Zrealizowano ruch względny LOCAL_NED')
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
+                
+
 
 
     def hover_mission(self) -> None:
@@ -692,6 +705,7 @@ class FlightControllerNode(Node):
             self.public_data.connection.arm_drone()
         elif cmd == 'set_disarm':
             self.public_data.connection.disarm_drone()
+
         elif cmd == 'land_now':
             self.public_data.connection.set_mode('LAND')
         elif cmd == 'stabilize':
@@ -700,27 +714,41 @@ class FlightControllerNode(Node):
             self.public_data.connection.set_mode('AUTO')
         elif cmd == 'guided':
             self.public_data.connection.set_mode('GUIDED')
-        elif cmd == 'start_hover':
-            self.get_logger().info('Autonomy start (hover)')
+
+        elif cmd == 'takeoff':
+            self.get_logger().info('Takeoff start')
             self.hover_mission()
-        elif cmd == 'cancel_mission':
-            # TODO
-            self.get_logger().info('Mission cancel (not implemented here)')
+        elif cmd == 'autonomy_on':
+            self.get_logger().info('Autonomy mode on')
+            missionStatus.autonomyOn = True
+        elif cmd == 'autonomy_off':
+            self.get_logger().info('Autonomy mode off')
+            missionStatus.autonomyOn = False
+        
+        elif cmd == 'test_1':
+            self.get_logger().info('Test 1 - Move relative')
+            missionStatus.autonomyOn = True
+            missionStatus.movementOn = True
+            self.public_data.connection.mission.move_map_relative(dx=5.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.get_logger().info('Finished Test 1')
+        elif cmd == 'test_2':
+            self.get_logger().info('No Test 2 set')
+        elif cmd == 'test_3':
+            self.get_logger().info('No Test 3 set')
+
         elif cmd == 'set_geo':
             self.public_data.set_fence()
             self.get_logger().info('Geofence data set')
         elif cmd == 'remove_geo':
             self.public_data.clear_fence()
             self.get_logger().info('Geofence data cleared')
+        
         elif cmd == 'play_Barka':
             self.public_data.connection.play_Barka()
             self.get_logger().info('🎵 Barka')
-        elif cmd == 'start_logging':
-            self.get_logger().info('Move relative')
-            missionStatus.autonomyOn = True
-            missionStatus.movementOn = True
-            self.public_data.connection.mission.move_map_relative(dx=5.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
-            self.get_logger().info('Finish')
+        elif cmd == 'inne':
+            self.get_logger().info('Its nothing here')
+
         else:
             self.get_logger().warn(f'Nieznane polecenie: {cmd}')
 

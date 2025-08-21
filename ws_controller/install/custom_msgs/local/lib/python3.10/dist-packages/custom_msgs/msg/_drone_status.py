@@ -61,6 +61,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     """Message class 'DroneStatus'."""
 
     __slots__ = [
+        '_is_armed',
         '_is_autonomy_active',
         '_is_moving',
         '_battery_voltage',
@@ -68,6 +69,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     ]
 
     _fields_and_field_types = {
+        'is_armed': 'boolean',
         'is_autonomy_active': 'boolean',
         'is_moving': 'boolean',
         'battery_voltage': 'float',
@@ -75,6 +77,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('float'),  # noqa: E501
@@ -85,6 +88,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
+        self.is_armed = kwargs.get('is_armed', bool())
         self.is_autonomy_active = kwargs.get('is_autonomy_active', bool())
         self.is_moving = kwargs.get('is_moving', bool())
         self.battery_voltage = kwargs.get('battery_voltage', float())
@@ -120,6 +124,8 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
+        if self.is_armed != other.is_armed:
+            return False
         if self.is_autonomy_active != other.is_autonomy_active:
             return False
         if self.is_moving != other.is_moving:
@@ -134,6 +140,19 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
     def get_fields_and_field_types(cls):
         from copy import copy
         return copy(cls._fields_and_field_types)
+
+    @builtins.property
+    def is_armed(self):
+        """Message field 'is_armed'."""
+        return self._is_armed
+
+    @is_armed.setter
+    def is_armed(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'is_armed' field must be of type 'bool'"
+        self._is_armed = value
 
     @builtins.property
     def is_autonomy_active(self):

@@ -7,6 +7,8 @@
 module custom_msgs {
   module msg {
     struct DroneStatus {
+      boolean is_armed;
+
       boolean is_autonomy_active;
 
       boolean is_moving;
