@@ -66,6 +66,11 @@ static bool _DroneStatus__cdr_serialize(
     cdr << (ros_message->is_autonomy_active ? true : false);
   }
 
+  // Field name: is_moving
+  {
+    cdr << (ros_message->is_moving ? true : false);
+  }
+
   // Field name: battery_voltage
   {
     cdr << ros_message->battery_voltage;
@@ -102,6 +107,13 @@ static bool _DroneStatus__cdr_deserialize(
     uint8_t tmp;
     cdr >> tmp;
     ros_message->is_autonomy_active = tmp ? true : false;
+  }
+
+  // Field name: is_moving
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->is_moving = tmp ? true : false;
   }
 
   // Field name: battery_voltage
@@ -146,6 +158,12 @@ size_t get_serialized_size_custom_msgs__msg__DroneStatus(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+  // field.name is_moving
+  {
+    size_t item_size = sizeof(ros_message->is_moving);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
   // field.name battery_voltage
   {
     size_t item_size = sizeof(ros_message->battery_voltage);
@@ -186,6 +204,13 @@ size_t max_serialized_size_custom_msgs__msg__DroneStatus(
   is_plain = true;
 
   // member: is_autonomy_active
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // member: is_moving
   {
     size_t array_size = 1;
 

@@ -54,6 +54,7 @@ class ServerNode(Node):
         sample = (
             timestamp,
             msg.is_autonomy_active,
+            msg.is_moving,
             msg.battery_voltage,
             msg.ekf_position.latitude,
             msg.ekf_position.longitude,
@@ -129,12 +130,13 @@ def api_data():
             {
                 't': ts.isoformat() + 'Z',
                 'autonomy': bool(auth),
+                'moving': bool(move),
                 'voltage': float(voltage),
                 'lat': float(lat),
                 'lon': float(lon),
                 'alt': float(alt),
             }
-            for (ts, auth, voltage, lat, lon, alt) in data_buffer
+            for (ts, auth, move, voltage, lat, lon, alt) in data_buffer
         ]
     return jsonify(payload)
 
@@ -144,11 +146,12 @@ def api_latest():
     with data_lock:
         if not data_buffer:
             return jsonify({'available': False}), 200
-        ts, auth, voltage, lat, lon, alt = data_buffer[-1]
+        ts, auth, move, voltage, lat, lon, alt = data_buffer[-1]
         return jsonify({
             'available': True,
             't': ts.isoformat() + 'Z',
             'autonomy': bool(auth),
+            'moving': bool(move),
             'voltage': float(voltage),
             'lat': float(lat),
             'lon': float(lon),
@@ -163,7 +166,7 @@ def api_health():
 @app.route('/api/mock')
 def api_mock():
     ts = datetime.utcnow()
-    sample = (ts, True, 11.9, 52.2297, 21.0122, 120.0)  # przykładowe dane
+    sample = (ts, True, False, 11.9, 52.2297, 21.0122, 120.0)  # przykładowe dane
     with data_lock:
         data_buffer.append(sample)
     return jsonify({'ok': True})

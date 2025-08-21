@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/possition_data__type_support_c.cpp.o.d"
   "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/speed_data__type_support_c.cpp.o"
   "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/speed_data__type_support_c.cpp.o.d"
+  "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/tag_location__type_support_c.cpp.o"
+  "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/tag_location__type_support_c.cpp.o.d"
   "libcustom_msgs__rosidl_typesupport_fastrtps_c.pdb"
   "libcustom_msgs__rosidl_typesupport_fastrtps_c.so"
   "rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/accel_data__rosidl_typesupport_fastrtps_c.h"
@@ -37,6 +39,8 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/possition_data__type_support_c.cpp"
   "rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_c.h"
   "rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/speed_data__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/tag_location__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/custom_msgs/msg/detail/tag_location__type_support_c.cpp"
 )
 
 # Per-language clean rules from dependency scanning.

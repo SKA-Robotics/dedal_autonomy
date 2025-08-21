@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/possition_data__functions.c.o.d"
   "CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/speed_data__functions.c.o"
   "CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/speed_data__functions.c.o.d"
+  "CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.c.o"
+  "CMakeFiles/custom_msgs__rosidl_generator_c.dir/rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.c.o.d"
   "libcustom_msgs__rosidl_generator_c.pdb"
   "libcustom_msgs__rosidl_generator_c.so"
   "rosidl_generator_c/custom_msgs/msg/accel_data.h"
@@ -57,6 +59,10 @@ file(REMOVE_RECURSE
   "rosidl_generator_c/custom_msgs/msg/detail/speed_data__functions.h"
   "rosidl_generator_c/custom_msgs/msg/detail/speed_data__struct.h"
   "rosidl_generator_c/custom_msgs/msg/detail/speed_data__type_support.h"
+  "rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.c"
+  "rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.h"
+  "rosidl_generator_c/custom_msgs/msg/detail/tag_location__struct.h"
+  "rosidl_generator_c/custom_msgs/msg/detail/tag_location__type_support.h"
   "rosidl_generator_c/custom_msgs/msg/drone_status.h"
   "rosidl_generator_c/custom_msgs/msg/estimator_data.h"
   "rosidl_generator_c/custom_msgs/msg/geo_data.h"
@@ -64,6 +70,7 @@ file(REMOVE_RECURSE
   "rosidl_generator_c/custom_msgs/msg/imu_data.h"
   "rosidl_generator_c/custom_msgs/msg/possition_data.h"
   "rosidl_generator_c/custom_msgs/msg/speed_data.h"
+  "rosidl_generator_c/custom_msgs/msg/tag_location.h"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -33,6 +33,8 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_possition_data_s.c" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_speed_data.py" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_speed_data_s.c" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_tag_location.py" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/msg/_tag_location_s.c" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
   )
 
 

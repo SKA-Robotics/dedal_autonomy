@@ -7,3 +7,4 @@
 /home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/DataXYZ.idl
 /home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/DroneStatus.idl
 /home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/GeoData.idl
+/home/dron/ws_controller/build/custom_msgs/rosidl_adapter/custom_msgs:msg/TagLocation.idl

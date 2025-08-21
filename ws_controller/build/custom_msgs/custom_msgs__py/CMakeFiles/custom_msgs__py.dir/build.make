@@ -78,6 +78,7 @@ custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_data_xyz.py
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_drone_status.py
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_geo_data.py
+custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_tag_location.py
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/__init__.py
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_accel_data_s.c
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_gyro_data_s.c
@@ -88,6 +89,7 @@ custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_data_xyz_s.c
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_drone_status_s.c
 custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_geo_data_s.c
+custom_msgs__py/CMakeFiles/custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_tag_location_s.c
 
 rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/lib/rosidl_generator_py/rosidl_generator_py
 rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_py/__init__.py
@@ -111,6 +113,7 @@ rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.
 rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_msgs/msg/DataXYZ.idl
 rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_msgs/msg/DroneStatus.idl
 rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_msgs/msg/GeoData.idl
+rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/custom_msgs/msg/TagLocation.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/dron/ws_controller/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code for ROS interfaces"
 	cd /home/dron/ws_controller/build/custom_msgs/custom_msgs__py && /usr/bin/python3 /opt/ros/humble/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py --generator-arguments-file /home/dron/ws_controller/build/custom_msgs/rosidl_generator_py__arguments.json --typesupport-impls "rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c;rosidl_typesupport_c"
 
@@ -147,6 +150,9 @@ rosidl_generator_py/custom_msgs/msg/_drone_status.py: rosidl_generator_py/custom
 rosidl_generator_py/custom_msgs/msg/_geo_data.py: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_msgs/msg/_geo_data.py
 
+rosidl_generator_py/custom_msgs/msg/_tag_location.py: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_msgs/msg/_tag_location.py
+
 rosidl_generator_py/custom_msgs/msg/__init__.py: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_msgs/msg/__init__.py
 
@@ -177,6 +183,9 @@ rosidl_generator_py/custom_msgs/msg/_drone_status_s.c: rosidl_generator_py/custo
 rosidl_generator_py/custom_msgs/msg/_geo_data_s.c: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_msgs/msg/_geo_data_s.c
 
+rosidl_generator_py/custom_msgs/msg/_tag_location_s.c: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/custom_msgs/msg/_tag_location_s.c
+
 custom_msgs__py: custom_msgs__py/CMakeFiles/custom_msgs__py
 custom_msgs__py: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_c.c
 custom_msgs__py: rosidl_generator_py/custom_msgs/_custom_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
@@ -200,6 +209,8 @@ custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_possition_data.py
 custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_possition_data_s.c
 custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_speed_data.py
 custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_speed_data_s.c
+custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_tag_location.py
+custom_msgs__py: rosidl_generator_py/custom_msgs/msg/_tag_location_s.c
 custom_msgs__py: custom_msgs__py/CMakeFiles/custom_msgs__py.dir/build.make
 .PHONY : custom_msgs__py
 

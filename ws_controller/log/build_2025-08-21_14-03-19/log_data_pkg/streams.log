@@ -1,0 +1,21 @@
+[5.890s] Invoking command in '/home/dron/ws_controller/src/log_data_pkg': PYTHONPATH=/home/dron/ws_controller/build/log_data_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/log_data_pkg build --build-base /home/dron/ws_controller/build/log_data_pkg/build install --record /home/dron/ws_controller/build/log_data_pkg/install.log --single-version-externally-managed install_data
+[7.328s] running egg_info
+[7.332s] writing ../../build/log_data_pkg/log_data_pkg.egg-info/PKG-INFO
+[7.334s] writing dependency_links to ../../build/log_data_pkg/log_data_pkg.egg-info/dependency_links.txt
+[7.338s] writing entry points to ../../build/log_data_pkg/log_data_pkg.egg-info/entry_points.txt
+[7.339s] writing requirements to ../../build/log_data_pkg/log_data_pkg.egg-info/requires.txt
+[7.340s] writing top-level names to ../../build/log_data_pkg/log_data_pkg.egg-info/top_level.txt
+[7.351s] reading manifest file '../../build/log_data_pkg/log_data_pkg.egg-info/SOURCES.txt'
+[7.355s] writing manifest file '../../build/log_data_pkg/log_data_pkg.egg-info/SOURCES.txt'
+[7.356s] running build
+[7.357s] running build_py
+[7.358s] running install
+[7.360s] running install_lib
+[7.369s] running install_data
+[7.370s] running install_egg_info
+[7.381s] removing '/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages/log_data_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[7.383s] Copying ../../build/log_data_pkg/log_data_pkg.egg-info to /home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages/log_data_pkg-0.0.0-py3.10.egg-info
+[7.399s] running install_scripts
+[7.586s] Installing data_collector script to /home/dron/ws_controller/install/log_data_pkg/lib/log_data_pkg
+[7.598s] writing list of installed files to '/home/dron/ws_controller/build/log_data_pkg/install.log'
+[7.767s] Invoked command in '/home/dron/ws_controller/src/log_data_pkg' returned '0': PYTHONPATH=/home/dron/ws_controller/build/log_data_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/log_data_pkg build --build-base /home/dron/ws_controller/build/log_data_pkg/build install --record /home/dron/ws_controller/build/log_data_pkg/install.log --single-version-externally-managed install_data

@@ -157,6 +157,7 @@
                 <tr>
                   <th>UTC</th>
                   <th>Autonomia</th>
+                  <th>W ruchu</th>
                   <th>Napięcie [V]</th>
                   <th>Lat</th>
                   <th>Lon</th>
@@ -285,6 +286,7 @@
           <tr>
             <td>${new Date(s.t).toISOString()}</td>
             <td>${s.autonomy ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
+            <td>${s.moving ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${Number(s.voltage).toFixed(2)}</td>
             <td>${Number(s.lat).toFixed(6)}</td>
             <td>${Number(s.lon).toFixed(6)}</td>

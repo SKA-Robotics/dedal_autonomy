@@ -37,7 +37,7 @@ void DroneStatus_fini_function(void * message_memory)
   typed_message->~DroneStatus();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_message_member_array[3] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_message_member_array[4] = {
   {
     "is_autonomy_active",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
@@ -47,6 +47,23 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_m
     0,  // array size
     false,  // is upper bound
     offsetof(custom_msgs::msg::DroneStatus, is_autonomy_active),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "is_moving",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_msgs::msg::DroneStatus, is_moving),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -94,7 +111,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_m
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers DroneStatus_message_members = {
   "custom_msgs::msg",  // message namespace
   "DroneStatus",  // message name
-  3,  // number of fields
+  4,  // number of fields
   sizeof(custom_msgs::msg::DroneStatus),
   DroneStatus_message_member_array,  // message members
   DroneStatus_init_function,  // function to initialize message memory (memory has to be allocated)

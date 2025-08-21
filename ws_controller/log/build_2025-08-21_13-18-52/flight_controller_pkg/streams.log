@@ -1,0 +1,24 @@
+[2.838s] Invoking command in '/home/dron/ws_controller/src/flight_controller_pkg': PYTHONPATH=/home/dron/ws_controller/build/flight_controller_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/flight_controller_pkg build --build-base /home/dron/ws_controller/build/flight_controller_pkg/build install --record /home/dron/ws_controller/build/flight_controller_pkg/install.log --single-version-externally-managed install_data
+[3.969s] running egg_info
+[3.971s] writing ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/PKG-INFO
+[3.973s] writing dependency_links to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/dependency_links.txt
+[3.973s] writing entry points to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/entry_points.txt
+[3.974s] writing requirements to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/requires.txt
+[3.975s] writing top-level names to ../../build/flight_controller_pkg/flight_controller_pkg.egg-info/top_level.txt
+[3.982s] reading manifest file '../../build/flight_controller_pkg/flight_controller_pkg.egg-info/SOURCES.txt'
+[3.987s] writing manifest file '../../build/flight_controller_pkg/flight_controller_pkg.egg-info/SOURCES.txt'
+[3.988s] running build
+[3.988s] running build_py
+[3.989s] copying flight_controller_pkg/fc_control.py -> /home/dron/ws_controller/build/flight_controller_pkg/build/lib/flight_controller_pkg
+[3.991s] running install
+[3.992s] running install_lib
+[3.996s] copying /home/dron/ws_controller/build/flight_controller_pkg/build/lib/flight_controller_pkg/fc_control.py -> /home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg
+[4.000s] byte-compiling /home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg/fc_control.py to fc_control.cpython-310.pyc
+[4.020s] running install_data
+[4.020s] running install_egg_info
+[4.027s] removing '/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[4.029s] Copying ../../build/flight_controller_pkg/flight_controller_pkg.egg-info to /home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg-0.0.0-py3.10.egg-info
+[4.038s] running install_scripts
+[4.120s] Installing fc_controller script to /home/dron/ws_controller/install/flight_controller_pkg/lib/flight_controller_pkg
+[4.122s] writing list of installed files to '/home/dron/ws_controller/build/flight_controller_pkg/install.log'
+[4.233s] Invoked command in '/home/dron/ws_controller/src/flight_controller_pkg' returned '0': PYTHONPATH=/home/dron/ws_controller/build/flight_controller_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/flight_controller_pkg build --build-base /home/dron/ws_controller/build/flight_controller_pkg/build install --record /home/dron/ws_controller/build/flight_controller_pkg/install.log --single-version-externally-managed install_data

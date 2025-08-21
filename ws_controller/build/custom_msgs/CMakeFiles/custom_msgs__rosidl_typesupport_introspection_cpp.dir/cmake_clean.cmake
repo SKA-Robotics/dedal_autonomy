@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/possition_data__type_support.cpp.o.d"
   "CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/speed_data__type_support.cpp.o"
   "CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/speed_data__type_support.cpp.o.d"
+  "CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/tag_location__type_support.cpp.o"
+  "CMakeFiles/custom_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/tag_location__type_support.cpp.o.d"
   "libcustom_msgs__rosidl_typesupport_introspection_cpp.pdb"
   "libcustom_msgs__rosidl_typesupport_introspection_cpp.so"
   "rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/accel_data__rosidl_typesupport_introspection_cpp.hpp"
@@ -37,6 +39,8 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/possition_data__type_support.cpp"
   "rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/speed_data__rosidl_typesupport_introspection_cpp.hpp"
   "rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/speed_data__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/tag_location__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/custom_msgs/msg/detail/tag_location__type_support.cpp"
 )
 
 # Per-language clean rules from dependency scanning.

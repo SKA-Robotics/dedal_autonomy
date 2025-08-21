@@ -24,6 +24,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
   "msg/DroneStatus.msg"
   "msg/GeoData.msg"
+  "msg/TagLocation.msg"
 )
 
 ament_export_dependencies(rosidl_default_runtime)

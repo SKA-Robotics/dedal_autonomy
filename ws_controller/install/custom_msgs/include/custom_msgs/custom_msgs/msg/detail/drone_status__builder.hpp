@@ -53,16 +53,32 @@ private:
   ::custom_msgs::msg::DroneStatus msg_;
 };
 
+class Init_DroneStatus_is_moving
+{
+public:
+  explicit Init_DroneStatus_is_moving(::custom_msgs::msg::DroneStatus & msg)
+  : msg_(msg)
+  {}
+  Init_DroneStatus_battery_voltage is_moving(::custom_msgs::msg::DroneStatus::_is_moving_type arg)
+  {
+    msg_.is_moving = std::move(arg);
+    return Init_DroneStatus_battery_voltage(msg_);
+  }
+
+private:
+  ::custom_msgs::msg::DroneStatus msg_;
+};
+
 class Init_DroneStatus_is_autonomy_active
 {
 public:
   Init_DroneStatus_is_autonomy_active()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  Init_DroneStatus_battery_voltage is_autonomy_active(::custom_msgs::msg::DroneStatus::_is_autonomy_active_type arg)
+  Init_DroneStatus_is_moving is_autonomy_active(::custom_msgs::msg::DroneStatus::_is_autonomy_active_type arg)
   {
     msg_.is_autonomy_active = std::move(arg);
-    return Init_DroneStatus_battery_voltage(msg_);
+    return Init_DroneStatus_is_moving(msg_);
   }
 
 private:

@@ -36,6 +36,13 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
+  // member: is_moving
+  {
+    out << "is_moving: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_moving, out);
+    out << ", ";
+  }
+
   // member: battery_voltage
   {
     out << "battery_voltage: ";
@@ -62,6 +69,16 @@ inline void to_block_style_yaml(
     }
     out << "is_autonomy_active: ";
     rosidl_generator_traits::value_to_yaml(msg.is_autonomy_active, out);
+    out << "\n";
+  }
+
+  // member: is_moving
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "is_moving: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_moving, out);
     out << "\n";
   }
 

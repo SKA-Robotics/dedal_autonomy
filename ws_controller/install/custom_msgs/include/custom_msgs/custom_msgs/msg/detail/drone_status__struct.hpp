@@ -44,6 +44,7 @@ struct DroneStatus_
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
       this->is_autonomy_active = false;
+      this->is_moving = false;
       this->battery_voltage = 0.0f;
     }
   }
@@ -55,6 +56,7 @@ struct DroneStatus_
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
       this->is_autonomy_active = false;
+      this->is_moving = false;
       this->battery_voltage = 0.0f;
     }
   }
@@ -63,6 +65,9 @@ struct DroneStatus_
   using _is_autonomy_active_type =
     bool;
   _is_autonomy_active_type is_autonomy_active;
+  using _is_moving_type =
+    bool;
+  _is_moving_type is_moving;
   using _battery_voltage_type =
     float;
   _battery_voltage_type battery_voltage;
@@ -75,6 +80,12 @@ struct DroneStatus_
     const bool & _arg)
   {
     this->is_autonomy_active = _arg;
+    return *this;
+  }
+  Type & set__is_moving(
+    const bool & _arg)
+  {
+    this->is_moving = _arg;
     return *this;
   }
   Type & set__battery_voltage(
@@ -133,6 +144,9 @@ struct DroneStatus_
   bool operator==(const DroneStatus_ & other) const
   {
     if (this->is_autonomy_active != other.is_autonomy_active) {
+      return false;
+    }
+    if (this->is_moving != other.is_moving) {
       return false;
     }
     if (this->battery_voltage != other.battery_voltage) {

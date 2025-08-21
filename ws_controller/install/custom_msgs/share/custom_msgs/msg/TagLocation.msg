@@ -1,0 +1,6 @@
+float64 x_distance
+float64 y_distance
+float64 z_distance
+float64 pitch_rads
+float64 roll_rads
+float64 yaw_rads

@@ -9,6 +9,7 @@
     "/home/dron/ws_controller/src/custom_msgs:msg/SpeedData.msg",
     "/home/dron/ws_controller/src/custom_msgs:msg/DataXYZ.msg",
     "/home/dron/ws_controller/src/custom_msgs:msg/DroneStatus.msg",
-    "/home/dron/ws_controller/src/custom_msgs:msg/GeoData.msg"
+    "/home/dron/ws_controller/src/custom_msgs:msg/GeoData.msg",
+    "/home/dron/ws_controller/src/custom_msgs:msg/TagLocation.msg"
   ]
 }

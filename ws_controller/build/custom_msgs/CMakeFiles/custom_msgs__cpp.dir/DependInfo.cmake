@@ -49,6 +49,10 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/speed_data__struct.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/speed_data__traits.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/speed_data__type_support.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__builder.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__struct.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__traits.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__type_support.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/drone_status.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/estimator_data.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/geo_data.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
@@ -56,6 +60,7 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/imu_data.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/possition_data.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/speed_data.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
+  "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/tag_location.hpp" "/home/dron/ws_controller/build/custom_msgs/rosidl_generator_cpp/custom_msgs/msg/accel_data.hpp"
   )
 
 

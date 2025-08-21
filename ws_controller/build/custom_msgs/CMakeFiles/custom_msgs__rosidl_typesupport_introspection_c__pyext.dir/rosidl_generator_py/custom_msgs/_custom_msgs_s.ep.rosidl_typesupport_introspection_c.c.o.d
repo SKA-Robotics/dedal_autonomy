@@ -228,4 +228,7 @@ CMakeFiles/custom_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_gen
  /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/geo_data__struct.h \
  /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/drone_status__functions.h \
  /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/geo_data__type_support.h \
- /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/geo_data__functions.h
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/geo_data__functions.h \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/tag_location__type_support.h \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/tag_location__struct.h \
+ /home/dron/ws_controller/build/custom_msgs/rosidl_generator_c/custom_msgs/msg/detail/tag_location__functions.h

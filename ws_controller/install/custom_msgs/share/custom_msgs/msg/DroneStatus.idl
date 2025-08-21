@@ -9,6 +9,8 @@ module custom_msgs {
     struct DroneStatus {
       boolean is_autonomy_active;
 
+      boolean is_moving;
+
       float battery_voltage;
 
       custom_msgs::msg::GeoData ekf_position;

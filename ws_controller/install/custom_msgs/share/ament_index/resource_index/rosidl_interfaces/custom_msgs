@@ -16,3 +16,5 @@ msg/PossitionData.idl
 msg/PossitionData.msg
 msg/SpeedData.idl
 msg/SpeedData.msg
+msg/TagLocation.idl
+msg/TagLocation.msg

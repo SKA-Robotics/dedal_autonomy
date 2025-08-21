@@ -22,6 +22,7 @@ custom_msgs__msg__DroneStatus__init(custom_msgs__msg__DroneStatus * msg)
     return false;
   }
   // is_autonomy_active
+  // is_moving
   // battery_voltage
   // ekf_position
   if (!custom_msgs__msg__GeoData__init(&msg->ekf_position)) {
@@ -38,6 +39,7 @@ custom_msgs__msg__DroneStatus__fini(custom_msgs__msg__DroneStatus * msg)
     return;
   }
   // is_autonomy_active
+  // is_moving
   // battery_voltage
   // ekf_position
   custom_msgs__msg__GeoData__fini(&msg->ekf_position);
@@ -51,6 +53,10 @@ custom_msgs__msg__DroneStatus__are_equal(const custom_msgs__msg__DroneStatus * l
   }
   // is_autonomy_active
   if (lhs->is_autonomy_active != rhs->is_autonomy_active) {
+    return false;
+  }
+  // is_moving
+  if (lhs->is_moving != rhs->is_moving) {
     return false;
   }
   // battery_voltage
@@ -76,6 +82,8 @@ custom_msgs__msg__DroneStatus__copy(
   }
   // is_autonomy_active
   output->is_autonomy_active = input->is_autonomy_active;
+  // is_moving
+  output->is_moving = input->is_moving;
   // battery_voltage
   output->battery_voltage = input->battery_voltage;
   // ekf_position

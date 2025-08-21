@@ -58,6 +58,8 @@ cdr_serialize(
 {
   // Member: is_autonomy_active
   cdr << (ros_message.is_autonomy_active ? true : false);
+  // Member: is_moving
+  cdr << (ros_message.is_moving ? true : false);
   // Member: battery_voltage
   cdr << ros_message.battery_voltage;
   // Member: ekf_position
@@ -78,6 +80,13 @@ cdr_deserialize(
     uint8_t tmp;
     cdr >> tmp;
     ros_message.is_autonomy_active = tmp ? true : false;
+  }
+
+  // Member: is_moving
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.is_moving = tmp ? true : false;
   }
 
   // Member: battery_voltage
@@ -106,6 +115,12 @@ get_serialized_size(
   // Member: is_autonomy_active
   {
     size_t item_size = sizeof(ros_message.is_autonomy_active);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // Member: is_moving
+  {
+    size_t item_size = sizeof(ros_message.is_moving);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
@@ -145,6 +160,14 @@ max_serialized_size_DroneStatus(
 
 
   // Member: is_autonomy_active
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: is_moving
   {
     size_t array_size = 1;
 

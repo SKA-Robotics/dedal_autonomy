@@ -1,6 +1,7 @@
 /home/dron/ws_controller/install/custom_msgs/share/ament_index/resource_index/rosidl_interfaces/custom_msgs
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/imu_data.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/data_xyz.h
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/tag_location.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/gyro_data.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/estimator_data.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/accel_data.h
@@ -13,6 +14,7 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__functions.h
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__type_support.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__functions.c
@@ -24,6 +26,7 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__struct.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__struct.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__functions.h
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__struct.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__type_support.h
@@ -34,10 +37,12 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__functions.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.h
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__struct.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__struct.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.h
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__functions.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__functions.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__functions.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__struct.h
@@ -50,6 +55,7 @@
 /home/dron/ws_controller/install/custom_msgs/lib/libcustom_msgs__rosidl_generator_c.so
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_c.h
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__rosidl_typesupport_fastrtps_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__rosidl_typesupport_fastrtps_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_fastrtps_c.h
@@ -59,11 +65,13 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_fastrtps_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_c.h
 /home/dron/ws_controller/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_fastrtps_c.so
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__rosidl_typesupport_introspection_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_introspection_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__rosidl_typesupport_introspection_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__rosidl_typesupport_introspection_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__type_support.c
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__type_support.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__rosidl_typesupport_introspection_c.h
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.c
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_introspection_c.h
@@ -81,6 +89,7 @@
 /home/dron/ws_controller/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_introspection_c.so
 /home/dron/ws_controller/install/custom_msgs/lib/libcustom_msgs__rosidl_typesupport_c.so
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/accel_data.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/tag_location.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/data_xyz.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/possition_data.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/gyro_data.hpp
@@ -108,6 +117,8 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__struct.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__type_support.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__builder.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__struct.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__traits.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__builder.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__traits.hpp
@@ -116,6 +127,8 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__struct.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__builder.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__traits.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__traits.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__type_support.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__type_support.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/drone_status__builder.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__builder.hpp
@@ -130,6 +143,7 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__rosidl_typesupport_fastrtps_cpp.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__rosidl_typesupport_fastrtps_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/geo_data__rosidl_typesupport_fastrtps_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__rosidl_typesupport_fastrtps_cpp.hpp
@@ -149,8 +163,10 @@
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/imu_data__type_support.cpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/gyro_data__type_support.cpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__rosidl_typesupport_introspection_cpp.hpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__rosidl_typesupport_introspection_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_introspection_cpp.hpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/speed_data__type_support.cpp
+/home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/tag_location__type_support.cpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/accel_data__type_support.cpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/possition_data__type_support.cpp
 /home/dron/ws_controller/install/custom_msgs/include/custom_msgs/custom_msgs/msg/detail/data_xyz__rosidl_typesupport_introspection_cpp.hpp
@@ -177,6 +193,7 @@
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_data_xyz_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_imu_data_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data_s.c
+/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_tag_location.py
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_accel_data_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_geo_data_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_drone_status.py
@@ -185,6 +202,7 @@
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_speed_data_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data.py
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data_s.c
+/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_tag_location_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_gyro_data_s.c
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_estimator_data.py
 /home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages/custom_msgs/msg/_possition_data.py
@@ -203,6 +221,7 @@
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/DataXYZ.idl
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/DroneStatus.idl
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/GeoData.idl
+/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/TagLocation.idl
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/AccelData.msg
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/GyroData.msg
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/ImuData.msg
@@ -212,6 +231,7 @@
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/DataXYZ.msg
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/DroneStatus.msg
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/GeoData.msg
+/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/msg/TagLocation.msg
 /home/dron/ws_controller/install/custom_msgs/share/ament_index/resource_index/package_run_dependencies/custom_msgs
 /home/dron/ws_controller/install/custom_msgs/share/ament_index/resource_index/parent_prefix_path/custom_msgs
 /home/dron/ws_controller/install/custom_msgs/share/custom_msgs/environment/ament_prefix_path.sh

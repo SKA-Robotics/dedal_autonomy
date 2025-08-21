@@ -38,6 +38,10 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/custom_msgs/msg/detail/speed_data__struct.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/detail/speed_data__traits.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/detail/speed_data__type_support.hpp"
+  "rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__builder.hpp"
+  "rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__struct.hpp"
+  "rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__traits.hpp"
+  "rosidl_generator_cpp/custom_msgs/msg/detail/tag_location__type_support.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/drone_status.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/estimator_data.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/geo_data.hpp"
@@ -45,6 +49,7 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/custom_msgs/msg/imu_data.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/possition_data.hpp"
   "rosidl_generator_cpp/custom_msgs/msg/speed_data.hpp"
+  "rosidl_generator_cpp/custom_msgs/msg/tag_location.hpp"
 )
 
 # Per-language clean rules from dependency scanning.

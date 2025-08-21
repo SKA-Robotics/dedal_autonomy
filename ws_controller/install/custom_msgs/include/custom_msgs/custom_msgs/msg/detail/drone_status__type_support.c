@@ -37,7 +37,7 @@ void custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneSta
   custom_msgs__msg__DroneStatus__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_member_array[3] = {
+static rosidl_typesupport_introspection_c__MessageMember custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_member_array[4] = {
   {
     "is_autonomy_active",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
@@ -47,6 +47,23 @@ static rosidl_typesupport_introspection_c__MessageMember custom_msgs__msg__Drone
     0,  // array size
     false,  // is upper bound
     offsetof(custom_msgs__msg__DroneStatus, is_autonomy_active),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "is_moving",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_msgs__msg__DroneStatus, is_moving),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -94,7 +111,7 @@ static rosidl_typesupport_introspection_c__MessageMember custom_msgs__msg__Drone
 static const rosidl_typesupport_introspection_c__MessageMembers custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_members = {
   "custom_msgs__msg",  // message namespace
   "DroneStatus",  // message name
-  3,  // number of fields
+  4,  // number of fields
   sizeof(custom_msgs__msg__DroneStatus),
   custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_member_array,  // message members
   custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -112,7 +129,7 @@ static rosidl_message_type_support_t custom_msgs__msg__DroneStatus__rosidl_types
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_custom_msgs
 const rosidl_message_type_support_t *
 ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, custom_msgs, msg, DroneStatus)() {
-  custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_member_array[2].members_ =
+  custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_member_array[3].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, custom_msgs, msg, GeoData)();
   if (!custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_type_support_handle.typesupport_identifier) {
     custom_msgs__msg__DroneStatus__rosidl_typesupport_introspection_c__DroneStatus_message_type_support_handle.typesupport_identifier =

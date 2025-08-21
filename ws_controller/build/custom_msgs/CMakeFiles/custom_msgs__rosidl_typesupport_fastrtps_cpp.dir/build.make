@@ -86,6 +86,7 @@ rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__
 rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp: rosidl_adapter/custom_msgs/msg/DataXYZ.idl
 rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp: rosidl_adapter/custom_msgs/msg/DroneStatus.idl
 rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp: rosidl_adapter/custom_msgs/msg/GeoData.idl
+rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp: rosidl_adapter/custom_msgs/msg/TagLocation.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/dron/ws_controller/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ type support for eProsima Fast-RTPS"
 	/usr/bin/python3 /opt/ros/humble/lib/rosidl_typesupport_fastrtps_cpp/rosidl_typesupport_fastrtps_cpp --generator-arguments-file /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp__arguments.json
 
@@ -139,6 +140,12 @@ rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__ty
 
 rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/geo_data__rosidl_typesupport_fastrtps_cpp.hpp: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/geo_data__rosidl_typesupport_fastrtps_cpp.hpp
+
+rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp
+
+rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/tag_location__rosidl_typesupport_fastrtps_cpp.hpp: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/tag_location__rosidl_typesupport_fastrtps_cpp.hpp
 
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp.o: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/flags.make
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp.o: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp
@@ -266,6 +273,20 @@ CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__type_support.cpp -o CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__type_support.cpp.s
 
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/flags.make
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dron/ws_controller/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o -MF CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o.d -o CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o -c /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp
+
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp > CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.i
+
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dron/ws_controller/build/custom_msgs/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp -o CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.s
+
 # Object files for target custom_msgs__rosidl_typesupport_fastrtps_cpp
 custom_msgs__rosidl_typesupport_fastrtps_cpp_OBJECTS = \
 "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/accel_data__type_support.cpp.o" \
@@ -276,7 +297,8 @@ custom_msgs__rosidl_typesupport_fastrtps_cpp_OBJECTS = \
 "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/speed_data__type_support.cpp.o" \
 "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/data_xyz__type_support.cpp.o" \
 "CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/drone_status__type_support.cpp.o" \
-"CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__type_support.cpp.o"
+"CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__type_support.cpp.o" \
+"CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o"
 
 # External object files for target custom_msgs__rosidl_typesupport_fastrtps_cpp
 custom_msgs__rosidl_typesupport_fastrtps_cpp_EXTERNAL_OBJECTS =
@@ -290,6 +312,7 @@ libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosi
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/data_xyz__type_support.cpp.o
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/drone_status__type_support.cpp.o
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/geo_data__type_support.cpp.o
+libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp.o
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/build.make
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/humble/lib/librosidl_typesupport_fastrtps_cpp.so
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/humble/lib/libfastcdr.so.1.0.24
@@ -297,7 +320,7 @@ libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/humble/lib/librmw.s
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/humble/lib/librosidl_runtime_c.so
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/humble/lib/librcutils.so
 libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dron/ws_controller/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dron/ws_controller/build/custom_msgs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX shared library libcustom_msgs__rosidl_typesupport_fastrtps_cpp.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -319,6 +342,7 @@ CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_types
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/imu_data__type_support.cpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/possition_data__type_support.cpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/speed_data__type_support.cpp
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/dds_fastrtps/tag_location__type_support.cpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/drone_status__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/estimator_data__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/geo_data__rosidl_typesupport_fastrtps_cpp.hpp
@@ -326,6 +350,7 @@ CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_types
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/imu_data__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/possition_data__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/speed_data__rosidl_typesupport_fastrtps_cpp.hpp
+CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/custom_msgs/msg/detail/tag_location__rosidl_typesupport_fastrtps_cpp.hpp
 	cd /home/dron/ws_controller/build/custom_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dron/ws_controller/src/custom_msgs /home/dron/ws_controller/src/custom_msgs /home/dron/ws_controller/build/custom_msgs /home/dron/ws_controller/build/custom_msgs /home/dron/ws_controller/build/custom_msgs/CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/custom_msgs__rosidl_typesupport_fastrtps_cpp.dir/depend
 

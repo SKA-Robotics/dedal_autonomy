@@ -62,17 +62,20 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
 
     __slots__ = [
         '_is_autonomy_active',
+        '_is_moving',
         '_battery_voltage',
         '_ekf_position',
     ]
 
     _fields_and_field_types = {
         'is_autonomy_active': 'boolean',
+        'is_moving': 'boolean',
         'battery_voltage': 'float',
         'ekf_position': 'custom_msgs/GeoData',
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('float'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['custom_msgs', 'msg'], 'GeoData'),  # noqa: E501
@@ -83,6 +86,7 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
         self.is_autonomy_active = kwargs.get('is_autonomy_active', bool())
+        self.is_moving = kwargs.get('is_moving', bool())
         self.battery_voltage = kwargs.get('battery_voltage', float())
         from custom_msgs.msg import GeoData
         self.ekf_position = kwargs.get('ekf_position', GeoData())
@@ -118,6 +122,8 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
             return False
         if self.is_autonomy_active != other.is_autonomy_active:
             return False
+        if self.is_moving != other.is_moving:
+            return False
         if self.battery_voltage != other.battery_voltage:
             return False
         if self.ekf_position != other.ekf_position:
@@ -141,6 +147,19 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
                 isinstance(value, bool), \
                 "The 'is_autonomy_active' field must be of type 'bool'"
         self._is_autonomy_active = value
+
+    @builtins.property
+    def is_moving(self):
+        """Message field 'is_moving'."""
+        return self._is_moving
+
+    @is_moving.setter
+    def is_moving(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'is_moving' field must be of type 'bool'"
+        self._is_moving = value
 
     @builtins.property
     def battery_voltage(self):
