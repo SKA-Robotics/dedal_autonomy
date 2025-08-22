@@ -15,6 +15,13 @@
 
     /* >>> Jeden kolor dla wszystkich nazw okienek (tytułów paneli) <<< */
     .panel-title { color: #4db8ff; }
+
+    /* ==== Wektor XY (canvas) ==== */
+    #vec-canvas { width: 100%; height: 360px; background:#0f162e; border-radius: 1rem; display:block; }
+    .vec-help { color:#a4b5c6; }
+    .vec-controls .btn { min-width: 120px; }
+    .vec-xy { background:#0f162e; border-radius:.75rem; padding:.75rem; }
+    .form-control[readonly] { background: #0f162e; color:#e9edf1; border-color:#223; }
   </style>
 </head>
 <body>
@@ -51,8 +58,8 @@
              
     <div class="row g-1 mt-1">
 
-      <div class="col-3">
-        <div class="card p-3">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card p-3 h-100">
           <div class="row g-3">
             <!-- Uzbrajanie -->
             <div class="col-12 col-md-12">
@@ -70,8 +77,8 @@
       </div>
 
 
-      <div class="col-3">
-        <div class="card p-3">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card p-3 h-100">
           <div class="row g-3">
             <!-- Tryby lotu -->
             <div class="col-12 col-md-12">
@@ -90,8 +97,8 @@
         </div>
       </div>
 
-      <div class="col-3">
-        <div class="card p-3">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card p-3 h-100">
           <div class="row g-3">      
             <!-- Autonomia -->
             <div class="col-12 col-md-12">
@@ -101,11 +108,17 @@
                 <button class="btn btn-outline-light btn-sm" name="autonomy_on" value="Autonomy_on" type="submit">Włącz</button>
                 <button class="btn btn-outline-light btn-sm" name="autonomy_off" value="Autonomy_off" type="submit">Wyłącz</button>
               </form>
-              <br>
+              <h6 class="h6 text-info">Testy lotu</h6>
               <form method="POST" class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-outline-light btn-sm" name="mode_1" value="Mode_1" type="submit">Test 1</button>
-                <button class="btn btn-outline-light btn-sm" name="mode_2" value="Mode_2" type="submit">Test 2</button>
-                <button class="btn btn-outline-light btn-sm" name="mode_3" value="Mode_3" type="submit">Test 3</button>
+                <button class="btn btn-outline-light btn-sm" name="test_1" value="Test_1" type="submit">Test 1</button>
+                <button class="btn btn-outline-light btn-sm" name="test_2" value="Test_2" type="submit">Test 2</button>
+                <button class="btn btn-outline-light btn-sm" name="test_3" value="Test_3" type="submit">Test 3</button>
+              </form>
+              <h6 class="h6 text-info">Testy obrotu</h6>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="test_4" value="Test_4" type="submit">Test 4</button>
+                <button class="btn btn-outline-light btn-sm" name="test_5" value="Test_5" type="submit">Test 5</button>
+                <button class="btn btn-outline-light btn-sm" name="test_6" value="Test_6" type="submit">Test 6</button>
               </form>
             </div>
           </div>
@@ -113,8 +126,8 @@
       </div>
 
 
-      <div class="col-3">
-        <div class="card p-3">
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="card p-3 h-100">
           <div class="row g-3">
             <!-- Inne -->
             <div class="col-12 col-md-12">
@@ -126,6 +139,75 @@
             </div>
 
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Wektor XY: pod sekcją sterowania ====== -->
+    <div class="row g-1 mt-0">
+      <div class="col-12 col-md-8">
+        <div class="card p-3">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h2 class="h6 panel-title mb-0">Sterowanie offsetowe względem mapy</h2>
+            <div class="vec-help small">Przeciągnij z centrum, aby ustawić kierunek i długość. Oś Y rośnie w górę.</div>
+          </div>
+          <br>
+          <canvas id="vec-canvas" width="960" height="360"></canvas>
+          <form id="vec-form" action="/submit-vector" method="POST" class="vec-controls mt-3">
+            <input type="hidden" name="x" id="vec-x-hidden">
+            <input type="hidden" name="y" id="vec-y-hidden">
+
+            <div class="d-flex gap-2 flex-wrap">
+              <button type="submit" class="btn btn-primary btn-sm" id="vec-submit" disabled>Zatwierdź</button>
+              <button type="button" class="btn btn-outline-light btn-sm" id="vec-reset">Reset (0,0)</button>
+            </div>
+
+            <!-- Sekcja współrzędnych POD przyciskami -->
+            <div class="vec-xy mt-3">
+              <div class="row g-2 align-items-center">
+                <div class="col-auto"><span class="small text-secondary">Współrzędne:</span></div>
+                <div class="col-auto">
+                  <label class="form-label mb-0 me-2 small">X</label>
+                  <input type="number" step="0.01" class="form-control form-control-sm d-inline-block" style="width:140px" id="vec-x-display" readonly>
+                </div>
+                <div class="col-auto">
+                  <label class="form-label mb-0 me-2 small">Y</label>
+                  <input type="number" step="0.01" class="form-control form-control-sm d-inline-block" style="width:140px" id="vec-y-display" readonly>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+              <h6 class="panel-title">Aktualne stany</h2>
+            </div>
+            <ul class="list-unstyled mb-0 small">
+              <br>
+              <h5 class="panel-title">
+                <li>
+                  Uzbrojenie: <span id="state-armed" class="badge bg-secondary">---</span>
+                </li>
+                <li>
+                  Autonomia: <span id="state-autonomy" class="badge bg-secondary">---</span>
+                </li>
+                <li>                
+                  W ruchu: <span id="state-moving" class="badge bg-secondary">---</span>
+                </li>
+              </h5>
+              <br>
+              <h7 class="panel-title">
+                Panel informacyjny:   <br>
+                Test 1 - Lot 5 m na Północ (0,5 m/s)   <br>
+                Test 2 - Lot 3 m na Wschód (0,5 m/s)  <br>
+                Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)   <br>
+                Test 4 - Skierowanie się na Północ (5 deg/s)  <br>
+                Test 5 - Obrót o 30 deg w prawo (5 deg/s)  <br>
+                Test 6 - Obrót o 45 deg w lewo (5 deg/s)  <br>
+              </h7>
+            </ul>
         </div>
       </div>
     </div>
@@ -263,13 +345,22 @@
         animation: false, responsive: true,
         scales: {
           x: { type: 'category', ticks: { callback: function(value){ const label=this.getLabelForValue(value); return new Date(label).toLocaleTimeString(); } } },
-          y: { beginAtZero: false }
+          y: { beginAtZero: true }
         }
       }
     });
 
     // ====== Leaflet ======
     const map = L.map('map');
+    const droneIcon = L.divIcon({
+      className: 'drone-icon',
+      html: `<svg viewBox="0 0 24 24" width="24" height="24">
+              <circle cx="12" cy="12" r="8"/>
+            </svg>`,
+      iconSize: [24, 24],
+      iconAnchor: [12, 12]
+    });
+    
     let marker = null;
 
     function addOnlineTiles() {
@@ -281,12 +372,13 @@
     let tilesLayer = null;
     if (navigator.onLine) { try { tilesLayer = addOnlineTiles(); } catch (e) {} }
 
+
     function updateMap(lat, lon) {
       if (!isFinite(lat) || !isFinite(lon)) return;
       const pos = [lat, lon];
       if (!marker) {
-        marker = L.marker(pos).addTo(map);
-        map.setView(pos, tilesLayer ? 16 : 4);
+        marker = L.marker(pos, { icon: droneIcon }).addTo(map);
+        map.setView(pos, tilesLayer ? 64 : 16);
       } else {
         marker.setLatLng(pos);
       }
@@ -312,6 +404,15 @@
         tsEl.textContent = new Date(j.t).toLocaleTimeString();
         posText.textContent = `Lat ${j.lat.toFixed(6)}, Lon ${j.lon.toFixed(6)}, Alt ${j.alt.toFixed(1)} m`;
         updateMap(j.lat, j.lon);
+        document.getElementById('state-armed').innerHTML =
+        j.armed ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
+
+        document.getElementById('state-autonomy').innerHTML =
+          j.autonomy ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
+
+        document.getElementById('state-moving').innerHTML =
+          j.moving ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
+
       } catch (e) { setStatus(false); }
     }
 
@@ -351,8 +452,8 @@
 
     fetchLatest();
     fetchSeries();
-    setInterval(fetchLatest, 1000);
-    setInterval(fetchSeries, 1000);
+    setInterval(fetchLatest, 250);
+    setInterval(fetchSeries, 250);
 
     // ====== CSV upload ======
     const csvForm = document.getElementById('csvForm');
@@ -382,7 +483,126 @@
           csvStatus.classList.add('text-danger');
         }
       });
-  }
+    }
+
+    // ====== Wektor XY (logika canvas) ======
+    (function(){
+      const canvas = document.getElementById('vec-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const DPR = window.devicePixelRatio || 1;
+
+      // --- DOZWOLONY ZAKRES WSPÓŁRZĘDNYCH (EDYTUJ TE WARTOŚCI) ---
+      const WORLD = { xmin: -50, xmax: 50, ymin: -25, ymax: 25 };
+
+      // Skaluje fizyczny canvas do ostrego rysunku na ekranach HiDPI
+      function fitCanvas() {
+        const cssW = canvas.clientWidth;
+        const cssH = canvas.clientHeight;
+        canvas.width = Math.round(cssW * DPR);
+        canvas.height = Math.round(cssH * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      }
+      fitCanvas();
+      window.addEventListener('resize', () => { fitCanvas(); recomputeUnit(); draw(); });
+
+      const W = () => canvas.clientWidth;
+      const H = () => canvas.clientHeight;
+      const origin = () => ({ x: W()/2, y: H()/2 });
+      const gridStep = 25; // px
+      let unit = 1;
+      function recomputeUnit() {
+        const maxX = Math.max(Math.abs(WORLD.xmin), Math.abs(WORLD.xmax)) || 1;
+        const maxY = Math.max(Math.abs(WORLD.ymin), Math.abs(WORLD.ymax)) || 1;
+        unit = Math.min((W()/2)/maxX, (H()/2)/maxY);
+      }
+
+      let dragging = false;
+      let vec = { x: 0, y: 0 };
+
+      const xDisp = document.getElementById('vec-x-display');
+      const yDisp = document.getElementById('vec-y-display');
+      const xH = document.getElementById('vec-x-hidden');
+      const yH = document.getElementById('vec-y-hidden');
+      const btnSubmit = document.getElementById('vec-submit');
+      const btnReset = document.getElementById('vec-reset');
+
+      function worldToCanvas(v){ const o = origin(); return { x: o.x + v.x*unit, y: o.y - v.y*unit }; }
+      function canvasToWorld(p){ const o = origin(); return { x: (p.x - o.x)/unit, y: (o.y - p.y)/unit }; }
+
+      function draw() {
+        const o = origin();
+        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+
+        // siatka
+        ctx.lineWidth = 1; ctx.strokeStyle = '#1b2445';
+        for (let x = 0; x <= W(); x += gridStep) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H()); ctx.stroke(); }
+        for (let y = 0; y <= H(); y += gridStep) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W(), y); ctx.stroke(); }
+        // osie
+        ctx.strokeStyle = '#3a4a7a';
+        ctx.beginPath(); ctx.moveTo(0, o.y); ctx.lineTo(W(), o.y); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(o.x, 0); ctx.lineTo(o.x, H()); ctx.stroke();
+
+        // ramka WORLD — wizualizacja zakresu dozwolonych wartości
+        const a = worldToCanvas({ x: WORLD.xmin, y: WORLD.ymax });
+        const b = worldToCanvas({ x: WORLD.xmax, y: WORLD.ymin });
+        ctx.strokeStyle = '#2a3666';
+        ctx.setLineDash([4,4]);
+        ctx.strokeRect(a.x, a.y, b.x - a.x, b.y - a.y);
+        ctx.setLineDash([]);
+
+        // wektor
+        const end = worldToCanvas(vec);
+        ctx.strokeStyle = '#4db8ff';
+        ctx.fillStyle = '#4db8ff';
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(o.x, o.y); ctx.lineTo(end.x, end.y); ctx.stroke();
+        // grot
+        const ang = Math.atan2(end.y - o.y, end.x - o.x);
+        const L = 10;
+        ctx.beginPath();
+        ctx.moveTo(end.x, end.y);
+        ctx.lineTo(end.x - L*Math.cos(ang - Math.PI/6), end.y - L*Math.sin(ang - Math.PI/6));
+        ctx.moveTo(end.x, end.y);
+        ctx.lineTo(end.x - L*Math.cos(ang + Math.PI/6), end.y - L*Math.sin(ang + Math.PI/6));
+        ctx.stroke();
+        // punkt
+        ctx.beginPath(); ctx.arc(end.x, end.y, 3, 0, Math.PI*2); ctx.fill();
+      }
+
+      function updateOutputs(){
+        const x = Math.round(vec.x*100)/100;
+        const y = Math.round(vec.y*100)/100;
+        xDisp.value = x; yDisp.value = y;
+        xH.value = x; yH.value = y;
+        btnSubmit.disabled = false;
+      }
+
+      function setVectorFromEvent(clientX, clientY){
+        const r = canvas.getBoundingClientRect();
+        const p = { x: clientX - r.left, y: clientY - r.top };
+        vec = canvasToWorld(p);
+        // Ograniczenie wartości do zadeklarowanego zakresu WORLD
+        vec.x = Math.max(WORLD.xmin, Math.min(WORLD.xmax, vec.x));
+        vec.y = Math.max(WORLD.ymin, Math.min(WORLD.ymax, vec.y));
+        updateOutputs();
+        draw();
+      }
+
+      canvas.addEventListener('mousedown', (e)=>{ dragging = true; setVectorFromEvent(e.clientX, e.clientY); });
+      window.addEventListener('mousemove', (e)=>{ if (dragging) setVectorFromEvent(e.clientX, e.clientY); });
+      window.addEventListener('mouseup', ()=> dragging = false);
+
+      canvas.addEventListener('touchstart', (e)=>{ e.preventDefault(); dragging = true; const t=e.touches[0]; setVectorFromEvent(t.clientX, t.clientY); }, { passive:false });
+      canvas.addEventListener('touchmove', (e)=>{ e.preventDefault(); if(!dragging) return; const t=e.touches[0]; setVectorFromEvent(t.clientX, t.clientY); }, { passive:false });
+      canvas.addEventListener('touchend', ()=> dragging = false);
+
+      btnReset.addEventListener('click', ()=>{ vec={x:0,y:0}; updateOutputs(); draw(); });
+
+      recomputeUnit();
+      updateOutputs();
+      draw();
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,2 @@
+/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg/fc_control.py:300: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if target_angle_deg is 0:

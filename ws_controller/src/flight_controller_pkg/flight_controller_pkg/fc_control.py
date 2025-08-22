@@ -26,17 +26,21 @@ class MissionParams:
     xGoal: float = 0.0
     yGoal: float = 0.0
     zGoal: float = 0.0
+    yawGoal: float = 0.0
     xVelocity: float = 0.0
     yVelocity: float = 0.0
     zVelocity: float = 0.0
+    yawVelocity: float = 0.0
     xReal: float = 0.0
     yReal: float = 0.0
     zReal: float = 0.0
+    yawReal: float = 0.0
     duration: float = 10
     elapsed: float = 0
     start: int = 0
     autonomyOn: bool = False
     movementOn: bool = False
+    heading: float = 0.0
 missionStatus = MissionParams()
 
 
@@ -132,6 +136,8 @@ class MisionController:
         self._FRAME_LOCAL_NED = mavutil.mavlink.MAV_FRAME_LOCAL_NED
         self._TYPE_MASK_USE_VELOCITY = 0b0000111111000111   # używaj tylko vx, vy, vz
         self._TYPE_MASK_USE_POSITION = 0b0000111111111000   # używaj tylko x,y,z (pozycje)
+        self._TYPE_MASK_USE_YAW = 0b000010111111111   # używaj tylko yaw
+        self._TYPE_MASK_USE_ROT_VELOCITY = 0b000000111111111   # używaj tylko vx, vy, vz
 
     def takeoff_and_hover(self, alt=5.0, loiter_time_s=0):
         # musimy znać aktualną pozycję do LOITER
@@ -187,7 +193,7 @@ class MisionController:
             0, 0,         # lat, lon (0 = bieżące)
             float(alt_m)  # param7 = wysokość
         )
-        print(f"Komenda TAKEOFF do {alt_m} m wysłana.")
+        self._log('info', f"Komenda TAKEOFF do {alt_m} m wysłana.")
 
     def upload_mission(self, waypoints: list[LatLon]) -> None:
         # Wgrywa prostą misję waypointów (lat, lon, alt).
@@ -264,6 +270,84 @@ class MisionController:
             0, 0           # yaw, yaw_rate ignorowane
         )
 
+    def _send_local_velocity_rotation(self, yaw_rate: float) -> None:
+        """
+        Prędkości w układzie LOCAL_NED (mapa).
+        """
+        self.master.mav.set_position_target_local_ned_send(
+            self._time_boot_ms(),
+            self.master.target_system,
+            self.master.target_component,
+            self._FRAME_LOCAL_NED,
+            self._TYPE_MASK_USE_ROT_VELOCITY,
+            0, 0, 0,       # pozycje ignorowane
+            0, 0, 0,    # prędkości ignorowana
+            0, 0, 0,       # przyspieszenia ignorowane
+            10,            # yaw ignorowane
+            yaw_rate
+        )
+
+    def condition_yaw(self, target_angle_deg, yaw_speed_dps, direction, relative=True) -> None:
+        """
+        direction:  1 = CW, -1 = CCW
+        relative:   True = obrót o 'target_angle_deg' względem aktualnego yaw
+                    False = obróć do bezwzględnego kursu
+        """
+        global missionStatus
+        if missionStatus.movementOn == False:
+
+            if missionStatus.autonomyOn == False:
+                self._log('warn', f'Tryb autonomiczny wyłączony - pomijam')
+                return
+            
+            missionStatus.movementOn = True
+
+            if relative is True:
+                missionStatus.yawGoal = target_angle_deg
+                missionStatus.duration = target_angle_deg / yaw_speed_dps
+            else:
+                if missionStatus.heading + 180 < 360:  
+                    if missionStatus.yawGoal >= missionStatus.heading and missionStatus.yawGoal <= missionStatus.heading + 180:
+                        # obrót CW
+                        direction = 1
+                        missionStatus.duration = (missionStatus.yawGoal - missionStatus.heading)/yaw_speed_dps
+                    else:
+                        # obrót CCW
+                        direction = -1
+                        if missionStatus.yawGoal > missionStatus.heading:
+                            missionStatus.duration = (missionStatus.heading + 360 - missionStatus.yawGoal)/yaw_speed_dps
+                        else:
+                            missionStatus.duration = (missionStatus.heading - missionStatus.yawGoal)/yaw_speed_dps
+                else: # Wiemy że missionStatus.heading - 180 < 180
+                    if missionStatus.yawGoal >= missionStatus.heading - 180 and missionStatus.yawGoal <= missionStatus.heading:
+                        # obrót CCW
+                        direction = -1
+                        missionStatus.duration = (missionStatus.heading - missionStatus.yawGoal)/yaw_speed_dps
+                    else:
+                        # obrót CW
+                        direction = 1
+                        if missionStatus.yawGoal > missionStatus.heading:
+                            missionStatus.duration = (missionStatus.yawGoal - missionStatus.heading)/yaw_speed_dps
+                        else:
+                            missionStatus.duration = (360 - missionStatus.heading - missionStatus.yawGoal)/yaw_speed_dps
+                            
+                if missionStatus.yawGoal == 0:         
+                    missionStatus.yawGoal = target_angle_deg+0.000001
+
+            self.master.mav.command_long_send(
+                self.master.target_system,
+                self.master.target_component,
+                mavutil.mavlink.MAV_CMD_CONDITION_YAW,
+                0,
+                float(target_angle_deg),      # param1: docelowy kąt (deg)
+                float(yaw_speed_dps),         # param2: prędkość yaw (deg/s)
+                float(direction),             # param3: kierunek (1 lub -1)
+                1.0 if relative else 0.0,     # param4: relatywny (1) czy absolutny (0)
+                0, 0, 0
+            )
+
+
+
     def stop(self, repeats: int = 5, rate_hz: int = 10) -> None:
         """
         Wyhamuj do zera (wysyłając kilka ramek 0,0,0).
@@ -318,31 +402,66 @@ class MisionController:
         Realizacja przez stałą prędkość w LOCAL_NED => tor PROSTY w świecie.
         """
         global missionStatus
-        missionStatus.xGoal = dx
-        missionStatus.yGoal = dy
-        missionStatus.zGoal = dz
 
-        if speed_mps <= 0:
-            raise ValueError("speed_mps musi być > 0")
+        if missionStatus.movementOn == False:
 
-        L = math.sqrt(dx*dx + dy*dy + dz*dz)
-        if L == 0:
-            self._log('warning', 'Zadano zerowe przemieszczenie — pomijam')
+            if missionStatus.autonomyOn == False:
+                self._log('warn', f'Tryb autonomiczny wyłączony - pomijam')
+                return
+
+            missionStatus.movementOn = True
+
+            missionStatus.xGoal = dx
+            missionStatus.yGoal = dy
+            missionStatus.zGoal = dz
+
+            if speed_mps <= 0:
+                raise ValueError("speed_mps musi być > 0")
+
+            L = math.sqrt(dx*dx + dy*dy + dz*dz)
+            if L == 0:
+                self._log('warning', 'Zadano zerowe przemieszczenie — pomijam')
+                return
+
+            ux, uy, uz = dx/L, dy/L, dz/L
+            vx, vy, vz = ux*speed_mps, uy*speed_mps, uz*speed_mps
+
+            duration = L / speed_mps
+            period = 1.0 / rate_hz
+            t_end = time.time() + duration
+
+            self._log('info', f'➡️ Ruch LOCAL_NED: d=({dx:.2f},{dy:.2f},{dz:.2f}) m, '
+                            f'v≈({vx:.2f},{vy:.2f},{vz:.2f}) m/s, t≈{duration:.2f}s')
+
+            missionStatus.xVelocity = vx
+            missionStatus.yVelocity = vy
+            missionStatus.zVelocity = vz
+            missionStatus.duration = duration
+
+            self._log('info', 'Zadano ruch względny LOCAL_NED')
+
+    def rotate_map_relative(self, yaw: float = 0.0, speed_rps: float = 1.0, rate_hz: int = 10) -> None:
+        """
+        Przemieść o (dx,dy,dz) w METRACH względem mapy (LOCAL_NED).
+        x>0=północ, y>0=wschód, z>0=w dół. Utrzymanie wysokości -> dz=0 (vz=0).
+        Realizacja przez stałą prędkość w LOCAL_NED => tor PROSTY w świecie.
+        """
+        global missionStatus
+        missionStatus.yawGoal = yaw
+
+        if speed_rps <= 0:
+            raise ValueError("speed_rps musi być > 0")
+
+        if yaw == 0:
+            self._log('warning', 'Zadano zerowy obrót — pomijam')
             return
 
-        ux, uy, uz = dx/L, dy/L, dz/L
-        vx, vy, vz = ux*speed_mps, uy*speed_mps, uz*speed_mps
+        duration = yaw / speed_rps
 
-        duration = L / speed_mps
-        period = 1.0 / rate_hz
-        t_end = time.time() + duration
+        self._log('info', f'➡️ Obrót LOCAL_NED: yaw=({yaw:.2f}'
+                          f'omega≈({speed_rps:.2f} rps t≈{duration:.2f}s')
 
-        self._log('info', f'➡️ Ruch LOCAL_NED: d=({dx:.2f},{dy:.2f},{dz:.2f}) m, '
-                          f'v≈({vx:.2f},{vy:.2f},{vz:.2f}) m/s, t≈{duration:.2f}s')
-
-        missionStatus.xVelocity = vx
-        missionStatus.yVelocity = vy
-        missionStatus.zVelocity = vz
+        missionStatus.yawVelocity = speed_rps
         missionStatus.duration = duration
 
         self._log('info', 'Zadano ruch względny LOCAL_NED')
@@ -377,13 +496,6 @@ class MisionController:
         """
         self.move_body_relative(dx=0.0, dy=distance_m, dz=0.0,
                                 speed_mps=speed_mps, rate_hz=rate_hz)
-
-    def move_east(self, distance_m: float = 10.0, speed_mps: float = 1.0, rate_hz: int = 10) -> None:
-        """
-        Skrót: „w prawo względem MAPY” (na wschód) o distance_m.
-        """
-        self.move_map_relative(dx=0.0, dy=distance_m, dz=0.0,
-                               speed_mps=speed_mps, rate_hz=rate_hz)
 
     def _read_local_position_ned(self):
         """
@@ -443,19 +555,51 @@ class MavLinkConfigurator:
     def __init__(self, conn_str: str = 'udpin:0.0.0.0:14550', logger=None) -> None:
         self.master = mavutil.mavlink_connection(conn_str)
         self.master.wait_heartbeat()
-        
-        # logger: callable(level, msg)
+
         if logger is None:
-            self._log = lambda lvl, msg: print(f"[{lvl.upper()}] {msg}")  # fallback
+            self._log = lambda lvl, msg: print(f"[{lvl.upper()}] {msg}")
         else:
             self._log = logger
         self._log('info', '✅ Połączono – heartbeat odebrany')
-        
-        # self._polygon: List[LatLon] = []
+
         self.geofence = GeoFenceConfigurator(self.master)
         self.mission = MisionController(self.master)
 
+        # ---- Stan ARM (jak u Ciebie) ----
+        self._armed = False
+        self._armed_lock = threading.Lock()
+
+        # ---- Stan headingu (nowe) ----
+        self._heading_deg = None           # ostatnio znana wartość [0..360)
+        self._heading_ts = 0.0             # unix time ostatniej aktualizacji
+        self._heading_lock = threading.Lock()
+
+        # Wspólny sygnał stop
+        self._stop_evt = threading.Event()
+
+        # Wątek heartbeat (jak u Ciebie)
+        self._thr_hb = threading.Thread(target=self._watch_heartbeat, daemon=True)
+        self._thr_hb.start()
+
+        # Wątek kompasu/headingu (nowe)
+        self._thr_hdg = threading.Thread(target=self._watch_heading, daemon=True)
+        self._thr_hdg.start()
+        
+        # publikacja potrzebnych ramek w zadanej częstotliwości
+        try:
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_GLOBAL_POSITION_INT, 10)  # id=33
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_VFR_HUD, 10)              # id=74
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_ATTITUDE, 20)             # id=30
+        except Exception:
+            pass
+
     def end_connection(self) -> None:
+        self._stop_evt.set()
+        try:
+            self._thr_hb.join(timeout=0.5)
+            self._thr_hdg.join(timeout=0.5)
+        except Exception:
+            pass
         try:
             self.master.close()
         except Exception:
@@ -486,16 +630,108 @@ class MavLinkConfigurator:
             message_id, 1e6 / frequency_hz, 0, 0, 0, 0, 0
         )
 
+    def _watch_heartbeat(self):
+        """Wątek: blokujący odbiór HEARTBEAT i aktualizacja stanu."""
+        while not self._stop_evt.is_set():
+            # blokująco, ale z timeoutem – wątek da się zatrzymać
+            msg = self.master.recv_match(type='HEARTBEAT', blocking=True, timeout=0.5)
+            if msg is None:
+                continue  # timeout – spróbuj dalej
+
+            try:
+                state = msg.to_dict()
+            except Exception:
+                continue  # sporadyczne błędy parsowania
+
+            armed_flag = bool(state.get('base_mode', 0) &
+                              mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED)
+
+            with self._armed_lock:
+                self._armed = armed_flag
+
     def is_drone_armed(self) -> bool:
-        msg = self.master.recv_match(type='HEARTBEAT', blocking=True)
-        state = msg.to_dict()
+        """Szybkie, nieblokujące – zwraca ostatnio znany stan."""
+        with self._armed_lock:
+            return self._armed      
 
-        armed = state['base_mode'] & mavutil.mavlink.MAV_MODE_FLAG_SAFETY_ARMED
+    def heading_deg(self, timeout: float = 0.5):
+        """Zwraca kierunek (kompas) w stopniach [0..360)."""
+        # 1) GLOBAL_POSITION_INT.hdg (centy-stopnie)
+        msg = self.master.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=timeout)
+        if msg is not None and hasattr(msg, 'hdg'):
+            # 65535 oznacza "brak danych"
+            if msg.hdg is not None and int(msg.hdg) != 65535:
+                return (msg.hdg / 100.0) % 360.0
 
-        if armed:
-            return True
-        else:
-            return False
+        # 2) VFR_HUD.heading (stopnie)
+        msg = self.master.recv_match(type='VFR_HUD', blocking=True, timeout=timeout)
+        if msg is not None and hasattr(msg, 'heading') and msg.heading is not None:
+            return float(msg.heading) % 360.0
+
+        # 3) ATTITUDE.yaw (radiany)
+        msg = self.master.recv_match(type='ATTITUDE', blocking=True, timeout=timeout)
+        if msg is not None and hasattr(msg, 'yaw') and msg.yaw is not None:
+            return (math.degrees(msg.yaw)) % 360.0
+
+        return None
+
+    def stop(self):
+        self._stop_evt.set()
+        self._thread.join(timeout=2)
+
+    # -------------------- Nieblokujące API dla kompasu --------------------
+    def get_heading_deg(self):
+        """Szybkie, nieblokujące – zwraca (heading_deg, age_s) lub (None, None)."""
+        with self._heading_lock:
+            if self._heading_deg is None:
+                return None, None
+            return self._heading_deg
+
+    # -------------------- Wątek: heading z kilku źródeł -------------------
+    def _watch_heading(self):
+        """
+        Nasłuchuje tylko ramek z kierunkiem i aktualizuje ostatnio znaną wartość.
+        Priorytet:
+          1) GLOBAL_POSITION_INT.hdg (centy-stopnie), jeśli != 65535
+          2) VFR_HUD.heading (stopnie)
+          3) ATTITUDE.yaw (radiany)
+        """
+        wanted = {'GLOBAL_POSITION_INT', 'VFR_HUD', 'ATTITUDE'}
+        while not self._stop_evt.is_set():
+            # krótki timeout -> wątek responsywny na _stop_evt
+            msg = self.master.recv_match(blocking=True, timeout=0.2)
+            if msg is None:
+                continue
+
+            mtype = msg.get_type()
+            if mtype not in wanted:
+                continue
+
+            new_deg = None
+            try:
+                if mtype == 'GLOBAL_POSITION_INT':
+                    # hdg w centy-stopniach; 65535 oznacza brak danych
+                    hdg = getattr(msg, 'hdg', None)
+                    if hdg is not None and int(hdg) != 65535:
+                        new_deg = (float(hdg) / 100.0) % 360.0
+
+                elif mtype == 'VFR_HUD':
+                    hdg = getattr(msg, 'heading', None)
+                    if hdg is not None:
+                        new_deg = (float(hdg)) % 360.0
+
+                elif mtype == 'ATTITUDE':
+                    yaw = getattr(msg, 'yaw', None)  # rad
+                    if yaw is not None:
+                        new_deg = (math.degrees(float(yaw))) % 360.0
+            except Exception:
+                continue  # sporadyczne błędy parsowania – pomiń
+
+            if new_deg is not None:
+                with self._heading_lock:
+                    self._heading_deg = new_deg
+                    self._heading_ts = time.time()
+
     # ---------------------- Przykładowe polecenia trybów ----------------------
     def set_mode(self, mode = 'AUTO') -> None:
         if mode not in self.master.mode_mapping():
@@ -597,6 +833,7 @@ class MainData:
     def do_magic(self) -> DroneStatus:
         # zwróć kopię prostych pól; przy potrzebie głębokiej kopii – rozważ dataclasses.asdict
         global missionStatus
+        missionStatus.heading = self.connection.get_heading_deg()
         msg = DroneStatus()
         msg.ekf_position = GeoData()
         msg.is_autonomy_active = missionStatus.autonomyOn
@@ -634,7 +871,7 @@ class FlightControllerNode(Node):
         # Subskrypcje; nie trzeba przechowywać referencji w polach
         self.create_subscription(String, 'flask_commands', self.listener_flask_callback, 10)
         self.create_subscription(GeoData, 'geo_points', self.listener_geo_points, 10)
-        self.create_subscription(TagLocation, 'tag_location_now', self.listener_tag_location, 10)
+        self.create_subscription(TagLocation, 'goal_location', self.listener_tag_location, 10)
 
         # Timer (1 Hz): publikacja ostatniego znanego stanu (bez blokowania)
         self.timer_ = self.create_timer(0.25, self.timer_function)
@@ -659,7 +896,7 @@ class FlightControllerNode(Node):
 
         if missionStatus.autonomyOn is True:
             if missionStatus.movementOn is True:
-                if missionStatus.xGoal != 0 or missionStatus.yGoal != 0 or missionStatus.zGoal != 0:
+                if missionStatus.xGoal != 0.0 or missionStatus.yGoal != 0.0 or missionStatus.zGoal != 0.0:
                     if missionStatus.elapsed < 0.975 * missionStatus.duration:
                         self.public_data.connection.mission._send_local_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
                         missionStatus.elapsed += 0.1
@@ -673,28 +910,46 @@ class FlightControllerNode(Node):
                         self.get_logger().info('✅ Zrealizowano ruch względny LOCAL_NED')
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
-                
+                        missionStatus.xGoal = 0
+                        missionStatus.yGoal = 0
+                        missionStatus.zGoal = 0
 
+                elif missionStatus.yawGoal != 0.0:
+                    if missionStatus.elapsed >= 1.25 * missionStatus.duration:
+                        self.get_logger().info('✅ Zrealizowano obrót względny LOCAL_NED')
+                        missionStatus.movementOn = False
+                        missionStatus.elapsed = 0
+                        missionStatus.yawGoal = 0
+                    else:
+                        missionStatus.elapsed += 0.1
+                else:
+                    if missionStatus.elapsed >= 1.1 * missionStatus.duration:
+                        self.get_logger().info('✅ Zrealizowano procedurę Takeoff')
+                        missionStatus.movementOn = False
+                        missionStatus.elapsed = 0
+                    missionStatus.elapsed += 0.1
 
 
     def hover_mission(self) -> None:
         global missionStatus
-        missionStatus.autonomyOn = True
-        missionStatus.movementOn = True
-        self.public_data.connection.mission.clear_mission()
-        self.get_logger().info('Mission cleared')
+        if missionStatus.autonomyOn is True:
+            missionStatus.movementOn = True
+            self.public_data.connection.mission.clear_mission()
+            self.get_logger().info('Mission cleared')
 
-        self.public_data.connection.set_mode('GUIDED')
-        self.get_logger().info('GUIDED')
-        time.sleep(0.5)
+            self.public_data.connection.set_mode('GUIDED')
+            self.get_logger().info('GUIDED')
+            time.sleep(0.5)
 
-        self.public_data.connection.arm_drone()
-        self.get_logger().info('Drone armed')
-        time.sleep(0.5)
+            self.public_data.connection.arm_drone()
+            self.get_logger().info('Drone armed')
+            time.sleep(0.5)
 
-        self.get_logger().info('TAKEOFF')
-        self.public_data.connection.mission.takeoff()
-
+            self.get_logger().info('TAKEOFF')
+            missionStatus.duration = 10
+            self.public_data.connection.mission.takeoff(5)
+        else:
+            self.get_logger().warn('Tryb autonomiczny wyłączony - pomijam')
 
     def listener_flask_callback(self, msg: String) -> None:
         global missionStatus
@@ -726,15 +981,25 @@ class FlightControllerNode(Node):
             missionStatus.autonomyOn = False
         
         elif cmd == 'test_1':
-            self.get_logger().info('Test 1 - Move relative')
-            missionStatus.autonomyOn = True
-            missionStatus.movementOn = True
+            self.get_logger().info('Test 1 - Lot 5 m na Północ (0,5 m/s)')
             self.public_data.connection.mission.move_map_relative(dx=5.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
-            self.get_logger().info('Finished Test 1')
         elif cmd == 'test_2':
-            self.get_logger().info('No Test 2 set')
+            self.get_logger().info('Test 2 - Lot 3 m na Wschód (0,5 m/s)')
+            self.public_data.connection.mission.move_map_relative(dx=0.0, dy=3.0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_3':
-            self.get_logger().info('No Test 3 set')
+            self.get_logger().info('Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)')
+            self.public_data.connection.mission.move_map_relative(dx=-2.0, dy=-2.0, dz=0.0, speed_mps=0.5, rate_hz=10)
+
+        elif cmd == 'test_4':
+            self.get_logger().info('Test 4 - Skierowanie się na Północ (5 deg/s)')
+            self.public_data.connection.mission.condition_yaw(0, 5, 1, False)
+        elif cmd == 'test_5':
+            self.get_logger().info('Test 5 - Obrót o 30 deg w prawo (5 deg/s)')
+            self.public_data.connection.mission.condition_yaw(30, 5, 1, True)
+        elif cmd == 'test_6':
+            self.get_logger().info('Test 6 - Obrót o 45 deg w lewo (5 deg/s)')
+            self.public_data.connection.mission.condition_yaw(45, 5, -1, True)
+            
 
         elif cmd == 'set_geo':
             self.public_data.set_fence()
@@ -758,14 +1023,15 @@ class FlightControllerNode(Node):
 
     def listener_tag_location(self, msg: TagLocation) -> None:
         global missionStatus
-        self.get_logger().info('New tag data')
+        self.get_logger().info('New goal data')
         if missionStatus.autonomyOn is True:
             if missionStatus.movementOn is False:
                 dx = msg.x_distance
                 dy = msg.y_distance
                 dz = msg.z_distance
-                missionStatus.movementOn = True
                 self.public_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=0.5, rate_hz=10)
+        else:
+            self.get_logger().warn('Tryb autonomiczny wyłączony - pomijam')
 
 
 # =============================================================================

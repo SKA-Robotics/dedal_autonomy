@@ -1,9 +1,9 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, qos_profile_sensor_data
-from custom_msgs.msg import DroneStatus, GeoData
+from custom_msgs.msg import DroneStatus, GeoData, TagLocation
 from example_interfaces.msg import String
-from flask import Flask, render_template, jsonify, request, make_response
+from flask import Flask, render_template, jsonify, request, make_response, redirect, url_for
 import mimetypes
 import threading
 import os
@@ -46,6 +46,7 @@ class ServerNode(Node):
             qos_profile_sensor_data
         )
         self.publisher_ = self.create_publisher(String, 'flask_commands', 10)
+        self.coords_pub = self.create_publisher(TagLocation, 'goal_location', 10)
         self.geo_pub = self.create_publisher(GeoData, 'geo_points', 10)
 
 
@@ -75,6 +76,7 @@ class ServerNode(Node):
         msg.data = command
         self.publisher_.publish(msg)
         self.get_logger().info(f'Opublikowano komendę: "{command}"')
+
 
 ros2_node = ServerNode()
 
@@ -114,12 +116,20 @@ def index():
             ros2_node.publish_message('autonomy_on')
         elif request.form.get('autonomy_off') == 'Autonomy_off':
             ros2_node.publish_message('autonomy_off')
+
         elif request.form.get('test_1') == 'Test_1':
             ros2_node.publish_message('test_1')
         elif request.form.get('test_2') == 'Test_2':
             ros2_node.publish_message('test_2')
         elif request.form.get('test_3') == 'Test_3':
             ros2_node.publish_message('test_3')
+
+        elif request.form.get('test_4') == 'Test_4':
+            ros2_node.publish_message('test_4')
+        elif request.form.get('test_5') == 'Test_5':
+            ros2_node.publish_message('test_5')
+        elif request.form.get('test_6') == 'Test_6':
+            ros2_node.publish_message('test_6')
 
         elif request.form.get('play_barka') == 'Play_barka':
             ros2_node.publish_message('play_Barka')
@@ -132,6 +142,21 @@ def index():
             ros2_node.publish_message('set_geo')
 
     return render_template('index.html')
+
+@app.post("/submit-vector")
+def submit():
+    # Odbiór współrzędnych z formularza (typ string -> float)
+    x = request.form.get("x")
+    y = request.form.get("y")
+    try:
+        msg = TagLocation()
+        msg.x_distance = float(y)
+        msg.y_distance = float(x)
+        msg.z_distance = 0.0
+        ros2_node.coords_pub.publish(msg)
+    except (TypeError, ValueError):
+        print("Błąd: nieprawidłowe współrzędne.")
+    return redirect(url_for("index"))
 
 # NEW: API – zwróć okno danych (ostatnie ~60 s)
 @app.route('/api/data')
