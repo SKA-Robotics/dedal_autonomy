@@ -40,6 +40,7 @@ class MissionParams:
     start: int = 0
     autonomyOn: bool = False
     movementOn: bool = False
+    isArmed: bool = False
     heading: float = 0.0
 missionStatus = MissionParams()
 
@@ -838,7 +839,8 @@ class MainData:
         msg.ekf_position = GeoData()
         msg.is_autonomy_active = missionStatus.autonomyOn
         msg.is_moving = missionStatus.movementOn
-        msg.is_armed = self.connection.is_drone_armed()
+        missionStatus.isArmed = self.connection.is_drone_armed()
+        msg.is_armed = missionStatus.isArmed        
         msg.battery_voltage = getattr(self._last_status, 'battery_voltage', float('nan'))
         msg.ekf_position.latitude = self._last_status.ekf_position.latitude
         msg.ekf_position.longitude = self._last_status.ekf_position.longitude
@@ -847,13 +849,13 @@ class MainData:
 
     # GeoFence passthrough
     def read_fence(self, gd: GeoData) -> None:
-        self.connection.read_fence(gd)
+        self.connection.geofence.read_fence(gd)
 
     def clear_fence(self) -> None:
-        self.connection.clear_fence()
+        self.connection.geofence.clear_fence()
 
     def set_fence(self) -> None:
-        self.connection.set_fence()
+        self.connection.geofence.set_fence()
 
 # =============================================================================
 # -- ROS2 Node ----------------------------------------------------------------
@@ -908,6 +910,7 @@ class FlightControllerNode(Node):
 
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano ruch względny LOCAL_NED')
+                        self.public_data.connection.tune_long()
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
                         missionStatus.xGoal = 0
@@ -917,15 +920,16 @@ class FlightControllerNode(Node):
                 elif missionStatus.yawGoal != 0.0:
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano obrót względny LOCAL_NED')
+                        self.public_data.connection.tune_long()
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
                         missionStatus.yawGoal = 0
                     else:
                         missionStatus.elapsed += 0.1
                 else:
-                    self.get_logger().info(f'{missionStatus.elapsed}')
-                    if missionStatus.elapsed >= 1 * missionStatus.duration:
+                    if missionStatus.elapsed >= 1.1 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano procedurę Takeoff')
+                        self.public_data.connection.tune_long()
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
                     missionStatus.elapsed += 0.1
@@ -934,18 +938,21 @@ class FlightControllerNode(Node):
     def hover_mission(self) -> None:
         global missionStatus
         if missionStatus.autonomyOn is True:
-            missionStatus.movementOn = True
             self.public_data.connection.mission.clear_mission()
             self.get_logger().info('Mission cleared')
-
+            time.sleep(0.5)
             self.public_data.connection.set_mode('GUIDED')
             self.get_logger().info('GUIDED')
             time.sleep(0.5)
 
             self.public_data.connection.arm_drone()
-            self.get_logger().info('Drone armed')
-            time.sleep(0.5)
+            self.get_logger().info('Uzbrajam drona')
+            time.sleep(2)
+            if missionStatus.isArmed is False:
+                self.get_logger().warn('Nie udało się uzbroić - anuluję takeoff')
+                return
 
+            missionStatus.movementOn = True
             self.get_logger().info('TAKEOFF')
             missionStatus.duration = 10
             self.public_data.connection.mission.takeoff(5)
@@ -983,22 +990,28 @@ class FlightControllerNode(Node):
         
         elif cmd == 'test_1':
             self.get_logger().info('Test 1 - Lot 5 m na Północ (0,5 m/s)')
+            self.public_data.connection.tune_short()
             self.public_data.connection.mission.move_map_relative(dx=5.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_2':
             self.get_logger().info('Test 2 - Lot 3 m na Wschód (0,5 m/s)')
+            self.public_data.connection.tune_short()
             self.public_data.connection.mission.move_map_relative(dx=0.0, dy=3.0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_3':
             self.get_logger().info('Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)')
+            self.public_data.connection.tune_short()
             self.public_data.connection.mission.move_map_relative(dx=-2.0, dy=-2.0, dz=0.0, speed_mps=0.5, rate_hz=10)
 
         elif cmd == 'test_4':
             self.get_logger().info('Test 4 - Skierowanie się na Północ (5 deg/s)')
+            self.public_data.connection.tune_short()
             self.public_data.connection.mission.condition_yaw(0, 5, 1, False)
         elif cmd == 'test_5':
             self.get_logger().info('Test 5 - Obrót o 30 deg w prawo (5 deg/s)')
+            self.public_data.connection.tune_short()
             self.public_data.connection.mission.condition_yaw(30, 5, 1, True)
         elif cmd == 'test_6':
             self.get_logger().info('Test 6 - Obrót o 45 deg w lewo (5 deg/s)')
+            self.public_data.connection.tune_short()
             self.public_data.connection.mission.condition_yaw(45, 5, -1, True)
             
 
