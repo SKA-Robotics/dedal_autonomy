@@ -42,6 +42,9 @@ class MissionParams:
     movementOn: bool = False
     isArmed: bool = False
     heading: float = 0.0
+    inSearchMode: bool = False
+    searchPoint: int = 0
+    durningTakeoff: bool = False
 missionStatus = MissionParams()
 
 
@@ -896,15 +899,43 @@ class FlightControllerNode(Node):
     def mission_timer(self) -> None:
         global missionStatus
 
+        missionPlan = [
+                    [0.0, 0.0, 0.0],
+                    [0.0, 10.0, 1.0],
+                    [1.95, 0.0, 0.0],
+                    [-0.4, 1.55, 0.0],
+                    [-1.55, 0.4, 0.0],
+                    [-1.55, -0.4, 0.0],
+                    [-0.4, -1.55, 0.0],
+                    [0.4, -1.55, 0.0],
+                    [1.55, -0.4, 0.0],
+                    [1.55, 0.4, 0.0],
+                    [0.4, 1.55, 0.0],
+                    [-1.95, 0.0, 0.0],
+                    [0.0, 0.0, 1.0],
+                    [2.80, 1.1, 0.0],
+                    [0.0, -2.2, 0.0],
+                    [-1.0, -1.2, 0.0],
+                    [0.0, 4.2, 0.0],
+                    [-1.6, 0.4, 0.0],
+                    [0.0, -5.0, 0.0],
+                    [-1.6, 0.4, 0.0],
+                    [0.0, 4.2, 0.0],
+                    [-1.0, -1.2, 0.0],
+                    [0.0, -2.2, 0.0],
+                    [2.8, 1.1, 0.0]
+                    ]
+
         if missionStatus.autonomyOn is True:
             if missionStatus.movementOn is True:
+
                 if missionStatus.xGoal != 0.0 or missionStatus.yGoal != 0.0 or missionStatus.zGoal != 0.0:
-                    if missionStatus.elapsed < 0.975 * missionStatus.duration:
+                    if missionStatus.elapsed < 0.95 * missionStatus.duration:
                         self.public_data.connection.mission._send_local_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
                         missionStatus.elapsed += 0.1
 
                     # Wyhamuj
-                    if missionStatus.elapsed >= 0.975 * missionStatus.duration and missionStatus.elapsed < 1.25 * missionStatus.duration:
+                    if missionStatus.elapsed >= 0.95 * missionStatus.duration and missionStatus.elapsed < 1.25 * missionStatus.duration:
                         self.public_data.connection.mission._send_local_velocity(0.0, 0.0, 0.0)
                         missionStatus.elapsed += 0.1
 
@@ -916,6 +947,7 @@ class FlightControllerNode(Node):
                         missionStatus.xGoal = 0
                         missionStatus.yGoal = 0
                         missionStatus.zGoal = 0
+
 
                 elif missionStatus.yawGoal != 0.0:
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
@@ -933,7 +965,46 @@ class FlightControllerNode(Node):
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
                     missionStatus.elapsed += 0.1
+            
+            elif missionStatus.durningTakeoff is True:
+                if missionStatus.isArmed is True:
+                    missionStatus.movementOn = True
+                    self.get_logger().info('TAKEOFF')
+                    missionStatus.duration = 10
+                    self.public_data.connection.mission.takeoff(3)
+                    missionStatus.durningTakeoff = False
+            
+            elif missionStatus.inSearchMode is True and missionStatus.searchPoint == len(missionPlan):
+                self.get_logger().info('Koniec poszukiwań - nie udało się znaleźć celu')
+                missionStatus.inSearchMode = False
+                missionStatus.searchPoint = 0
+                self.get_logger().warn('Rozpoczynam procedurę lądowania')
+                self.public_data.connection.set_mode('LAND')            
+            
+            elif missionStatus.inSearchMode is True:
+                fly_speed = 0.25
+                
+                if missionStatus.searchPoint == 0:
+                    self.get_logger().info('Rozpoczynam fazę 1 - start')
+                    self.hover_mission()
+                    missionStatus.searchPoint += 1
 
+                elif missionStatus.searchPoint == 1:
+                    self.get_logger().info('Rozpoczynam fazę 2 - rotacja')
+                    self.public_data.connection.mission.condition_yaw(0, 10, 1, False)
+                    missionStatus.searchPoint += 1
+
+                elif missionStatus.searchPoint == len(missionPlan):
+                    self.get_logger().info('Koniec poszukiwań - Nie udało się znaleźć celu')
+                    missionStatus.searchPoint += 1
+
+                elif missionStatus.searchPoint != 0 and missionStatus.searchPoint != len(missionPlan) + 1:
+                    dx = missionPlan[missionStatus.searchPoint][0]
+                    dy = missionPlan[missionStatus.searchPoint][1]
+                    dz = missionPlan[missionStatus.searchPoint][2]
+                    self.public_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=fly_speed, rate_hz=10)
+                    missionStatus.searchPoint += 1
+                    
 
     def hover_mission(self) -> None:
         global missionStatus
@@ -947,15 +1018,9 @@ class FlightControllerNode(Node):
 
             self.public_data.connection.arm_drone()
             self.get_logger().info('Uzbrajam drona')
-            time.sleep(2)
-            if missionStatus.isArmed is False:
-                self.get_logger().warn('Nie udało się uzbroić - anuluję takeoff')
-                return
 
-            missionStatus.movementOn = True
-            self.get_logger().info('TAKEOFF')
-            missionStatus.duration = 10
-            self.public_data.connection.mission.takeoff(5)
+            missionStatus.durningTakeoff = True
+
         else:
             self.get_logger().warn('Tryb autonomiczny wyłączony - pomijam')
 
@@ -1010,9 +1075,10 @@ class FlightControllerNode(Node):
             self.public_data.connection.tune_short()
             self.public_data.connection.mission.condition_yaw(30, 5, 1, True)
         elif cmd == 'test_6':
-            self.get_logger().info('Test 6 - Obrót o 45 deg w lewo (5 deg/s)')
+            self.get_logger().info('Test 6 - Search Mode Test')
+            missionStatus.inSearchMode = True
             self.public_data.connection.tune_short()
-            self.public_data.connection.mission.condition_yaw(45, 5, -1, True)
+
             
 
         elif cmd == 'set_geo':
