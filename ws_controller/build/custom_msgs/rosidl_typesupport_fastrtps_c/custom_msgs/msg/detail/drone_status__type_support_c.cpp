@@ -76,6 +76,21 @@ static bool _DroneStatus__cdr_serialize(
     cdr << (ros_message->is_moving ? true : false);
   }
 
+  // Field name: is_searching
+  {
+    cdr << (ros_message->is_searching ? true : false);
+  }
+
+  // Field name: is_durning_takeoff
+  {
+    cdr << (ros_message->is_durning_takeoff ? true : false);
+  }
+
+  // Field name: is_target_spotted
+  {
+    cdr << (ros_message->is_target_spotted ? true : false);
+  }
+
   // Field name: battery_voltage
   {
     cdr << ros_message->battery_voltage;
@@ -126,6 +141,27 @@ static bool _DroneStatus__cdr_deserialize(
     uint8_t tmp;
     cdr >> tmp;
     ros_message->is_moving = tmp ? true : false;
+  }
+
+  // Field name: is_searching
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->is_searching = tmp ? true : false;
+  }
+
+  // Field name: is_durning_takeoff
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->is_durning_takeoff = tmp ? true : false;
+  }
+
+  // Field name: is_target_spotted
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->is_target_spotted = tmp ? true : false;
   }
 
   // Field name: battery_voltage
@@ -179,6 +215,24 @@ size_t get_serialized_size_custom_msgs__msg__DroneStatus(
   // field.name is_moving
   {
     size_t item_size = sizeof(ros_message->is_moving);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // field.name is_searching
+  {
+    size_t item_size = sizeof(ros_message->is_searching);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // field.name is_durning_takeoff
+  {
+    size_t item_size = sizeof(ros_message->is_durning_takeoff);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // field.name is_target_spotted
+  {
+    size_t item_size = sizeof(ros_message->is_target_spotted);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
@@ -236,6 +290,27 @@ size_t max_serialized_size_custom_msgs__msg__DroneStatus(
     current_alignment += array_size * sizeof(uint8_t);
   }
   // member: is_moving
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // member: is_searching
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // member: is_durning_takeoff
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // member: is_target_spotted
   {
     size_t array_size = 1;
 

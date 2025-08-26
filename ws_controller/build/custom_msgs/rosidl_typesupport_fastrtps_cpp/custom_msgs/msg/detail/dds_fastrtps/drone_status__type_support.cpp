@@ -62,6 +62,12 @@ cdr_serialize(
   cdr << (ros_message.is_autonomy_active ? true : false);
   // Member: is_moving
   cdr << (ros_message.is_moving ? true : false);
+  // Member: is_searching
+  cdr << (ros_message.is_searching ? true : false);
+  // Member: is_durning_takeoff
+  cdr << (ros_message.is_durning_takeoff ? true : false);
+  // Member: is_target_spotted
+  cdr << (ros_message.is_target_spotted ? true : false);
   // Member: battery_voltage
   cdr << ros_message.battery_voltage;
   // Member: ekf_position
@@ -96,6 +102,27 @@ cdr_deserialize(
     uint8_t tmp;
     cdr >> tmp;
     ros_message.is_moving = tmp ? true : false;
+  }
+
+  // Member: is_searching
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.is_searching = tmp ? true : false;
+  }
+
+  // Member: is_durning_takeoff
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.is_durning_takeoff = tmp ? true : false;
+  }
+
+  // Member: is_target_spotted
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.is_target_spotted = tmp ? true : false;
   }
 
   // Member: battery_voltage
@@ -136,6 +163,24 @@ get_serialized_size(
   // Member: is_moving
   {
     size_t item_size = sizeof(ros_message.is_moving);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // Member: is_searching
+  {
+    size_t item_size = sizeof(ros_message.is_searching);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // Member: is_durning_takeoff
+  {
+    size_t item_size = sizeof(ros_message.is_durning_takeoff);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+  // Member: is_target_spotted
+  {
+    size_t item_size = sizeof(ros_message.is_target_spotted);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
@@ -191,6 +236,30 @@ max_serialized_size_DroneStatus(
   }
 
   // Member: is_moving
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: is_searching
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: is_durning_takeoff
+  {
+    size_t array_size = 1;
+
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: is_target_spotted
   {
     size_t array_size = 1;
 

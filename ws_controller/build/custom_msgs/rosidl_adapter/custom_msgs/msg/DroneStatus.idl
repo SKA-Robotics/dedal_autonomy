@@ -13,6 +13,12 @@ module custom_msgs {
 
       boolean is_moving;
 
+      boolean is_searching;
+
+      boolean is_durning_takeoff;
+
+      boolean is_target_spotted;
+
       float battery_voltage;
 
       custom_msgs::msg::GeoData ekf_position;

@@ -50,6 +50,27 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
+  // member: is_searching
+  {
+    out << "is_searching: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_searching, out);
+    out << ", ";
+  }
+
+  // member: is_durning_takeoff
+  {
+    out << "is_durning_takeoff: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_durning_takeoff, out);
+    out << ", ";
+  }
+
+  // member: is_target_spotted
+  {
+    out << "is_target_spotted: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_target_spotted, out);
+    out << ", ";
+  }
+
   // member: battery_voltage
   {
     out << "battery_voltage: ";
@@ -96,6 +117,36 @@ inline void to_block_style_yaml(
     }
     out << "is_moving: ";
     rosidl_generator_traits::value_to_yaml(msg.is_moving, out);
+    out << "\n";
+  }
+
+  // member: is_searching
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "is_searching: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_searching, out);
+    out << "\n";
+  }
+
+  // member: is_durning_takeoff
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "is_durning_takeoff: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_durning_takeoff, out);
+    out << "\n";
+  }
+
+  // member: is_target_spotted
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "is_target_spotted: ";
+    rosidl_generator_traits::value_to_yaml(msg.is_target_spotted, out);
     out << "\n";
   }
 

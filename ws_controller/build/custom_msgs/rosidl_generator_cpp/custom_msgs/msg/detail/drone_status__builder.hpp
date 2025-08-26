@@ -53,16 +53,64 @@ private:
   ::custom_msgs::msg::DroneStatus msg_;
 };
 
+class Init_DroneStatus_is_target_spotted
+{
+public:
+  explicit Init_DroneStatus_is_target_spotted(::custom_msgs::msg::DroneStatus & msg)
+  : msg_(msg)
+  {}
+  Init_DroneStatus_battery_voltage is_target_spotted(::custom_msgs::msg::DroneStatus::_is_target_spotted_type arg)
+  {
+    msg_.is_target_spotted = std::move(arg);
+    return Init_DroneStatus_battery_voltage(msg_);
+  }
+
+private:
+  ::custom_msgs::msg::DroneStatus msg_;
+};
+
+class Init_DroneStatus_is_durning_takeoff
+{
+public:
+  explicit Init_DroneStatus_is_durning_takeoff(::custom_msgs::msg::DroneStatus & msg)
+  : msg_(msg)
+  {}
+  Init_DroneStatus_is_target_spotted is_durning_takeoff(::custom_msgs::msg::DroneStatus::_is_durning_takeoff_type arg)
+  {
+    msg_.is_durning_takeoff = std::move(arg);
+    return Init_DroneStatus_is_target_spotted(msg_);
+  }
+
+private:
+  ::custom_msgs::msg::DroneStatus msg_;
+};
+
+class Init_DroneStatus_is_searching
+{
+public:
+  explicit Init_DroneStatus_is_searching(::custom_msgs::msg::DroneStatus & msg)
+  : msg_(msg)
+  {}
+  Init_DroneStatus_is_durning_takeoff is_searching(::custom_msgs::msg::DroneStatus::_is_searching_type arg)
+  {
+    msg_.is_searching = std::move(arg);
+    return Init_DroneStatus_is_durning_takeoff(msg_);
+  }
+
+private:
+  ::custom_msgs::msg::DroneStatus msg_;
+};
+
 class Init_DroneStatus_is_moving
 {
 public:
   explicit Init_DroneStatus_is_moving(::custom_msgs::msg::DroneStatus & msg)
   : msg_(msg)
   {}
-  Init_DroneStatus_battery_voltage is_moving(::custom_msgs::msg::DroneStatus::_is_moving_type arg)
+  Init_DroneStatus_is_searching is_moving(::custom_msgs::msg::DroneStatus::_is_moving_type arg)
   {
     msg_.is_moving = std::move(arg);
-    return Init_DroneStatus_battery_voltage(msg_);
+    return Init_DroneStatus_is_searching(msg_);
   }
 
 private:

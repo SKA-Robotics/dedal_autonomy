@@ -79,6 +79,33 @@ bool custom_msgs__msg__drone_status__convert_from_py(PyObject * _pymsg, void * _
     ros_message->is_moving = (Py_True == field);
     Py_DECREF(field);
   }
+  {  // is_searching
+    PyObject * field = PyObject_GetAttrString(_pymsg, "is_searching");
+    if (!field) {
+      return false;
+    }
+    assert(PyBool_Check(field));
+    ros_message->is_searching = (Py_True == field);
+    Py_DECREF(field);
+  }
+  {  // is_durning_takeoff
+    PyObject * field = PyObject_GetAttrString(_pymsg, "is_durning_takeoff");
+    if (!field) {
+      return false;
+    }
+    assert(PyBool_Check(field));
+    ros_message->is_durning_takeoff = (Py_True == field);
+    Py_DECREF(field);
+  }
+  {  // is_target_spotted
+    PyObject * field = PyObject_GetAttrString(_pymsg, "is_target_spotted");
+    if (!field) {
+      return false;
+    }
+    assert(PyBool_Check(field));
+    ros_message->is_target_spotted = (Py_True == field);
+    Py_DECREF(field);
+  }
   {  // battery_voltage
     PyObject * field = PyObject_GetAttrString(_pymsg, "battery_voltage");
     if (!field) {
@@ -148,6 +175,39 @@ PyObject * custom_msgs__msg__drone_status__convert_to_py(void * raw_ros_message)
     field = PyBool_FromLong(ros_message->is_moving ? 1 : 0);
     {
       int rc = PyObject_SetAttrString(_pymessage, "is_moving", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // is_searching
+    PyObject * field = NULL;
+    field = PyBool_FromLong(ros_message->is_searching ? 1 : 0);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "is_searching", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // is_durning_takeoff
+    PyObject * field = NULL;
+    field = PyBool_FromLong(ros_message->is_durning_takeoff ? 1 : 0);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "is_durning_takeoff", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // is_target_spotted
+    PyObject * field = NULL;
+    field = PyBool_FromLong(ros_message->is_target_spotted ? 1 : 0);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "is_target_spotted", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

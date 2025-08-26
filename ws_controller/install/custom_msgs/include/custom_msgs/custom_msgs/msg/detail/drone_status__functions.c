@@ -24,6 +24,9 @@ custom_msgs__msg__DroneStatus__init(custom_msgs__msg__DroneStatus * msg)
   // is_armed
   // is_autonomy_active
   // is_moving
+  // is_searching
+  // is_durning_takeoff
+  // is_target_spotted
   // battery_voltage
   // ekf_position
   if (!custom_msgs__msg__GeoData__init(&msg->ekf_position)) {
@@ -42,6 +45,9 @@ custom_msgs__msg__DroneStatus__fini(custom_msgs__msg__DroneStatus * msg)
   // is_armed
   // is_autonomy_active
   // is_moving
+  // is_searching
+  // is_durning_takeoff
+  // is_target_spotted
   // battery_voltage
   // ekf_position
   custom_msgs__msg__GeoData__fini(&msg->ekf_position);
@@ -63,6 +69,18 @@ custom_msgs__msg__DroneStatus__are_equal(const custom_msgs__msg__DroneStatus * l
   }
   // is_moving
   if (lhs->is_moving != rhs->is_moving) {
+    return false;
+  }
+  // is_searching
+  if (lhs->is_searching != rhs->is_searching) {
+    return false;
+  }
+  // is_durning_takeoff
+  if (lhs->is_durning_takeoff != rhs->is_durning_takeoff) {
+    return false;
+  }
+  // is_target_spotted
+  if (lhs->is_target_spotted != rhs->is_target_spotted) {
     return false;
   }
   // battery_voltage
@@ -92,6 +110,12 @@ custom_msgs__msg__DroneStatus__copy(
   output->is_autonomy_active = input->is_autonomy_active;
   // is_moving
   output->is_moving = input->is_moving;
+  // is_searching
+  output->is_searching = input->is_searching;
+  // is_durning_takeoff
+  output->is_durning_takeoff = input->is_durning_takeoff;
+  // is_target_spotted
+  output->is_target_spotted = input->is_target_spotted;
   // battery_voltage
   output->battery_voltage = input->battery_voltage;
   // ekf_position

@@ -182,10 +182,9 @@
       <div class="col-12 col-md-4">
         <div class="card p-3 h-100">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-              <h6 class="panel-title">Aktualne stany</h2>
+              <h4 class="panel-title">Aktualne stany</h4>
             </div>
             <ul class="list-unstyled mb-0 small">
-              <br>
               <h5 class="panel-title">
                 <li>
                   Uzbrojenie: <span id="state-armed" class="badge bg-secondary">---</span>
@@ -195,6 +194,20 @@
                 </li>
                 <li>                
                   W ruchu: <span id="state-moving" class="badge bg-secondary">---</span>
+                </li>
+              </h5>
+              <br>
+              <br>
+              <h4 class="panel-title">Aktualne procedury</h4>
+              <h5 class="panel-title">
+                <li>                
+                  Procedura startowa: <span id="state-takeoff" class="badge bg-secondary">---</span>
+                </li>
+                <li>                
+                  Poszukuje: <span id="state-searching" class="badge bg-secondary">---</span>
+                </li>
+                <li>                
+                  Na celu: <span id="state-target" class="badge bg-secondary">---</span>
                 </li>
               </h5>
               <br>
@@ -292,6 +305,9 @@
                   <th>ARMED</th>
                   <th>Autonomia</th>
                   <th>W ruchu</th>
+                  <th>Takeoff</th>
+                  <th>Poszukuje</th>
+                  <th>Widzi cel</th>
                   <th>Napięcie [V]</th>
                   <th>Lat</th>
                   <th>Lon</th>
@@ -413,6 +429,16 @@
         document.getElementById('state-moving').innerHTML =
           j.moving ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
 
+        document.getElementById('state-takeoff').innerHTML =
+          j.takeoff ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
+
+        document.getElementById('state-searching').innerHTML =
+          j.searching ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
+
+        document.getElementById('state-target').innerHTML =
+          j.target ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>';
+
+
       } catch (e) { setStatus(false); }
     }
 
@@ -441,6 +467,9 @@
             <td>${s.armed ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${s.autonomy ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${s.moving ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
+            <td>${s.takeoff ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
+            <td>${s.searching ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
+            <td>${s.target ? '<span class="badge bg-info">TAK</span>' : '<span class="badge bg-warning text-dark">NIE</span>'}</td>
             <td>${Number(s.voltage).toFixed(2)}</td>
             <td>${Number(s.lat).toFixed(6)}</td>
             <td>${Number(s.lon).toFixed(6)}</td>
@@ -493,7 +522,7 @@
       const DPR = window.devicePixelRatio || 1;
 
       // --- DOZWOLONY ZAKRES WSPÓŁRZĘDNYCH (EDYTUJ TE WARTOŚCI) ---
-      const WORLD = { xmin: -50, xmax: 50, ymin: -25, ymax: 25 };
+      const WORLD = { xmin: -5, xmax: 5, ymin: -5, ymax: 5 };
 
       // Skaluje fizyczny canvas do ostrego rysunku na ekranach HiDPI
       function fitCanvas() {

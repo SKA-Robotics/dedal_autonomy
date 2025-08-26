@@ -64,6 +64,9 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         '_is_armed',
         '_is_autonomy_active',
         '_is_moving',
+        '_is_searching',
+        '_is_durning_takeoff',
+        '_is_target_spotted',
         '_battery_voltage',
         '_ekf_position',
     ]
@@ -72,11 +75,17 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         'is_armed': 'boolean',
         'is_autonomy_active': 'boolean',
         'is_moving': 'boolean',
+        'is_searching': 'boolean',
+        'is_durning_takeoff': 'boolean',
+        'is_target_spotted': 'boolean',
         'battery_voltage': 'float',
         'ekf_position': 'custom_msgs/GeoData',
     }
 
     SLOT_TYPES = (
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
@@ -91,6 +100,9 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         self.is_armed = kwargs.get('is_armed', bool())
         self.is_autonomy_active = kwargs.get('is_autonomy_active', bool())
         self.is_moving = kwargs.get('is_moving', bool())
+        self.is_searching = kwargs.get('is_searching', bool())
+        self.is_durning_takeoff = kwargs.get('is_durning_takeoff', bool())
+        self.is_target_spotted = kwargs.get('is_target_spotted', bool())
         self.battery_voltage = kwargs.get('battery_voltage', float())
         from custom_msgs.msg import GeoData
         self.ekf_position = kwargs.get('ekf_position', GeoData())
@@ -129,6 +141,12 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
         if self.is_autonomy_active != other.is_autonomy_active:
             return False
         if self.is_moving != other.is_moving:
+            return False
+        if self.is_searching != other.is_searching:
+            return False
+        if self.is_durning_takeoff != other.is_durning_takeoff:
+            return False
+        if self.is_target_spotted != other.is_target_spotted:
             return False
         if self.battery_voltage != other.battery_voltage:
             return False
@@ -179,6 +197,45 @@ class DroneStatus(metaclass=Metaclass_DroneStatus):
                 isinstance(value, bool), \
                 "The 'is_moving' field must be of type 'bool'"
         self._is_moving = value
+
+    @builtins.property
+    def is_searching(self):
+        """Message field 'is_searching'."""
+        return self._is_searching
+
+    @is_searching.setter
+    def is_searching(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'is_searching' field must be of type 'bool'"
+        self._is_searching = value
+
+    @builtins.property
+    def is_durning_takeoff(self):
+        """Message field 'is_durning_takeoff'."""
+        return self._is_durning_takeoff
+
+    @is_durning_takeoff.setter
+    def is_durning_takeoff(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'is_durning_takeoff' field must be of type 'bool'"
+        self._is_durning_takeoff = value
+
+    @builtins.property
+    def is_target_spotted(self):
+        """Message field 'is_target_spotted'."""
+        return self._is_target_spotted
+
+    @is_target_spotted.setter
+    def is_target_spotted(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'is_target_spotted' field must be of type 'bool'"
+        self._is_target_spotted = value
 
     @builtins.property
     def battery_voltage(self):

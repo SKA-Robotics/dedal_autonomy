@@ -1,0 +1,310 @@
+[0.484s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.485s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0xffff8bebe440>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff8bfbb3d0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff8bfbb3d0>>, mixin_verb=('build',))
+[1.204s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.204s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.205s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.205s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.205s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.205s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.206s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/dron/ws_controller'
+[1.206s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.207s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.207s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.208s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.208s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.208s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.208s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.208s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.209s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.256s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.256s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.256s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.256s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.257s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.258s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.258s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.258s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.259s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.259s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.262s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.263s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.263s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.263s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.264s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.265s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.265s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.265s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.265s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.265s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.266s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.266s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.266s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.266s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extensions ['ignore', 'ignore_ament_install']
+[1.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extension 'ignore'
+[1.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extension 'ignore_ament_install'
+[1.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extensions ['colcon_pkg']
+[1.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extension 'colcon_pkg'
+[1.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extensions ['colcon_meta']
+[1.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extension 'colcon_meta'
+[1.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extensions ['ros']
+[1.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/custom_msgs) by extension 'ros'
+[1.276s] DEBUG:colcon.colcon_core.package_identification:Package 'src/custom_msgs' with type 'ros.ament_cmake' and name 'custom_msgs'
+[1.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extensions ['ignore', 'ignore_ament_install']
+[1.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extension 'ignore'
+[1.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extension 'ignore_ament_install'
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extensions ['colcon_pkg']
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extension 'colcon_pkg'
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extensions ['colcon_meta']
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extension 'colcon_meta'
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extensions ['ros']
+[1.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/flask_pkg) by extension 'ros'
+[1.282s] DEBUG:colcon.colcon_core.package_identification:Package 'src/flask_pkg' with type 'ros.ament_python' and name 'flask_pkg'
+[1.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extensions ['ignore', 'ignore_ament_install']
+[1.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extension 'ignore'
+[1.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extension 'ignore_ament_install'
+[1.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extensions ['colcon_pkg']
+[1.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extension 'colcon_pkg'
+[1.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extensions ['colcon_meta']
+[1.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extension 'colcon_meta'
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extensions ['ros']
+[1.285s] Level 1:colcon.colcon_core.package_identification:_identify(src/flight_controller_pkg) by extension 'ros'
+[1.288s] DEBUG:colcon.colcon_core.package_identification:Package 'src/flight_controller_pkg' with type 'ros.ament_python' and name 'flight_controller_pkg'
+[1.289s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extensions ['ignore', 'ignore_ament_install']
+[1.289s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extension 'ignore'
+[1.289s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extension 'ignore_ament_install'
+[1.290s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extensions ['colcon_pkg']
+[1.290s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extension 'colcon_pkg'
+[1.290s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extensions ['colcon_meta']
+[1.290s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extension 'colcon_meta'
+[1.290s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extensions ['ros']
+[1.291s] Level 1:colcon.colcon_core.package_identification:_identify(src/log_data_pkg) by extension 'ros'
+[1.294s] DEBUG:colcon.colcon_core.package_identification:Package 'src/log_data_pkg' with type 'ros.ament_python' and name 'log_data_pkg'
+[1.294s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.295s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.295s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.295s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.295s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.378s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.389s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 9 installed packages in /home/dron/Praca-magisterska/ros2_ws/install
+[1.395s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 183 installed packages in /opt/ros/humble
+[1.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.547s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'custom_msgs' is in: /home/dron/Praca-magisterska/ros2_ws/install/custom_msgs
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding custom_msgs
+
+This may be promoted to an error in a future release of colcon-override-check.
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'cmake_args' from command line to 'None'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'cmake_target' from command line to 'None'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[1.550s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[1.551s] Level 5:colcon.colcon_core.verb:set package 'custom_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.551s] DEBUG:colcon.colcon_core.verb:Building package 'custom_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dron/ws_controller/build/custom_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dron/ws_controller/install/custom_msgs', 'merge_install': False, 'path': '/home/dron/ws_controller/src/custom_msgs', 'symlink_install': False, 'test_result_base': None}
+[1.552s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'cmake_args' from command line to 'None'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'cmake_target' from command line to 'None'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[1.553s] Level 5:colcon.colcon_core.verb:set package 'flask_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.554s] DEBUG:colcon.colcon_core.verb:Building package 'flask_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dron/ws_controller/build/flask_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dron/ws_controller/install/flask_pkg', 'merge_install': False, 'path': '/home/dron/ws_controller/src/flask_pkg', 'symlink_install': False, 'test_result_base': None}
+[1.555s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'cmake_args' from command line to 'None'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'cmake_target' from command line to 'None'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[1.556s] Level 5:colcon.colcon_core.verb:set package 'flight_controller_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.557s] DEBUG:colcon.colcon_core.verb:Building package 'flight_controller_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dron/ws_controller/build/flight_controller_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dron/ws_controller/install/flight_controller_pkg', 'merge_install': False, 'path': '/home/dron/ws_controller/src/flight_controller_pkg', 'symlink_install': False, 'test_result_base': None}
+[1.558s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'cmake_args' from command line to 'None'
+[1.558s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'cmake_target' from command line to 'None'
+[1.558s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.558s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'log_data_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.559s] DEBUG:colcon.colcon_core.verb:Building package 'log_data_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/dron/ws_controller/build/log_data_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/dron/ws_controller/install/log_data_pkg', 'merge_install': False, 'path': '/home/dron/ws_controller/src/log_data_pkg', 'symlink_install': False, 'test_result_base': None}
+[1.560s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.563s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.564s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/dron/ws_controller/src/custom_msgs' with build type 'ament_cmake'
+[1.564s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/dron/ws_controller/src/custom_msgs'
+[1.576s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.577s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.577s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.620s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dron/ws_controller/build/custom_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/Praca-magisterska/ros2_ws/install/um7_pkg:/home/dron/Praca-magisterska/ros2_ws/install/my_py_pkg:/home/dron/Praca-magisterska/ros2_ws/install/log_data_pkg:/home/dron/Praca-magisterska/ros2_ws/install/gs_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flight_controller_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flask_pkg:/home/dron/Praca-magisterska/ros2_ws/install/estimator_pkg:/opt/ros/humble VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/dron/ws_controller/build/custom_msgs -- -j4 -l4
+[49.689s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dron/ws_controller/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/Praca-magisterska/ros2_ws/install/um7_pkg:/home/dron/Praca-magisterska/ros2_ws/install/my_py_pkg:/home/dron/Praca-magisterska/ros2_ws/install/log_data_pkg:/home/dron/Praca-magisterska/ros2_ws/install/gs_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flight_controller_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flask_pkg:/home/dron/Praca-magisterska/ros2_ws/install/estimator_pkg:/opt/ros/humble VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/dron/ws_controller/build/custom_msgs -- -j4 -l4
+[49.729s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dron/ws_controller/build/custom_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/Praca-magisterska/ros2_ws/install/um7_pkg:/home/dron/Praca-magisterska/ros2_ws/install/my_py_pkg:/home/dron/Praca-magisterska/ros2_ws/install/log_data_pkg:/home/dron/Praca-magisterska/ros2_ws/install/gs_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flight_controller_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flask_pkg:/home/dron/Praca-magisterska/ros2_ws/install/estimator_pkg:/opt/ros/humble VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/dron/ws_controller/build/custom_msgs
+[50.449s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(custom_msgs)
+[50.451s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dron/ws_controller/build/custom_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/dron/Praca-magisterska/ros2_ws/install/um7_pkg:/home/dron/Praca-magisterska/ros2_ws/install/my_py_pkg:/home/dron/Praca-magisterska/ros2_ws/install/log_data_pkg:/home/dron/Praca-magisterska/ros2_ws/install/gs_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flight_controller_pkg:/home/dron/Praca-magisterska/ros2_ws/install/flask_pkg:/home/dron/Praca-magisterska/ros2_ws/install/estimator_pkg:/opt/ros/humble VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/dron/ws_controller/build/custom_msgs
+[50.461s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs' for CMake module files
+[50.465s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs' for CMake config files
+[50.469s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_msgs', 'cmake_prefix_path')
+[50.470s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/cmake_prefix_path.ps1'
+[50.472s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/cmake_prefix_path.dsv'
+[50.475s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/cmake_prefix_path.sh'
+[50.479s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/lib'
+[50.481s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_msgs', 'ld_library_path_lib')
+[50.482s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/ld_library_path_lib.ps1'
+[50.484s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/ld_library_path_lib.dsv'
+[50.486s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/ld_library_path_lib.sh'
+[50.488s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/bin'
+[50.489s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/lib/pkgconfig/custom_msgs.pc'
+[50.490s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/lib/python3.10/site-packages'
+[50.491s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/bin'
+[50.493s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.ps1'
+[50.496s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.dsv'
+[50.499s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.sh'
+[50.503s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.bash'
+[50.506s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.zsh'
+[50.510s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dron/ws_controller/install/custom_msgs/share/colcon-core/packages/custom_msgs)
+[50.513s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(custom_msgs)
+[50.514s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs' for CMake module files
+[50.518s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs' for CMake config files
+[50.522s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_msgs', 'cmake_prefix_path')
+[50.522s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/cmake_prefix_path.ps1'
+[50.525s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/cmake_prefix_path.dsv'
+[50.527s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/cmake_prefix_path.sh'
+[50.530s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/lib'
+[50.530s] Level 1:colcon.colcon_core.shell:create_environment_hook('custom_msgs', 'ld_library_path_lib')
+[50.532s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/ld_library_path_lib.ps1'
+[50.534s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/ld_library_path_lib.dsv'
+[50.536s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/hook/ld_library_path_lib.sh'
+[50.539s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/bin'
+[50.539s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/lib/pkgconfig/custom_msgs.pc'
+[50.540s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/lib/python3.10/site-packages'
+[50.541s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/custom_msgs/bin'
+[50.543s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.ps1'
+[50.545s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.dsv'
+[50.548s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.sh'
+[50.550s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.bash'
+[50.553s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/custom_msgs/share/custom_msgs/package.zsh'
+[50.555s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dron/ws_controller/install/custom_msgs/share/colcon-core/packages/custom_msgs)
+[50.557s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dron/ws_controller/src/flask_pkg' with build type 'ament_python'
+[50.557s] Level 1:colcon.colcon_core.shell:create_environment_hook('flask_pkg', 'ament_prefix_path')
+[50.558s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/hook/ament_prefix_path.ps1'
+[50.561s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/hook/ament_prefix_path.dsv'
+[50.563s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/hook/ament_prefix_path.sh'
+[50.566s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[50.566s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[50.586s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dron/ws_controller/src/flight_controller_pkg' with build type 'ament_python'
+[50.587s] Level 1:colcon.colcon_core.shell:create_environment_hook('flight_controller_pkg', 'ament_prefix_path')
+[50.588s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/hook/ament_prefix_path.ps1'
+[50.591s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/hook/ament_prefix_path.dsv'
+[50.593s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/hook/ament_prefix_path.sh'
+[50.597s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[50.597s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[50.617s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/dron/ws_controller/src/log_data_pkg' with build type 'ament_python'
+[50.617s] Level 1:colcon.colcon_core.shell:create_environment_hook('log_data_pkg', 'ament_prefix_path')
+[50.618s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/hook/ament_prefix_path.ps1'
+[50.621s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/hook/ament_prefix_path.dsv'
+[50.623s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/hook/ament_prefix_path.sh'
+[50.627s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[50.627s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[51.800s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dron/ws_controller/src/flask_pkg'
+[51.801s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[51.801s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[52.965s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dron/ws_controller/src/flight_controller_pkg'
+[52.966s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[52.966s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[54.105s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/dron/ws_controller/src/log_data_pkg'
+[54.132s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[54.132s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[56.221s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dron/ws_controller/src/log_data_pkg': AMENT_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/dron/ws_controller/install/custom_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/dron/ws_controller/build/log_data_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/log_data_pkg build --build-base /home/dron/ws_controller/build/log_data_pkg/build install --record /home/dron/ws_controller/build/log_data_pkg/install.log --single-version-externally-managed install_data
+[56.324s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dron/ws_controller/src/flight_controller_pkg': AMENT_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/dron/ws_controller/install/custom_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/dron/ws_controller/build/flight_controller_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/flight_controller_pkg build --build-base /home/dron/ws_controller/build/flight_controller_pkg/build install --record /home/dron/ws_controller/build/flight_controller_pkg/install.log --single-version-externally-managed install_data
+[56.334s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/dron/ws_controller/src/flask_pkg': AMENT_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/dron/ws_controller/install/custom_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/dron/ws_controller/build/flask_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/flask_pkg build --build-base /home/dron/ws_controller/build/flask_pkg/build install --record /home/dron/ws_controller/build/flask_pkg/install.log --single-version-externally-managed install_data
+[57.923s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg' for CMake module files
+[57.927s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg' for CMake config files
+[57.933s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dron/ws_controller/src/log_data_pkg' returned '0': AMENT_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/dron/ws_controller/install/custom_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/dron/ws_controller/build/log_data_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages:/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/log_data_pkg build --build-base /home/dron/ws_controller/build/log_data_pkg/build install --record /home/dron/ws_controller/build/log_data_pkg/install.log --single-version-externally-managed install_data
+[57.942s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg/lib'
+[57.944s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg/bin'
+[57.945s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg/lib/pkgconfig/log_data_pkg.pc'
+[57.947s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages'
+[57.948s] Level 1:colcon.colcon_core.shell:create_environment_hook('log_data_pkg', 'pythonpath')
+[57.949s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/hook/pythonpath.ps1'
+[57.954s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/hook/pythonpath.dsv'
+[57.958s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/hook/pythonpath.sh'
+[57.963s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/log_data_pkg/bin'
+[57.964s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(log_data_pkg)
+[57.966s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/package.ps1'
+[57.971s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/package.dsv'
+[57.974s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/package.sh'
+[57.981s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/package.bash'
+[57.985s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/log_data_pkg/share/log_data_pkg/package.zsh'
+[57.989s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dron/ws_controller/install/log_data_pkg/share/colcon-core/packages/log_data_pkg)
+[58.055s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg' for CMake module files
+[58.058s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dron/ws_controller/src/flask_pkg' returned '0': AMENT_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/dron/ws_controller/install/custom_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/dron/ws_controller/build/flask_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages:/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/flask_pkg build --build-base /home/dron/ws_controller/build/flask_pkg/build install --record /home/dron/ws_controller/build/flask_pkg/install.log --single-version-externally-managed install_data
+[58.062s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg' for CMake config files
+[58.067s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg/lib'
+[58.068s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg/bin'
+[58.069s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg/lib/pkgconfig/flask_pkg.pc'
+[58.071s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages'
+[58.071s] Level 1:colcon.colcon_core.shell:create_environment_hook('flask_pkg', 'pythonpath')
+[58.073s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/hook/pythonpath.ps1'
+[58.077s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/hook/pythonpath.dsv'
+[58.080s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/hook/pythonpath.sh'
+[58.083s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flask_pkg/bin'
+[58.084s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(flask_pkg)
+[58.086s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/package.ps1'
+[58.090s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/package.dsv'
+[58.095s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/package.sh'
+[58.099s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/package.bash'
+[58.103s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flask_pkg/share/flask_pkg/package.zsh'
+[58.107s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dron/ws_controller/install/flask_pkg/share/colcon-core/packages/flask_pkg)
+[58.140s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg' for CMake module files
+[58.141s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/dron/ws_controller/src/flight_controller_pkg' returned '0': AMENT_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/dron/ws_controller/install/custom_msgs:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/home/dron/ws_controller/install/custom_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/dron/ws_controller/build/flight_controller_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages:/home/dron/ws_controller/install/custom_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/flight_controller_pkg build --build-base /home/dron/ws_controller/build/flight_controller_pkg/build install --record /home/dron/ws_controller/build/flight_controller_pkg/install.log --single-version-externally-managed install_data
+[58.143s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg' for CMake config files
+[58.147s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg/lib'
+[58.147s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg/bin'
+[58.148s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg/lib/pkgconfig/flight_controller_pkg.pc'
+[58.149s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages'
+[58.149s] Level 1:colcon.colcon_core.shell:create_environment_hook('flight_controller_pkg', 'pythonpath')
+[58.150s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/hook/pythonpath.ps1'
+[58.152s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/hook/pythonpath.dsv'
+[58.154s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/hook/pythonpath.sh'
+[58.157s] Level 1:colcon.colcon_core.environment:checking '/home/dron/ws_controller/install/flight_controller_pkg/bin'
+[58.157s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(flight_controller_pkg)
+[58.159s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/package.ps1'
+[58.161s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/package.dsv'
+[58.163s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/package.sh'
+[58.166s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/package.bash'
+[58.168s] INFO:colcon.colcon_core.shell:Creating package script '/home/dron/ws_controller/install/flight_controller_pkg/share/flight_controller_pkg/package.zsh'
+[58.169s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/dron/ws_controller/install/flight_controller_pkg/share/colcon-core/packages/flight_controller_pkg)
+[58.171s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[58.172s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[58.172s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[58.173s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[58.195s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[58.196s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[58.196s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[58.197s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[58.199s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[58.200s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[58.201s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dron/ws_controller/install/local_setup.ps1'
+[58.205s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/dron/ws_controller/install/_local_setup_util_ps1.py'
+[58.213s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dron/ws_controller/install/setup.ps1'
+[58.221s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dron/ws_controller/install/local_setup.sh'
+[58.223s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/dron/ws_controller/install/_local_setup_util_sh.py'
+[58.226s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dron/ws_controller/install/setup.sh'
+[58.233s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dron/ws_controller/install/local_setup.bash'
+[58.236s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dron/ws_controller/install/setup.bash'
+[58.243s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/dron/ws_controller/install/local_setup.zsh'
+[58.245s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/dron/ws_controller/install/setup.zsh'

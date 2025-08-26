@@ -27,6 +27,9 @@ typedef struct custom_msgs__msg__DroneStatus
   bool is_armed;
   bool is_autonomy_active;
   bool is_moving;
+  bool is_searching;
+  bool is_durning_takeoff;
+  bool is_target_spotted;
   float battery_voltage;
   custom_msgs__msg__GeoData ekf_position;
 } custom_msgs__msg__DroneStatus;

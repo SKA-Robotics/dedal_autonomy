@@ -56,11 +56,14 @@ class ServerNode(Node):
             timestamp,
             msg.is_armed,
             msg.is_autonomy_active,
+            msg.is_searching,
+            msg.is_durning_takeoff,
+            msg.is_target_spotted,
             msg.is_moving,
             msg.battery_voltage,
             msg.ekf_position.latitude,
             msg.ekf_position.longitude,
-            msg.ekf_position.altitude,
+            msg.ekf_position.altitude
         )
         # Zapis z lockiem (NEW)
         with data_lock:
@@ -69,7 +72,7 @@ class ServerNode(Node):
             # Zostaw tylko ostatnie 60 s danych
             while data_buffer and data_buffer[0][0] < cutoff:
                 data_buffer.pop(0)
-        #self.get_logger().info(f'Odebrano nap. baterii: {msg.battery_voltage}')
+        #self.get_logger().info(f'Odebrano nap. baterii: {msg.battery_voltage}') 
 
     def publish_message(self, command: str):
         msg = String()
@@ -168,12 +171,15 @@ def api_data():
                 'armed': bool(arm),
                 'autonomy': bool(auth),
                 'moving': bool(move),
+                'takeoff': bool(takeoff),
+                'searching': bool(search),
+                'target': bool(target),
                 'voltage': float(voltage),
                 'lat': float(lat),
                 'lon': float(lon),
                 'alt': float(alt),
             }
-            for (ts, arm, auth, move, voltage, lat, lon, alt) in data_buffer
+            for (ts, arm, auth, search, takeoff, target, move, voltage, lat, lon, alt) in data_buffer
         ]
     return jsonify(payload)
 
@@ -183,13 +189,16 @@ def api_latest():
     with data_lock:
         if not data_buffer:
             return jsonify({'available': False}), 200
-        ts, arm, auth, move, voltage, lat, lon, alt = data_buffer[-1]
+        ts, arm, auth, search, takeoff, target, move, voltage, lat, lon, alt = data_buffer[-1]
         return jsonify({
             'available': True,
             't': ts.isoformat() + 'Z',
             'armed': bool(arm),
             'autonomy': bool(auth),
             'moving': bool(move),
+            'takeoff': bool(takeoff),
+            'searching': bool(search),
+            'target': bool(target),
             'voltage': float(voltage),
             'lat': float(lat),
             'lon': float(lon),

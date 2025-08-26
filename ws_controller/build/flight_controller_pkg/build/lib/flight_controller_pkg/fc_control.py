@@ -45,6 +45,12 @@ class MissionParams:
     inSearchMode: bool = False
     searchPoint: int = 0
     durningTakeoff: bool = False
+    foundTarget: bool = False
+    xTarget: float = 0.0
+    yTarget: float = 0.0
+    zTarget: float = 0.0
+    approachingTarget: bool = False
+    targetHoverTimer: float = 0
 missionStatus = MissionParams()
 
 
@@ -372,6 +378,20 @@ class MisionController:
         dx>0 = do przodu, dy>0 = w prawo, dz>0 = w dół (uwaga: NED).
         """
 
+        global missionStatus
+
+        if missionStatus.movementOn == False:
+
+            if missionStatus.autonomyOn == False:
+                self._log('warn', f'Tryb autonomiczny wyłączony - pomijam')
+                return
+
+            missionStatus.movementOn = True
+
+            missionStatus.xGoal = dx
+            missionStatus.yGoal = dy
+            missionStatus.zGoal = dz
+
         if speed_mps <= 0:
             raise ValueError("speed_mps musi być > 0")
 
@@ -391,12 +411,18 @@ class MisionController:
         self._log('info', f'➡️ Ruch BODY_NED: dx={dx:.2f} dy={dy:.2f} dz={dz:.2f} (L={L:.2f} m) '
                           f'v≈({vx:.2f},{vy:.2f},{vz:.2f}) m/s przez ~{duration:.2f} s')
 
-        while time.time() < t_end:
-            self._send_body_velocity(vx, vy, vz)
-            time.sleep(period)
 
-        self.stop(rate_hz=rate_hz)
-        self._log('info', '✅ Zrealizowano ruch względny BODY_NED')
+        missionStatus.xVelocity = vx
+        missionStatus.yVelocity = vy
+        missionStatus.zVelocity = vz
+        missionStatus.duration = duration
+
+        # while time.time() < t_end:
+        #     self._send_body_velocity(vx, vy, vz)
+        #     time.sleep(period)
+
+        # self.stop(rate_hz=rate_hz)
+        # self._log('info', '✅ Zrealizowano ruch względny BODY_NED')
 
     def move_map_relative(self, dx: float = 0.0, dy: float = 0.0, dz: float = 0.0,
                           speed_mps: float = 1.0, rate_hz: int = 10) -> None:
@@ -843,7 +869,10 @@ class MainData:
         msg.is_autonomy_active = missionStatus.autonomyOn
         msg.is_moving = missionStatus.movementOn
         missionStatus.isArmed = self.connection.is_drone_armed()
-        msg.is_armed = missionStatus.isArmed        
+        msg.is_armed = missionStatus.isArmed
+        msg.is_searching = missionStatus.inSearchMode
+        msg.is_durning_takeoff = missionStatus.durningTakeoff
+        msg.is_target_spotted = missionStatus.foundTarget
         msg.battery_voltage = getattr(self._last_status, 'battery_voltage', float('nan'))
         msg.ekf_position.latitude = self._last_status.ekf_position.latitude
         msg.ekf_position.longitude = self._last_status.ekf_position.longitude
@@ -931,12 +960,18 @@ class FlightControllerNode(Node):
 
                 if missionStatus.xGoal != 0.0 or missionStatus.yGoal != 0.0 or missionStatus.zGoal != 0.0:
                     if missionStatus.elapsed < 0.95 * missionStatus.duration:
-                        self.public_data.connection.mission._send_local_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
+                        if missionStatus.approachingTarget is False:
+                            self.public_data.connection.mission._send_local_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
+                        else:
+                            self.public_data.connection.mission._send_body_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
                         missionStatus.elapsed += 0.1
 
                     # Wyhamuj
                     if missionStatus.elapsed >= 0.95 * missionStatus.duration and missionStatus.elapsed < 1.25 * missionStatus.duration:
-                        self.public_data.connection.mission._send_local_velocity(0.0, 0.0, 0.0)
+                        if missionStatus.approachingTarget is False:
+                            self.public_data.connection.mission._send_local_velocity(0.0, 0.0, 0.0)
+                        else:
+                            self.public_data.connection.mission._send_body_velocity(0.0, 0.0, 0.0)
                         missionStatus.elapsed += 0.1
 
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
@@ -947,6 +982,15 @@ class FlightControllerNode(Node):
                         missionStatus.xGoal = 0
                         missionStatus.yGoal = 0
                         missionStatus.zGoal = 0
+                        if missionStatus.approachingTarget is True:
+                            missionStatus.xTarget = 0
+                            missionStatus.yTarget = 0
+                            missionStatus.zTarget = 0
+                            self.get_logger().info('Osiągnięto cel?')
+                            missionStatus.approachingTarget = False
+                            missionStatus.foundTarget = False
+                            missionStatus.inSearchMode = True
+                            missionStatus.searchPoint = len(missionPlan) + 1
 
 
                 elif missionStatus.yawGoal != 0.0:
@@ -958,11 +1002,13 @@ class FlightControllerNode(Node):
                         missionStatus.yawGoal = 0
                     else:
                         missionStatus.elapsed += 0.1
+
                 else:
                     if missionStatus.elapsed >= 1.1 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano procedurę Takeoff')
                         self.public_data.connection.tune_long()
                         missionStatus.movementOn = False
+                        missionStatus.durningTakeoff = False
                         missionStatus.elapsed = 0
                     missionStatus.elapsed += 0.1
             
@@ -972,7 +1018,6 @@ class FlightControllerNode(Node):
                     self.get_logger().info('TAKEOFF')
                     missionStatus.duration = 10
                     self.public_data.connection.mission.takeoff(3)
-                    missionStatus.durningTakeoff = False
             
             elif missionStatus.inSearchMode is True and missionStatus.searchPoint == len(missionPlan):
                 self.get_logger().info('Koniec poszukiwań - nie udało się znaleźć celu')
@@ -994,9 +1039,9 @@ class FlightControllerNode(Node):
                     self.public_data.connection.mission.condition_yaw(0, 10, 1, False)
                     missionStatus.searchPoint += 1
 
-                elif missionStatus.searchPoint == len(missionPlan):
-                    self.get_logger().info('Koniec poszukiwań - Nie udało się znaleźć celu')
-                    missionStatus.searchPoint += 1
+                elif missionStatus.searchPoint == len(missionPlan) + 1:
+                    self.get_logger().info('Zawis nad celem - oczekuje potwierdzenia')
+
 
                 elif missionStatus.searchPoint != 0 and missionStatus.searchPoint != len(missionPlan) + 1:
                     dx = missionPlan[missionStatus.searchPoint][0]
@@ -1004,7 +1049,22 @@ class FlightControllerNode(Node):
                     dz = missionPlan[missionStatus.searchPoint][2]
                     self.public_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=fly_speed, rate_hz=10)
                     missionStatus.searchPoint += 1
-                    
+
+            elif missionStatus.foundTarget == True and missionStatus.approachingTarget is False:
+                dx = missionStatus.xTarget
+                dy = missionStatus.yTarget
+                dz = missionStatus.zTarget
+                
+                if missionStatus.targetHoverTimer >= 10:
+                    self.public_data.connection.set_mode('LAND')
+                    missionStatus.autonomyOn = False
+                    missionStatus.targetHoverTimer = 0
+
+                if abs(dx) <= 0.2 and abs(dy) <= 0.2:
+                    missionStatus.targetHoverTimer += 0.1
+                elif dx != 0 or dy != 0 or dz != 0:
+                    missionStatus.approachingTarget = True
+                    self.public_data.connection.mission.move_map_relative(dx, dy, 0.0, speed_mps=0.25, rate_hz=10)
 
     def hover_mission(self) -> None:
         global missionStatus
@@ -1105,7 +1165,16 @@ class FlightControllerNode(Node):
         global missionStatus
         self.get_logger().info('New goal data')
         if missionStatus.autonomyOn is True:
-            if missionStatus.movementOn is False:
+            if missionStatus.inSearchMode is True:
+                self.get_logger().info('Znaleciono cel')
+                missionStatus.inSearchMode = False
+                missionStatus.foundTarget = True
+                missionStatus.approachingTarget = False
+                missionStatus.elapsed = missionStatus.duration
+                missionStatus.xTarget = msg.x_distance
+                missionStatus.yTarget = msg.y_distance
+                missionStatus.zTarget = msg.z_distance
+            elif missionStatus.movementOn is False:
                 dx = msg.x_distance
                 dy = msg.y_distance
                 dz = msg.z_distance

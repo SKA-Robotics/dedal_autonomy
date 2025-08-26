@@ -46,6 +46,9 @@ struct DroneStatus_
       this->is_armed = false;
       this->is_autonomy_active = false;
       this->is_moving = false;
+      this->is_searching = false;
+      this->is_durning_takeoff = false;
+      this->is_target_spotted = false;
       this->battery_voltage = 0.0f;
     }
   }
@@ -59,6 +62,9 @@ struct DroneStatus_
       this->is_armed = false;
       this->is_autonomy_active = false;
       this->is_moving = false;
+      this->is_searching = false;
+      this->is_durning_takeoff = false;
+      this->is_target_spotted = false;
       this->battery_voltage = 0.0f;
     }
   }
@@ -73,6 +79,15 @@ struct DroneStatus_
   using _is_moving_type =
     bool;
   _is_moving_type is_moving;
+  using _is_searching_type =
+    bool;
+  _is_searching_type is_searching;
+  using _is_durning_takeoff_type =
+    bool;
+  _is_durning_takeoff_type is_durning_takeoff;
+  using _is_target_spotted_type =
+    bool;
+  _is_target_spotted_type is_target_spotted;
   using _battery_voltage_type =
     float;
   _battery_voltage_type battery_voltage;
@@ -97,6 +112,24 @@ struct DroneStatus_
     const bool & _arg)
   {
     this->is_moving = _arg;
+    return *this;
+  }
+  Type & set__is_searching(
+    const bool & _arg)
+  {
+    this->is_searching = _arg;
+    return *this;
+  }
+  Type & set__is_durning_takeoff(
+    const bool & _arg)
+  {
+    this->is_durning_takeoff = _arg;
+    return *this;
+  }
+  Type & set__is_target_spotted(
+    const bool & _arg)
+  {
+    this->is_target_spotted = _arg;
     return *this;
   }
   Type & set__battery_voltage(
@@ -161,6 +194,15 @@ struct DroneStatus_
       return false;
     }
     if (this->is_moving != other.is_moving) {
+      return false;
+    }
+    if (this->is_searching != other.is_searching) {
+      return false;
+    }
+    if (this->is_durning_takeoff != other.is_durning_takeoff) {
+      return false;
+    }
+    if (this->is_target_spotted != other.is_target_spotted) {
       return false;
     }
     if (this->battery_voltage != other.battery_voltage) {

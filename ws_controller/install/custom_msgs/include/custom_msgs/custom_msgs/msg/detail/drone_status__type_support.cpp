@@ -37,7 +37,7 @@ void DroneStatus_fini_function(void * message_memory)
   typed_message->~DroneStatus();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_message_member_array[5] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_message_member_array[8] = {
   {
     "is_armed",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
@@ -90,6 +90,57 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_m
     nullptr  // resize(index) function pointer
   },
   {
+    "is_searching",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_msgs::msg::DroneStatus, is_searching),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "is_durning_takeoff",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_msgs::msg::DroneStatus, is_durning_takeoff),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "is_target_spotted",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(custom_msgs::msg::DroneStatus, is_target_spotted),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "battery_voltage",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
@@ -128,7 +179,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DroneStatus_m
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers DroneStatus_message_members = {
   "custom_msgs::msg",  // message namespace
   "DroneStatus",  // message name
-  5,  // number of fields
+  8,  // number of fields
   sizeof(custom_msgs::msg::DroneStatus),
   DroneStatus_message_member_array,  // message members
   DroneStatus_init_function,  // function to initialize message memory (memory has to be allocated)
