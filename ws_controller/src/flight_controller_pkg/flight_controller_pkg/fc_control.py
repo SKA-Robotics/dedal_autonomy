@@ -942,21 +942,27 @@ class FlightControllerNode(Node):
                     [0.4, 1.55, 0.0],
                     [-1.95, 0.0, 0.0],
                     [0.0, 0.0, 1.0],
-                    [2.80, 1.1, 0.0],
-                    [0.0, -2.2, 0.0],
-                    [-1.0, -1.2, 0.0],
-                    [0.0, 4.2, 0.0],
-                    [-1.6, 0.4, 0.0],
-                    [0.0, -5.0, 0.0],
-                    [-1.6, 0.4, 0.0],
-                    [0.0, 4.2, 0.0],
-                    [-1.0, -1.2, 0.0],
-                    [0.0, -2.2, 0.0],
-                    [2.8, 1.1, 0.0]
+                    [2.4, 1.6, 0.0],
+                    [0.0, -2.3, 0.0],
+                    [-1.1, -1.4, 0.0],
+                    [0.0, 4.4, 0.0],
+                    [-1.3, 0.4, 0.0],
+                    [0.0, -5.4, 0.0],
+                    [-1.3, 0.4, 0.0],
+                    [0.0, 4.4, 0.0],
+                    [-1.1, -1.4, 0.0],
+                    [0.0, -2.3, 0.0],
+                    [2.4, 1.6, 0.0]
                     ]
 
         if missionStatus.autonomyOn is True:
-            if missionStatus.movementOn is True:
+            if missionStatus.autonomyOn is False:
+                missionStatus.inSearchMode = False
+                missionStatus.inSearchMode = False
+                missionStatus.durningTakeoff = False
+                missionStatus.foundTarget = False
+
+            elif missionStatus.movementOn is True:
 
                 if missionStatus.xGoal != 0.0 or missionStatus.yGoal != 0.0 or missionStatus.zGoal != 0.0:
                     if missionStatus.elapsed < 0.95 * missionStatus.duration:
