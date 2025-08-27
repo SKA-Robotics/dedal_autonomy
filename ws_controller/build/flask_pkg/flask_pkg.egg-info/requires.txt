@@ -1,2 +1,2 @@
-pymavlink
 setuptools
+pymavlink

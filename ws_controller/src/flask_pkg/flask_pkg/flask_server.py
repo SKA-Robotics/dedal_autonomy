@@ -119,6 +119,8 @@ def index():
             ros2_node.publish_message('autonomy_on')
         elif request.form.get('autonomy_off') == 'Autonomy_off':
             ros2_node.publish_message('autonomy_off')
+        elif request.form.get('mission') == 'Mission':
+            ros2_node.publish_message('mission')
 
         elif request.form.get('test_1') == 'Test_1':
             ros2_node.publish_message('test_1')

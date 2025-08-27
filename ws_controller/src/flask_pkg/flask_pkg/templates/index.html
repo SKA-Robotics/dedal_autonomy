@@ -104,22 +104,20 @@
             <div class="col-12 col-md-12">
               <h3 class="h6 text-info">Autonomy</h3>
               <form method="POST" class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-outline-light btn-sm" name="takeoff" value="Takeoff" type="submit">Takeoff</button>
                 <button class="btn btn-outline-light btn-sm" name="autonomy_on" value="Autonomy_on" type="submit">Włącz</button>
                 <button class="btn btn-outline-light btn-sm" name="autonomy_off" value="Autonomy_off" type="submit">Wyłącz</button>
               </form>
-              <h6 class="h6 text-info">Testy lotu</h6>
+              <br>
               <form method="POST" class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-outline-light btn-sm" name="test_1" value="Test_1" type="submit">Test 1</button>
-                <button class="btn btn-outline-light btn-sm" name="test_2" value="Test_2" type="submit">Test 2</button>
-                <button class="btn btn-outline-light btn-sm" name="test_3" value="Test_3" type="submit">Test 3</button>
+                <button class="btn btn-outline-light btn-sm" name="takeoff" value="Takeoff" type="submit">Takeoff</button>
+
               </form>
-              <h6 class="h6 text-info">Testy obrotu</h6>
+              <br>
               <form method="POST" class="d-flex gap-2 flex-wrap">
-                <button class="btn btn-outline-light btn-sm" name="test_4" value="Test_4" type="submit">Test 4</button>
-                <button class="btn btn-outline-light btn-sm" name="test_5" value="Test_5" type="submit">Test 5</button>
-                <button class="btn btn-outline-light btn-sm" name="test_6" value="Test_6" type="submit">Test 6</button>
+                <button class="btn btn-outline-light btn-sm" name="mission" value="Mission" type="submit">Rozpocznij misje</button>
+
               </form>
+              
             </div>
           </div>
         </div>
@@ -135,6 +133,18 @@
               <form method="POST" class="d-flex gap-2 flex-wrap">
                 <button class="btn btn-outline-light btn-sm" name="play_barka" value="Play_barka" type="submit">Graj Barke</button>
                 <button class="btn btn-outline-light btn-sm" name="inne" value="Inne" type="submit">Inne</button>
+              </form>
+              <h6 class="h6 text-info">Testy lotu</h6>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="test_1" value="Test_1" type="submit">Test 1</button>
+                <button class="btn btn-outline-light btn-sm" name="test_2" value="Test_2" type="submit">Test 2</button>
+                <button class="btn btn-outline-light btn-sm" name="test_3" value="Test_3" type="submit">Test 3</button>
+              </form>
+              <h6 class="h6 text-info">Testy obrotu</h6>
+              <form method="POST" class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-outline-light btn-sm" name="test_4" value="Test_4" type="submit">Test 4</button>
+                <button class="btn btn-outline-light btn-sm" name="test_5" value="Test_5" type="submit">Test 5</button>
+                <button class="btn btn-outline-light btn-sm" name="test_6" value="Test_6" type="submit">Test 6</button>
               </form>
             </div>
 
@@ -218,7 +228,7 @@
                 Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)   <br>
                 Test 4 - Skierowanie się na Północ (5 deg/s)  <br>
                 Test 5 - Obrót o 30 deg w prawo (5 deg/s)  <br>
-                Test 6 - Obrót o 45 deg w lewo (5 deg/s)  <br>
+                Test 6 - brak  <br>
               </h7>
             </ul>
         </div>
@@ -228,7 +238,7 @@
     <!-- Import trasy (CSV) -->
     <div class="row g-1 mt-0">
       <div class="col-12 col-md-3">
-        <div class="card p-3">
+        <div class="card p-3 h-100">
           <h2 class="h6 panel-title">Sterowanie GeoFencing</h2>
           <form method="POST" class="d-flex gap-2 flex-wrap">
             <button class="btn btn-outline-light btn-sm" name="remove_geo" value="Remove_geo" type="submit">Usuń punkty</button>
@@ -237,7 +247,7 @@
         </div>
       </div>
       <div class="col-12 col-md-9">
-        <div class="card p-3">           
+        <div class="card p-3 h-100">           
           <h2 class="h6 panel-title">Import GeoFencing (CSV)</h2>
           
           <div class="tab-pane fade show active" id="importCsv">
@@ -265,11 +275,17 @@
     <div class="row g-3 mt-1">
       <div class="col-12 col-lg-6">
         <div class="card p-3 h-100">
-          <h2 class="h6 panel-title mb-3">Kamera</h2>
+          <h5 class="panel-title mb-3">
+            Podgląd z kamery
+            <a class="btn btn-sm btn-primary" href="/snapshot.jpg" target="_blank">Zdjęcie</a>
+          </h5> 
+
           <div class="camera-frame">
-            <!-- Tymczasowy placeholder: kot -->
-            <img id="camera-img" src="https://s3.eu-central-1.amazonaws.com/cdn.koty.pl-migration/shutterstock_330164483_e1512500490608_a647b098fd.jpg" alt="Podgląd kamery">
-            <!-- Jeśli w przyszłości będzie stream, podmień na <video src="..." autoplay muted playsinline></video> -->
+            <img id="camera-img"
+                src="/video_feed"
+                alt="Camera feed"
+                class="img-fluid rounded shadow-sm"
+                onerror="this.onerror=null; this.src='https://s3.eu-central-1.amazonaws.com/cdn.koty.pl-migration/shutterstock_330164483_e1512500490608_a647b098fd.jpg';">
           </div>
         </div>
       </div>

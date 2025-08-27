@@ -1112,6 +1112,10 @@ class FlightControllerNode(Node):
         elif cmd == 'autonomy_off':
             self.get_logger().info('Autonomy mode off')
             missionStatus.autonomyOn = False
+        elif cmd == 'mission':
+            self.get_logger().info('Mission - Search and Land')
+            missionStatus.inSearchMode = True
+            self.public_data.connection.tune_short()
         
         elif cmd == 'test_1':
             self.get_logger().info('Test 1 - Lot 5 m na Północ (0,5 m/s)')
@@ -1135,11 +1139,8 @@ class FlightControllerNode(Node):
             self.public_data.connection.tune_short()
             self.public_data.connection.mission.condition_yaw(30, 5, 1, True)
         elif cmd == 'test_6':
-            self.get_logger().info('Test 6 - Search Mode Test')
-            missionStatus.inSearchMode = True
-            self.public_data.connection.tune_short()
+            self.get_logger().info('Brak profilu dla Test 6')
 
-            
 
         elif cmd == 'set_geo':
             self.public_data.set_fence()
