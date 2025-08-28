@@ -1,4 +1,3 @@
 float64 x_distance
 float64 y_distance
 float64 z_distance
-int32 tag_id

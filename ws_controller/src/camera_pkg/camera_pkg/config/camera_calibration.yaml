@@ -1,0 +1,10 @@
+aruco_detector_node:
+  ros__parameters:
+    camera_matrix: [
+      1482.3, 0.0, 997.4,
+      0.0, 1479.2, 524.3,
+      0.0, 0.0, 1.0
+    ]
+    distortion_coeffs: [
+      0.145, -0.266, 0.0, 0.0, 0.0028
+    ]
