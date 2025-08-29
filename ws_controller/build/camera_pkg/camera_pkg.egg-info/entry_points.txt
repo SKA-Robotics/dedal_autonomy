@@ -1,0 +1,4 @@
+[console_scripts]
+aruco_detector = camera_pkg.ArucoDetector:main
+camera_publisher = camera_pkg.ImagePublisher:main
+

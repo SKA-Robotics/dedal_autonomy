@@ -1,0 +1,43 @@
+[3.157s] Invoking command in '/home/dron/ws_controller/src/camera_pkg': PYTHONPATH=/home/dron/ws_controller/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/dron/ws_controller/build/camera_pkg/build install --record /home/dron/ws_controller/build/camera_pkg/install.log --single-version-externally-managed install_data
+[3.779s] running egg_info
+[3.780s] creating ../../build/camera_pkg/camera_pkg.egg-info
+[3.780s] writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+[3.781s] writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+[3.781s] writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+[3.782s] writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+[3.782s] writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+[3.782s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[3.787s] reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[3.789s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[3.789s] running build
+[3.789s] running build_py
+[3.789s] creating /home/dron/ws_controller/build/camera_pkg/build
+[3.790s] creating /home/dron/ws_controller/build/camera_pkg/build/lib
+[3.790s] creating /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg
+[3.790s] copying camera_pkg/ImagePublisher.py -> /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg
+[3.790s] copying camera_pkg/ArucoDetector.py -> /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg
+[3.790s] copying camera_pkg/__init__.py -> /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg
+[3.791s] running install
+[3.792s] running install_lib
+[3.794s] creating /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[3.794s] copying /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg/ImagePublisher.py -> /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[3.794s] copying /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg/ArucoDetector.py -> /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[3.794s] copying /home/dron/ws_controller/build/camera_pkg/build/lib/camera_pkg/__init__.py -> /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[3.795s] byte-compiling /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/ImagePublisher.py to ImagePublisher.cpython-310.pyc
+[3.797s] byte-compiling /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/ArucoDetector.py to ArucoDetector.cpython-310.pyc
+[3.798s] byte-compiling /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/__init__.py to __init__.cpython-310.pyc
+[3.799s] running install_data
+[3.799s] creating /home/dron/ws_controller/install/camera_pkg/share/ament_index
+[3.800s] creating /home/dron/ws_controller/install/camera_pkg/share/ament_index/resource_index
+[3.800s] creating /home/dron/ws_controller/install/camera_pkg/share/ament_index/resource_index/packages
+[3.800s] copying resource/camera_pkg -> /home/dron/ws_controller/install/camera_pkg/share/ament_index/resource_index/packages
+[3.800s] copying package.xml -> /home/dron/ws_controller/install/camera_pkg/share/camera_pkg
+[3.801s] creating /home/dron/ws_controller/install/camera_pkg/share/camera_pkg/launch
+[3.801s] creating /home/dron/ws_controller/install/camera_pkg/share/camera_pkg/config
+[3.801s] running install_egg_info
+[3.805s] Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.0.0-py3.10.egg-info
+[3.807s] running install_scripts
+[3.854s] Installing aruco_detector script to /home/dron/ws_controller/install/camera_pkg/lib/camera_pkg
+[3.855s] Installing camera_publisher script to /home/dron/ws_controller/install/camera_pkg/lib/camera_pkg
+[3.855s] writing list of installed files to '/home/dron/ws_controller/build/camera_pkg/install.log'
+[3.948s] Invoked command in '/home/dron/ws_controller/src/camera_pkg' returned '0': PYTHONPATH=/home/dron/ws_controller/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/dron/ws_controller/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/dron/ws_controller/build/camera_pkg/build install --record /home/dron/ws_controller/build/camera_pkg/install.log --single-version-externally-managed install_data

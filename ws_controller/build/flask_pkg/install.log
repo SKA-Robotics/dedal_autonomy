@@ -1,10 +1,10 @@
-/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/flask_server_camera.py
 /home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/flask_server.py
 /home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/wzorcowy.py
+/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/flask_server_basic.py
 /home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/__init__.py
-/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/__pycache__/flask_server_camera.cpython-310.pyc
 /home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/__pycache__/flask_server.cpython-310.pyc
 /home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/__pycache__/wzorcowy.cpython-310.pyc
+/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/__pycache__/flask_server_basic.cpython-310.pyc
 /home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/__pycache__/__init__.cpython-310.pyc
 /home/dron/ws_controller/install/flask_pkg/share/ament_index/resource_index/packages/flask_pkg
 /home/dron/ws_controller/install/flask_pkg/share/flask_pkg/package.xml

@@ -3,7 +3,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, qos_profile_sensor_data
 from custom_msgs.msg import DroneStatus, GeoData, TagLocation
 from example_interfaces.msg import String
-from flask import Flask, render_template, jsonify, request, make_response, redirect, url_for
+from flask import Flask, render_template, jsonify, request, make_response, redirect, url_for, Response, send_file
 import mimetypes
 import threading
 import os
@@ -11,7 +11,15 @@ from datetime import datetime, timedelta
 import csv
 import io
 import uuid
+import atexit
 
+def _shutdown_camera():
+    global cam_running
+    try:
+        cam_running = False
+    except Exception:
+        pass
+atexit.register(_shutdown_camera)
 
 # Ścieżka do katalogu danych (niewykorzystywana tutaj, zostawiamy jak było)
 BASE_DIR = '/home/dron'  # Zmień na odpowiednią ścieżkę
@@ -91,6 +99,104 @@ def ros2_spin():
 ros2_thread = threading.Thread(target=ros2_spin, daemon=True)
 ros2_thread.start()
 
+# ==== DepthAI / OAK-D-Lite MJPEG stream ====
+try:
+    import depthai as dai
+    import cv2
+except Exception as _e:
+    dai = None
+    cv2 = None
+
+last_frame = None
+cam_lock = threading.Lock()
+cam_running = False
+_cam_thread = None
+_device = None
+_queue = None
+
+def _camera_thread():
+    global last_frame, cam_running, _device, _queue
+    try:
+        pipeline = dai.Pipeline()
+        cam = pipeline.createColorCamera()
+        cam.setPreviewSize(640, 360)
+        cam.setInterleaved(False)
+        cam.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
+        cam.setFps(30)
+
+        xout = pipeline.createXLinkOut()
+        xout.setStreamName("preview")
+        cam.preview.link(xout.input)
+
+        _device = dai.Device(pipeline)
+        _queue = _device.getOutputQueue(name="preview", maxSize=4, blocking=False)
+
+        cam_running = True
+        while cam_running:
+            pkt = _queue.get()
+            frame = pkt.getCvFrame()
+            with cam_lock:
+                last_frame = frame
+    except Exception as e:
+        print(f"[camera] stopped: {e}")
+    finally:
+        try:
+            if _device is not None:
+                _device.close()
+        except Exception:
+            pass
+        cam_running = False
+
+def start_camera_if_possible():
+    global _cam_thread, cam_running
+    if dai is None or cv2 is None:
+        print("[camera] DepthAI not available — video endpoints will return 503")
+        return
+    if _cam_thread and _cam_thread.is_alive():
+        return
+    _cam_thread = threading.Thread(target=_camera_thread, daemon=True)
+    _cam_thread.start()
+
+@app.route("/video_feed")
+def video_feed():
+    start_camera_if_possible()
+    if dai is None or cv2 is None:
+        return make_response("DepthAI not available", 503)
+
+    def gen():
+        while True:
+            with cam_lock:
+                frame = None if last_frame is None else last_frame.copy()
+            if frame is None:
+                import time; time.sleep(0.01)
+                continue
+            ok, jpg = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), 90])
+            if not ok:
+                continue
+            chunk = jpg.tobytes()
+            yield (b"--frame\r\n"
+                   b"Content-Type: image/jpeg\r\n"
+                   b"Content-Length: " + str(len(chunk)).encode() + b"\r\n\r\n" +
+                   chunk + b"\r\n")
+
+    return Response(gen(), mimetype="multipart/x-mixed-replace; boundary=frame")
+
+@app.route("/snapshot.jpg")
+def snapshot():
+    start_camera_if_possible()
+    if dai is None or cv2 is None:
+        return make_response("DepthAI not available", 503)
+    with cam_lock:
+        frame = None if last_frame is None else last_frame.copy()
+    if frame is None:
+        return make_response("No frame yet", 503)
+    ok, jpg = cv2.imencode(".jpg", frame, [int(cv2.IMWRITE_JPEG_QUALITY), 95])
+    if not ok:
+        return make_response("Encode error", 500)
+    import io
+    buf = io.BytesIO(jpg.tobytes()); buf.seek(0)
+    return send_file(buf, mimetype="image/jpeg")
+
 # =============== ROUTES ===============
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -121,7 +227,7 @@ def index():
             ros2_node.publish_message('autonomy_off')
         elif request.form.get('mission') == 'Mission':
             ros2_node.publish_message('mission')
-
+            
         elif request.form.get('test_1') == 'Test_1':
             ros2_node.publish_message('test_1')
         elif request.form.get('test_2') == 'Test_2':

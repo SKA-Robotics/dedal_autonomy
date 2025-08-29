@@ -1023,7 +1023,7 @@ class FlightControllerNode(Node):
                     missionStatus.movementOn = True
                     self.get_logger().info('TAKEOFF')
                     missionStatus.duration = 10
-                    self.public_data.connection.mission.takeoff(3)
+                    self.public_data.connection.mission.takeoff(2)
             
             elif missionStatus.inSearchMode is True and missionStatus.searchPoint == len(missionPlan):
                 self.get_logger().info('Koniec poszukiwań - nie udało się znaleźć celu')
@@ -1124,13 +1124,13 @@ class FlightControllerNode(Node):
             self.public_data.connection.tune_short()
         
         elif cmd == 'test_1':
-            self.get_logger().info('Test 1 - Lot 5 m na Północ (0,5 m/s)')
+            self.get_logger().info('Test 1 - Lot 1 m na Północ (0,5 m/s)')
             self.public_data.connection.tune_short()
-            self.public_data.connection.mission.move_map_relative(dx=5.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.public_data.connection.mission.move_map_relative(dx=1.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_2':
-            self.get_logger().info('Test 2 - Lot 3 m na Wschód (0,5 m/s)')
+            self.get_logger().info('Test 2 - Lot 1 m na Wschód (0,5 m/s)')
             self.public_data.connection.tune_short()
-            self.public_data.connection.mission.move_map_relative(dx=0.0, dy=3.0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.public_data.connection.mission.move_map_relative(dx=0.0, dy=1.0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_3':
             self.get_logger().info('Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)')
             self.public_data.connection.tune_short()
@@ -1146,6 +1146,7 @@ class FlightControllerNode(Node):
             self.public_data.connection.mission.condition_yaw(30, 5, 1, True)
         elif cmd == 'test_6':
             self.get_logger().info('Brak profilu dla Test 6')
+            self.public_data.connection.mission.condition_yaw(30, 5, -1, True)
 
 
         elif cmd == 'set_geo':

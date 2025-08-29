@@ -1,0 +1,19 @@
+running egg_info
+writing ../../build/log_data_pkg/log_data_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/log_data_pkg/log_data_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/log_data_pkg/log_data_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/log_data_pkg/log_data_pkg.egg-info/requires.txt
+writing top-level names to ../../build/log_data_pkg/log_data_pkg.egg-info/top_level.txt
+reading manifest file '../../build/log_data_pkg/log_data_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/log_data_pkg/log_data_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+running install_egg_info
+removing '/home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages/log_data_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/log_data_pkg/log_data_pkg.egg-info to /home/dron/ws_controller/install/log_data_pkg/lib/python3.10/site-packages/log_data_pkg-0.0.0-py3.10.egg-info
+running install_scripts
+Installing data_collector script to /home/dron/ws_controller/install/log_data_pkg/lib/log_data_pkg
+writing list of installed files to '/home/dron/ws_controller/build/log_data_pkg/install.log'

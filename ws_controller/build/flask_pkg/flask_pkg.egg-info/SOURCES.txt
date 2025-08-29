@@ -10,7 +10,7 @@ setup.py
 ../../build/flask_pkg/flask_pkg.egg-info/zip-safe
 flask_pkg/__init__.py
 flask_pkg/flask_server.py
-flask_pkg/flask_server_camera.py
+flask_pkg/flask_server_basic.py
 flask_pkg/wzorcowy.py
 resource/flask_pkg
 test/test_copyright.py
