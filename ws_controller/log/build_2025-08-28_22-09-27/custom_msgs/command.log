@@ -1,1 +1,0 @@
-Invoking command in '/home/dron/ws_controller/build/custom_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/dron/ws_controller/build/custom_msgs -- -j6 -l6

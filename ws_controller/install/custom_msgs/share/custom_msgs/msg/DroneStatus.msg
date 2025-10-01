@@ -1,8 +1,0 @@
-bool is_armed
-bool is_autonomy_active
-bool is_moving
-bool is_searching
-bool is_durning_takeoff
-bool is_target_spotted
-float32 battery_voltage
-GeoData ekf_position

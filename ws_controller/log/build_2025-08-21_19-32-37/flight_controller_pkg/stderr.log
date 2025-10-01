@@ -1,5 +1,0 @@
-  File "/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg/fc_control.py", line 676
-    else
-        ^
-SyntaxError: expected ':'
-

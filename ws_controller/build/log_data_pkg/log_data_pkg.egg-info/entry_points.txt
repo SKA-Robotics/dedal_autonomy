@@ -1,3 +1,0 @@
-[console_scripts]
-data_collector = log_data_pkg.save_to_csv:main
-

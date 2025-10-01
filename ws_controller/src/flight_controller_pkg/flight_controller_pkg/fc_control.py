@@ -576,8 +576,6 @@ class MisionController:
             0, 0, 0, 0, 0, 0, 0
         )
 
-
-
 # =============================================================================
 # -- MAVLink Adapter -----------------------------------------------------------
 # =============================================================================
@@ -822,7 +820,6 @@ class MavLinkConfigurator:
 
         self.master.mav.play_tune_send(sysid, compid, tune1.encode(), tune2.encode())
 
-
 # =============================================================================
 # -- Warstwa stanu/telemetrii -------------------------------------------------
 # =============================================================================
@@ -832,9 +829,16 @@ class MainData:
         self._ros_logger = logger
         self.connection = MavLinkConfigurator(logger=self._log)
         self._last_status = DroneStatus(ekf_position=GeoData())
+        self._last_imu_data = ImuData()
+        self._last_imu_data.accel = AccelData()
+        self._last_imu_data.gyro = GyroData()
+        self._last_imu_data_timer = 0
         self._stop = False
         t = threading.Thread(target=self._mav_loop, daemon=True)
         t.start()
+
+        # HIGHRES_IMU data request at 200 Hz
+        self.connection.request_message_interval(105, 200)
 
     # prosty adapter na logger ROS2
     def _log(self, level: str, msg: str) -> None:
@@ -857,7 +861,25 @@ class MainData:
                     self._last_status.battery_voltage = bat.voltages[0] / 1000.0
             except Exception:
                 pass
-            time.sleep(0.05)
+            
+            try:
+                imu_data = self.connection.request_message()
+                if imu_data:
+                    self._last_imu_data.timestamp = imu_data.time_usec
+                    self._last_imu_data.accel.x = imu_data.xacc
+                    self._last_imu_data.accel.y = imu_data.yacc
+                    self._last_imu_data.accel.z = imu_data.zacc
+                    self._last_imu_data.gyro.x = imu_data.xgyro
+                    self._last_imu_data.gyro.y = imu_data.ygyro
+                    self._last_imu_data.gyro.z = imu_data.zgyro
+            except Exception:
+                pass
+            time.sleep(0.001)
+
+    def publish_imu(self):
+        if _last_imu_data.timestamp > _last_imu_data_timer:
+            msg = _last_imu_data
+            return msg
 
     # API używane przez node
     def do_magic(self) -> DroneStatus:
@@ -897,19 +919,21 @@ class FlightControllerNode(Node):
         super().__init__('FC_controll')
         self.get_logger().info('Node init complete')
         
-        self.public_data = MainData(logger=self.get_logger())
+        self.publish_data = MainData(logger=self.get_logger())
 
         # Publikator telemetrii – QoS pod dane sensorowe
         self.publisher_ = self.create_publisher(DroneStatus, 'drone_status', qos_profile_sensor_data)
+        self.publisher__ = self.create_publisher(ImuData, "fc_imu_data", 100)
 
         # Subskrypcje; nie trzeba przechowywać referencji w polach
         self.create_subscription(String, 'flask_commands', self.listener_flask_callback, 10)
         self.create_subscription(GeoData, 'geo_points', self.listener_geo_points, 10)
         self.create_subscription(TagLocation, 'goal_location', self.listener_tag_location, 10)
 
-        # Timer (1 Hz): publikacja ostatniego znanego stanu (bez blokowania)
+        # Timer
         self.timer_ = self.create_timer(0.25, self.timer_function)
         self.timer__ = self.create_timer(0.1, self.mission_timer)
+        self.timer___ = self.create_timer(1/1000, self.mission_timer)
 
         # Sprzątanie
         #rclpy.on_shutdown(self._on_shutdown)
@@ -917,13 +941,20 @@ class FlightControllerNode(Node):
     # ---- Callbacks -----------------------------------------------------------
     def _on_shutdown(self) -> None:
         try:
-            self.public_data.connection.end_connection()
+            self.publish_data.connection.end_connection()
         except Exception:
             pass
 
     def timer_function(self) -> None:
-        msg = self.public_data.do_magic()
+        msg = self.publish_data.do_magic()
         self.publisher_.publish(msg)
+
+    def imu_publisher_timer() -> None:
+        try:
+            msg = self.publish_data.publish_imu()
+            self.publisher__.publish(msg)
+        except Exception:
+            pass
 
     def mission_timer(self) -> None:
         global missionStatus
@@ -967,22 +998,22 @@ class FlightControllerNode(Node):
                 if missionStatus.xGoal != 0.0 or missionStatus.yGoal != 0.0 or missionStatus.zGoal != 0.0:
                     if missionStatus.elapsed < 0.95 * missionStatus.duration:
                         if missionStatus.approachingTarget is False:
-                            self.public_data.connection.mission._send_local_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
+                            self.publish_data.connection.mission._send_local_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
                         else:
-                            self.public_data.connection.mission._send_body_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
+                            self.publish_data.connection.mission._send_body_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
                         missionStatus.elapsed += 0.1
 
                     # Wyhamuj
                     if missionStatus.elapsed >= 0.95 * missionStatus.duration and missionStatus.elapsed < 1.25 * missionStatus.duration:
                         if missionStatus.approachingTarget is False:
-                            self.public_data.connection.mission._send_local_velocity(0.0, 0.0, 0.0)
+                            self.publish_data.connection.mission._send_local_velocity(0.0, 0.0, 0.0)
                         else:
-                            self.public_data.connection.mission._send_body_velocity(0.0, 0.0, 0.0)
+                            self.publish_data.connection.mission._send_body_velocity(0.0, 0.0, 0.0)
                         missionStatus.elapsed += 0.1
 
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano ruch względny LOCAL_NED')
-                        self.public_data.connection.tune_long()
+                        self.publish_data.connection.tune_long()
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
                         missionStatus.xGoal = 0
@@ -1002,7 +1033,7 @@ class FlightControllerNode(Node):
                 elif missionStatus.yawGoal != 0.0:
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano obrót względny LOCAL_NED')
-                        self.public_data.connection.tune_long()
+                        self.publish_data.connection.tune_long()
                         missionStatus.movementOn = False
                         missionStatus.elapsed = 0
                         missionStatus.yawGoal = 0
@@ -1012,7 +1043,7 @@ class FlightControllerNode(Node):
                 else:
                     if missionStatus.elapsed >= 1.1 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano procedurę Takeoff')
-                        self.public_data.connection.tune_long()
+                        self.publish_data.connection.tune_long()
                         missionStatus.movementOn = False
                         missionStatus.durningTakeoff = False
                         missionStatus.elapsed = 0
@@ -1023,14 +1054,14 @@ class FlightControllerNode(Node):
                     missionStatus.movementOn = True
                     self.get_logger().info('TAKEOFF')
                     missionStatus.duration = 10
-                    self.public_data.connection.mission.takeoff(2)
+                    self.publish_data.connection.mission.takeoff(2)
             
             elif missionStatus.inSearchMode is True and missionStatus.searchPoint == len(missionPlan):
                 self.get_logger().info('Koniec poszukiwań - nie udało się znaleźć celu')
                 missionStatus.inSearchMode = False
                 missionStatus.searchPoint = 0
                 self.get_logger().warn('Rozpoczynam procedurę lądowania')
-                self.public_data.connection.set_mode('LAND')            
+                self.publish_data.connection.set_mode('LAND')            
             
             elif missionStatus.inSearchMode is True:
                 fly_speed = 0.25
@@ -1042,7 +1073,7 @@ class FlightControllerNode(Node):
 
                 elif missionStatus.searchPoint == 1:
                     self.get_logger().info('Rozpoczynam fazę 2 - rotacja')
-                    self.public_data.connection.mission.condition_yaw(0, 10, 1, False)
+                    self.publish_data.connection.mission.condition_yaw(0, 10, 1, False)
                     missionStatus.searchPoint += 1
 
                 elif missionStatus.searchPoint == len(missionPlan) + 1:
@@ -1053,7 +1084,7 @@ class FlightControllerNode(Node):
                     dx = missionPlan[missionStatus.searchPoint][0]
                     dy = missionPlan[missionStatus.searchPoint][1]
                     dz = missionPlan[missionStatus.searchPoint][2]
-                    self.public_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=fly_speed, rate_hz=10)
+                    self.publish_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=fly_speed, rate_hz=10)
                     missionStatus.searchPoint += 1
 
             elif missionStatus.foundTarget == True and missionStatus.approachingTarget is False:
@@ -1062,7 +1093,7 @@ class FlightControllerNode(Node):
                 dz = missionStatus.zTarget
                 
                 if missionStatus.targetHoverTimer >= 10:
-                    self.public_data.connection.set_mode('LAND')
+                    self.publish_data.connection.set_mode('LAND')
                     missionStatus.autonomyOn = False
                     missionStatus.targetHoverTimer = 0
 
@@ -1070,19 +1101,19 @@ class FlightControllerNode(Node):
                     missionStatus.targetHoverTimer += 0.1
                 elif dx != 0 or dy != 0 or dz != 0:
                     missionStatus.approachingTarget = True
-                    self.public_data.connection.mission.move_map_relative(dx, dy, 0.0, speed_mps=0.25, rate_hz=10)
+                    self.publish_data.connection.mission.move_map_relative(dx, dy, 0.0, speed_mps=0.25, rate_hz=10)
 
     def hover_mission(self) -> None:
         global missionStatus
         if missionStatus.autonomyOn is True:
-            self.public_data.connection.mission.clear_mission()
+            self.publish_data.connection.mission.clear_mission()
             self.get_logger().info('Mission cleared')
             time.sleep(0.5)
-            self.public_data.connection.set_mode('GUIDED')
+            self.publish_data.connection.set_mode('GUIDED')
             self.get_logger().info('GUIDED')
             time.sleep(0.5)
 
-            self.public_data.connection.arm_drone()
+            self.publish_data.connection.arm_drone()
             self.get_logger().info('Uzbrajam drona')
 
             missionStatus.durningTakeoff = True
@@ -1096,18 +1127,18 @@ class FlightControllerNode(Node):
         self.get_logger().info(f'cmd: {cmd}')
 
         if cmd == 'set_arm':
-            self.public_data.connection.arm_drone()
+            self.publish_data.connection.arm_drone()
         elif cmd == 'set_disarm':
-            self.public_data.connection.disarm_drone()
+            self.publish_data.connection.disarm_drone()
 
         elif cmd == 'land_now':
-            self.public_data.connection.set_mode('LAND')
+            self.publish_data.connection.set_mode('LAND')
         elif cmd == 'stabilize':
-            self.public_data.connection.set_mode('STABILIZE')
+            self.publish_data.connection.set_mode('STABILIZE')
         elif cmd == 'auto':
-            self.public_data.connection.set_mode('AUTO')
+            self.publish_data.connection.set_mode('AUTO')
         elif cmd == 'guided':
-            self.public_data.connection.set_mode('GUIDED')
+            self.publish_data.connection.set_mode('GUIDED')
 
         elif cmd == 'takeoff':
             self.get_logger().info('Takeoff start')
@@ -1121,43 +1152,43 @@ class FlightControllerNode(Node):
         elif cmd == 'mission':
             self.get_logger().info('Mission - Search and Land')
             missionStatus.inSearchMode = True
-            self.public_data.connection.tune_short()
+            self.publish_data.connection.tune_short()
         
         elif cmd == 'test_1':
             self.get_logger().info('Test 1 - Lot 1 m na Północ (0,5 m/s)')
-            self.public_data.connection.tune_short()
-            self.public_data.connection.mission.move_map_relative(dx=1.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.move_map_relative(dx=1.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_2':
             self.get_logger().info('Test 2 - Lot 1 m na Wschód (0,5 m/s)')
-            self.public_data.connection.tune_short()
-            self.public_data.connection.mission.move_map_relative(dx=0.0, dy=1.0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.move_map_relative(dx=0.0, dy=1.0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_3':
             self.get_logger().info('Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)')
-            self.public_data.connection.tune_short()
-            self.public_data.connection.mission.move_map_relative(dx=-2.0, dy=-2.0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.move_map_relative(dx=-2.0, dy=-2.0, dz=0.0, speed_mps=0.5, rate_hz=10)
 
         elif cmd == 'test_4':
             self.get_logger().info('Test 4 - Skierowanie się na Północ (5 deg/s)')
-            self.public_data.connection.tune_short()
-            self.public_data.connection.mission.condition_yaw(0, 5, 1, False)
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.condition_yaw(0, 5, 1, False)
         elif cmd == 'test_5':
             self.get_logger().info('Test 5 - Obrót o 30 deg w prawo (5 deg/s)')
-            self.public_data.connection.tune_short()
-            self.public_data.connection.mission.condition_yaw(30, 5, 1, True)
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.condition_yaw(30, 5, 1, True)
         elif cmd == 'test_6':
             self.get_logger().info('Brak profilu dla Test 6')
-            self.public_data.connection.mission.condition_yaw(30, 5, -1, True)
+            self.publish_data.connection.mission.condition_yaw(30, 5, -1, True)
 
 
         elif cmd == 'set_geo':
-            self.public_data.set_fence()
+            self.publish_data.set_fence()
             self.get_logger().info('Geofence data set')
         elif cmd == 'remove_geo':
-            self.public_data.clear_fence()
+            self.publish_data.clear_fence()
             self.get_logger().info('Geofence data cleared')
         
         elif cmd == 'play_Barka':
-            self.public_data.connection.play_Barka()
+            self.publish_data.connection.play_Barka()
             self.get_logger().info('🎵 Barka')
         elif cmd == 'inne':
             self.get_logger().info('Its nothing here')
@@ -1167,7 +1198,7 @@ class FlightControllerNode(Node):
 
     def listener_geo_points(self, msg: GeoData) -> None:
         self.get_logger().info('New fence data')
-        self.public_data.read_fence(msg)
+        self.publish_data.read_fence(msg)
 
     def listener_tag_location(self, msg: TagLocation) -> None:
         global missionStatus
@@ -1186,7 +1217,7 @@ class FlightControllerNode(Node):
                 dx = msg.x_distance
                 dy = msg.y_distance
                 dz = msg.z_distance
-                self.public_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=0.5, rate_hz=10)
+                self.publish_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=0.5, rate_hz=10)
         else:
             self.get_logger().warn('Tryb autonomiczny wyłączony - pomijam')
 

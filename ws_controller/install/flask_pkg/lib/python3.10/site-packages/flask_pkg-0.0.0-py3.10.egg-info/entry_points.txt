@@ -1,3 +1,0 @@
-[console_scripts]
-flask_server = flask_pkg.flask_server:main
-

@@ -1,5 +1,0 @@
-  File "/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg/fc_control.py", line 281
-    self._TYPE_MASK_USE_YAW_RATE
-    ^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
-

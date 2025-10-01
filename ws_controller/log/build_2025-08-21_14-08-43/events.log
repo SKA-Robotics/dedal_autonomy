@@ -1,6 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.001476] (-) JobUnselected: {'identifier': 'custom_msgs'}
-[0.001749] (-) JobUnselected: {'identifier': 'flask_pkg'}
-[0.001853] (-) JobUnselected: {'identifier': 'flight_controller_pkg'}
-[0.001986] (-) JobUnselected: {'identifier': 'log_data_pkg'}
-[0.002686] (-) EventReactorShutdown: {}

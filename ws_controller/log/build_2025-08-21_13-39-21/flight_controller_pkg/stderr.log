@@ -1,5 +1,0 @@
-  File "/home/dron/ws_controller/install/flight_controller_pkg/lib/python3.10/site-packages/flight_controller_pkg/fc_control.py", line 702
-    if missionStatus.elapsed > 0.95 * missionStatus.duration and missionStatus.elapsed < 1.2 * missionStatus.duration
-                                                                                                                     ^
-SyntaxError: expected ':'
-

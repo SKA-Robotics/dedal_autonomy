@@ -1,5 +1,0 @@
-  File "/home/dron/ws_controller/install/flask_pkg/lib/python3.10/site-packages/flask_pkg/flask_server.py", line 6
-    from flask import Flask, render_template, jsonify, request, make_response. redirect
-                                                                             ^
-SyntaxError: invalid syntax
-
