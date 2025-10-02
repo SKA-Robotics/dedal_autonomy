@@ -20,8 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "um7_logger = csv_pkg.save_um7_csv:main",
-            "fc_logger = csv_pkg.save_fc_csv:main",
+            "logger_um7 = csv_pkg.save_um7_csv:main",
+            "logger_fc = csv_pkg.save_fc_csv:main",
+            "reader_um7 = csv_pkg.um7_imu_reader:main",
         ],
     },
 )

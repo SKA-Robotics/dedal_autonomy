@@ -30,13 +30,9 @@ class LoggingNode(Node):
             self.listener_callback,
             100)
         
-        # self.create_timer(1.0, self.timer_callback)
         self.subscription
         self.get_logger().info("Init complete")
 
-    def timer_callback(self):
-        self.get_logger().info("Hello " + str(self.counter_))
-        self.counter_ += 1
 
     def time_now(self):
         now = datetime.now()
@@ -60,7 +56,7 @@ def main(args=None):
 
 
 class CSVWriter:
-    def __init__(self, filename, headers=None, batch_size=20, path='/home/dron/log_data/'):
+    def __init__(self, filename, headers=None, batch_size=20, path='/home/dron/dedal_autonomy/log_data/'):
         self.path = path
         self.headers = headers
         self.batch_size = batch_size
@@ -69,10 +65,9 @@ class CSVWriter:
         
 
     def change_filename(self, filename):
-        self.filename = self.path + filename
+        self.filename = self.path + filename + ".csv"
         print(self.filename)
         self._file_initialized = os.path.exists(filename)
-        print(self._file_initialized)
 
     def add_row(self, row):
         self.buffer.append(row)

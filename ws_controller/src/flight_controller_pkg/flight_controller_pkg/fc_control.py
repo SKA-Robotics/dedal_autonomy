@@ -12,7 +12,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, qos_profile_sensor_data
 
 from pymavlink import mavutil, mavwp
-from custom_msgs.msg import DroneStatus, GeoData, TagLocation
+from custom_msgs.msg import DroneStatus, GeoData, TagLocation, ImuData, GyroData, AccelData
 from example_interfaces.msg import String
 
 LatLon = Tuple[float, float]
@@ -832,13 +832,16 @@ class MainData:
         self._last_imu_data = ImuData()
         self._last_imu_data.accel = AccelData()
         self._last_imu_data.gyro = GyroData()
-        self._last_imu_data_timer = 0
+        self._last_imtu_data_timer = 0
         self._stop = False
         t = threading.Thread(target=self._mav_loop, daemon=True)
         t.start()
 
-        # HIGHRES_IMU data request at 200 Hz
-        self.connection.request_message_interval(105, 200)
+        imuThread = threading.Thread(target=self._imu_loop, daemon=True)
+        imuThread.start()
+
+        # HIGHRES_IMU data request at 500 Hz
+        self.connection.request_message_interval(105, 500)
 
     # prosty adapter na logger ROS2
     def _log(self, level: str, msg: str) -> None:
@@ -861,7 +864,10 @@ class MainData:
                     self._last_status.battery_voltage = bat.voltages[0] / 1000.0
             except Exception:
                 pass
-            
+            time.sleep(0.001)
+
+    def _imu_loop(self) -> None:
+        while not self._stop:            
             try:
                 imu_data = self.connection.request_message()
                 if imu_data:
@@ -874,11 +880,11 @@ class MainData:
                     self._last_imu_data.gyro.z = imu_data.zgyro
             except Exception:
                 pass
-            time.sleep(0.001)
 
     def publish_imu(self):
-        if _last_imu_data.timestamp > _last_imu_data_timer:
-            msg = _last_imu_data
+        if self._last_imu_data.timestamp > self._last_imtu_data_timer:
+            self._last_imtu_data_timer = self._last_imu_data.timestamp
+            msg = self._last_imu_data
             return msg
 
     # API używane przez node
@@ -933,7 +939,7 @@ class FlightControllerNode(Node):
         # Timer
         self.timer_ = self.create_timer(0.25, self.timer_function)
         self.timer__ = self.create_timer(0.1, self.mission_timer)
-        self.timer___ = self.create_timer(1/1000, self.mission_timer)
+        self.timer___ = self.create_timer(1/1000, self.imu_publisher_timer)
 
         # Sprzątanie
         #rclpy.on_shutdown(self._on_shutdown)
@@ -949,7 +955,7 @@ class FlightControllerNode(Node):
         msg = self.publish_data.do_magic()
         self.publisher_.publish(msg)
 
-    def imu_publisher_timer() -> None:
+    def imu_publisher_timer(self) -> None:
         try:
             msg = self.publish_data.publish_imu()
             self.publisher__.publish(msg)
