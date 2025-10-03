@@ -9,7 +9,9 @@ from dataclasses import dataclass
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, qos_profile_sensor_data
+from rclpy.qos import QoSProfile, qos_profile_sensor_data, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy, LivelinessPolicy
+from rclpy.duration import Duration
+from rclpy.clock import Clock, ClockType
 
 from pymavlink import mavutil, mavwp
 from custom_msgs.msg import DroneStatus, GeoData, TagLocation, ImuData, GyroData, AccelData
@@ -615,9 +617,9 @@ class MavLinkConfigurator:
         
         # publikacja potrzebnych ramek w zadanej częstotliwości
         try:
-            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_GLOBAL_POSITION_INT, 10)  # id=33
-            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_VFR_HUD, 10)              # id=74
-            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_ATTITUDE, 20)             # id=30
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_GLOBAL_POSITION_INT, 5)  # id=33
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_VFR_HUD, 5)              # id=74
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_ATTITUDE, 5)             # id=30
         except Exception:
             pass
 
@@ -840,8 +842,8 @@ class MainData:
         imuThread = threading.Thread(target=self._imu_loop, daemon=True)
         imuThread.start()
 
-        # HIGHRES_IMU data request at 500 Hz
-        self.connection.request_message_interval(105, 500)
+        # HIGHRES_IMU data request at 250 Hz
+        self.connection.request_message_interval(105, 250)
 
     # prosty adapter na logger ROS2
     def _log(self, level: str, msg: str) -> None:
@@ -878,6 +880,9 @@ class MainData:
                     self._last_imu_data.gyro.x = imu_data.xgyro
                     self._last_imu_data.gyro.y = imu_data.ygyro
                     self._last_imu_data.gyro.z = imu_data.zgyro
+                    self._last_imu_data.latitude = self._last_status.ekf_position.latitude
+                    self._last_imu_data.longitude = self._last_status.ekf_position.longitude
+                    self._last_imu_data.altitude = self._last_status.ekf_position.altitude
             except Exception:
                 pass
 
@@ -927,9 +932,17 @@ class FlightControllerNode(Node):
         
         self.publish_data = MainData(logger=self.get_logger())
 
+
+        qos = QoSProfile(
+            history=HistoryPolicy.KEEP_LAST,
+            depth=50,  # bufor na chwilowe opóźnienia
+            reliability=ReliabilityPolicy.RELIABLE,
+            durability=DurabilityPolicy.VOLATILE
+        )
+
         # Publikator telemetrii – QoS pod dane sensorowe
         self.publisher_ = self.create_publisher(DroneStatus, 'drone_status', qos_profile_sensor_data)
-        self.publisher__ = self.create_publisher(ImuData, "fc_imu_data", 100)
+        self.publisher__ = self.create_publisher(ImuData, "fc_imu_data", qos)
 
         # Subskrypcje; nie trzeba przechowywać referencji w polach
         self.create_subscription(String, 'flask_commands', self.listener_flask_callback, 10)

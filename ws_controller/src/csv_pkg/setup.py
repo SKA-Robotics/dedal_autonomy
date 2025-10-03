@@ -23,6 +23,7 @@ setup(
             "logger_um7 = csv_pkg.save_um7_csv:main",
             "logger_fc = csv_pkg.save_fc_csv:main",
             "reader_um7 = csv_pkg.um7_imu_reader:main",
+            "logger = csv_pkg.save_csv:main",
         ],
     },
 )

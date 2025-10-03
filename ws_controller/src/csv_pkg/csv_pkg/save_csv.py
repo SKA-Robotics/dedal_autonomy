@@ -10,19 +10,26 @@ import csv
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy, LivelinessPolicy
 from rclpy.duration import Duration
 
-
 class LoggingNode(Node):
 
     def __init__(self):
         super().__init__("UM7_logger")
         
-        headers=['Timestamp',
+        headers=['timestamp',
             'Accel X', 'Accel Y', 'Accel Z',
             'Gyro X', 'Gyro Y', 'Gyro Z'
             ]
+        fc_headers=['timestamp',
+            'Accel X', 'Accel Y', 'Accel Z',
+            'Gyro X', 'Gyro Y', 'Gyro Z',
+            'GPS lat', 'GPS lon', 'GPS alt'
+            ]
         
-        self.saver = CSVWriter(self.time_now(), headers)
-        self.saver.change_filename(self.time_now())
+        self.saver_fc = CSVWriter(fc_headers)
+        self.saver_fc.change_filename(self.time_now(source="fc"))
+
+        self.saver_um7 = CSVWriter(headers)
+        self.saver_um7.change_filename(self.time_now(source="um7"))
 
         time.sleep(1)
 
@@ -36,7 +43,13 @@ class LoggingNode(Node):
         self.subscription = self.create_subscription(
             ImuData,
             'fc_imu_data',
-            self.listener_callback,
+            self.fc_listener_callback,
+            qos)
+        
+        self.subscription = self.create_subscription(
+            ImuData,
+            'um7_imu_data',
+            self.um7_listener_callback,
             qos)
         
         # self.create_timer(1.0, self.timer_callback)
@@ -47,20 +60,28 @@ class LoggingNode(Node):
         self.get_logger().info("Hello " + str(self.counter_))
         self.counter_ += 1
 
-    def time_now(self):
+    def time_now(self, source = "-"):
         now = datetime.now()
-        filename = now.strftime("dane-fc-%d_%m_%y-%H_%M_%S")
+        filename = "dane-" + source + "-" + now.strftime("%d_%m_%y-%H_%M_%S")
         return filename
     
-    def listener_callback(self, msg):
-        self.saver.add_row([
+    def fc_listener_callback(self, msg):
+        self.saver_fc.add_row([
             msg.timestamp,
             msg.accel.x, msg.accel.y, msg.accel.z,
-            msg.gyro.x, msg.gyro.y, msg.gyro.z
+            msg.gyro.x, msg.gyro.y, msg.gyro.z,
+            msg.latitude, msg.longitude, msg.altitude
             ])
         #self.get_logger().info('Odebrano: "%s"' % msg.timestamp)
         #print(msg)
 
+    def um7_listener_callback(self, msg):
+        self.saver_um7.add_row([
+            msg.timestamp,
+            msg.accel.x, msg.accel.y, msg.accel.z,
+            msg.gyro.x, msg.gyro.y, msg.gyro.z
+            ])
+        
 def main(args=None):
     rclpy.init(args=args)
     node = LoggingNode()
@@ -69,7 +90,7 @@ def main(args=None):
 
 
 class CSVWriter:
-    def __init__(self, filename, headers=None, batch_size=20, path='/home/dron/dedal_autonomy/log_data/'):
+    def __init__(self, headers=None, batch_size=5, path='/home/dron/dedal_autonomy/log_data/'):
         self.path = path
         self.headers = headers
         self.batch_size = batch_size

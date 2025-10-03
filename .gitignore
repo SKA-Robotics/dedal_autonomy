@@ -24,3 +24,7 @@ log_data
 ws_controller/log
 ws_controller/build
 ws_controller/install
+mav.param
+mav.log
+mav.tlog.raw
+mav.cosiek

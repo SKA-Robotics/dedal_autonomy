@@ -6,6 +6,9 @@ from custom_msgs.msg import ImuData, AccelData, GyroData
 import time
 from datetime import datetime
 import math
+from rclpy.qos import QoSProfile, qos_profile_sensor_data, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy, LivelinessPolicy
+from rclpy.duration import Duration
+from rclpy.clock import Clock, ClockType
 
 #G_force = 9.80665
 G_force = 9.81228 # Warsaw g value
@@ -19,9 +22,9 @@ class MainData:
         self.um7.port.close()
         self.um7.port.baudrate = 921600
         self.um7.port.open()
-        # self.um7.calibrate_accelerometers = 1
-        # print("Calibration")
-        # time.sleep(1)
+        self.um7.calibrate_accelerometers = 1
+        print("Calibration")
+        time.sleep(1)
         self.set_rates()
 
         self.msg = ImuData()
@@ -31,7 +34,7 @@ class MainData:
         self.timer_2 = datetime.now()
     
     def set_rates(self):
-        rate = 400
+        rate = 200
         self.um7.creg_com_rates1 = 10
         self.um7.creg_com_rates2 = 10
         self.um7.creg_com_rates3 = rate
@@ -44,13 +47,12 @@ class MainData:
 
     def do_magic(self, publisher):
         for packet in self.um7.recv_all_proc_broadcast(num_packets=400, flush_buffer_on_start=True):
-            #print(packet)
             self.msg.timestamp = int(packet.accel_proc_time*1000000)
-            self.msg.accel.x = float(packet.accel_proc_x * G_force)
-            self.msg.accel.y = float(packet.accel_proc_y * G_force)
+            self.msg.accel.x = float(packet.accel_proc_y * G_force)
+            self.msg.accel.y = float(-packet.accel_proc_x * G_force)
             self.msg.accel.z = float(packet.accel_proc_z * G_force)
-            self.msg.gyro.x = float(packet.gyro_proc_x*math.pi/180)
-            self.msg.gyro.y = float(packet.gyro_proc_y*math.pi/180)
+            self.msg.gyro.x = float(packet.gyro_proc_y*math.pi/180)
+            self.msg.gyro.y = float(-packet.gyro_proc_x*math.pi/180)
             self.msg.gyro.z = float(packet.gyro_proc_z*math.pi/180)
             publisher.publish(self.msg)
         
@@ -80,7 +82,15 @@ class UM7Node(Node):
 
         self.public_data = MainData()
 
-        self.publisher_ = self.create_publisher(ImuData, "um7_imu_data", 100)
+        qos = QoSProfile(
+            history=HistoryPolicy.KEEP_LAST,
+            depth=50,  # bufor na chwilowe opóźnienia
+            reliability=ReliabilityPolicy.RELIABLE,
+            durability=DurabilityPolicy.VOLATILE
+        )
+
+
+        self.publisher_ = self.create_publisher(ImuData, "um7_imu_data", qos)
 
         self.timer_ = self.create_timer(1, self.timer_function)
 
