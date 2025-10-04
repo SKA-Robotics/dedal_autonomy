@@ -25,9 +25,9 @@ atexit.register(_shutdown_camera)
 BASE_DIR = '/home/dron'  # Zmień na odpowiednią ścieżkę
 
 # Katalog szablonów
-template_dir = os.path.join(os.path.expanduser('~'), 'ws_controller/src/flask_pkg/flask_pkg/templates')
-static_dir = os.path.join(os.path.expanduser('~'), 'ws_controller/src/flask_pkg/flask_pkg/static')
-
+template_dir = os.path.join(os.path.expanduser('~'), 'dedal_autonomy/ws_controller/src/flask_pkg/flask_pkg/templates')
+static_dir = os.path.join(os.path.expanduser('~'), 'dedal_autonomy/ws_controller/src/flask_pkg/flask_pkg/static')
+print(template_dir)
 # Flask
 app = Flask(__name__, template_folder=template_dir)
 app = Flask(
@@ -242,6 +242,13 @@ def index():
         elif request.form.get('test_6') == 'Test_6':
             ros2_node.publish_message('test_6')
 
+        elif request.form.get('test_7') == 'Test_7':
+            ros2_node.publish_message('test_7')
+        elif request.form.get('test_8') == 'Test_8':
+            ros2_node.publish_message('test_8')
+        elif request.form.get('test_9') == 'Test_9':
+            ros2_node.publish_message('test_9')
+
         elif request.form.get('play_barka') == 'Play_barka':
             ros2_node.publish_message('play_Barka')
         elif request.form.get('inne') == 'Inne':
@@ -401,7 +408,7 @@ def upload_csv():
 
 def main():
     # host=0.0.0.0 aby dostęp był z sieci; debug opcjonalny
-    app.run(debug=True, use_reloader=False, host='0.0.0.0')
+    app.run(debug=True, use_reloader=True, host='0.0.0.0')
 
 
 if __name__ == '__main__':

@@ -990,19 +990,20 @@ class FlightControllerNode(Node):
                     [1.55, -0.4, 0.0],
                     [1.55, 0.4, 0.0],
                     [0.4, 1.55, 0.0],
-                    [-1.95, 0.0, 0.0],
-                    [0.0, 0.0, 1.0],
-                    [2.4, 1.6, 0.0],
-                    [0.0, -2.3, 0.0],
-                    [-1.1, -1.4, 0.0],
-                    [0.0, 4.4, 0.0],
-                    [-1.3, 0.4, 0.0],
-                    [0.0, -5.4, 0.0],
-                    [-1.3, 0.4, 0.0],
-                    [0.0, 4.4, 0.0],
-                    [-1.1, -1.4, 0.0],
-                    [0.0, -2.3, 0.0],
-                    [2.4, 1.6, 0.0]
+                    [-1.95, 0.0, 0.0]
+                    # ,
+                    # [0.0, 0.0, 1.0],
+                    # [2.4, 1.6, 0.0],
+                    # [0.0, -2.3, 0.0],
+                    # [-1.1, -1.4, 0.0],
+                    # [0.0, 4.4, 0.0],
+                    # [-1.3, 0.4, 0.0],
+                    # [0.0, -5.4, 0.0],
+                    # [-1.3, 0.4, 0.0],
+                    # [0.0, 4.4, 0.0],
+                    # [-1.1, -1.4, 0.0],
+                    # [0.0, -2.3, 0.0],
+                    # [2.4, 1.6, 0.0]
                     ]
 
         if missionStatus.autonomyOn is True:
@@ -1073,7 +1074,7 @@ class FlightControllerNode(Node):
                     missionStatus.movementOn = True
                     self.get_logger().info('TAKEOFF')
                     missionStatus.duration = 10
-                    self.publish_data.connection.mission.takeoff(2)
+                    self.publish_data.connection.mission.takeoff(4)
             
             elif missionStatus.inSearchMode is True and missionStatus.searchPoint == len(missionPlan):
                 self.get_logger().info('Koniec poszukiwań - nie udało się znaleźć celu')
@@ -1178,13 +1179,13 @@ class FlightControllerNode(Node):
             self.publish_data.connection.tune_short()
             self.publish_data.connection.mission.move_map_relative(dx=1.0, dy=0, dz=0.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_2':
-            self.get_logger().info('Test 2 - Lot 1 m na Wschód (0,5 m/s)')
+            self.get_logger().info('Test 2 - Lot 1 m w góre (0,5 m/s)')
             self.publish_data.connection.tune_short()
-            self.publish_data.connection.mission.move_map_relative(dx=0.0, dy=1.0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.publish_data.connection.mission.move_map_relative(dx=0.0, dy=0.0, dz=1.0, speed_mps=0.5, rate_hz=10)
         elif cmd == 'test_3':
-            self.get_logger().info('Test 3 - Lot 2 m na Południe i Zachód (0,5 m/s)')
+            self.get_logger().info('Test 3 - Lot 1 m w dół (0,5 m/s)')
             self.publish_data.connection.tune_short()
-            self.publish_data.connection.mission.move_map_relative(dx=-2.0, dy=-2.0, dz=0.0, speed_mps=0.5, rate_hz=10)
+            self.publish_data.connection.mission.move_map_relative(dx=0.0, dy=0.0, dz=-1.0, speed_mps=0.5, rate_hz=10)
 
         elif cmd == 'test_4':
             self.get_logger().info('Test 4 - Skierowanie się na Północ (5 deg/s)')
@@ -1195,9 +1196,20 @@ class FlightControllerNode(Node):
             self.publish_data.connection.tune_short()
             self.publish_data.connection.mission.condition_yaw(30, 5, 1, True)
         elif cmd == 'test_6':
-            self.get_logger().info('Brak profilu dla Test 6')
-            self.publish_data.connection.mission.condition_yaw(30, 5, -1, True)
+            self.get_logger().info('Test 6 - Obrót o 60 deg w lewo (5 deg/s)')
+            self.publish_data.connection.mission.condition_yaw(60, 5, -1, True)
 
+        elif cmd == 'test_7':
+            self.get_logger().info('Test 7 - Lot w przód 4 i do góry 2 (1 m/s)')
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.move_map_relative(dx=4.0, dy=0, dz=-2.0, speed_mps=1, rate_hz=10)
+        elif cmd == 'test_8':
+            self.get_logger().info('Test 8 - Lot w przód 4, lewo 2 i do góry 2 (1 m/s)')
+            self.publish_data.connection.tune_short()
+            self.publish_data.connection.mission.move_map_relative(dx=4.0, dy=-2.0, dz=-2.0, speed_mps=1, rate_hz=10)
+        elif cmd == 'test_9':
+            self.get_logger().info('Lot w tył 2, prawo 2 i w dół 2 (1 m/s)')
+            self.publish_data.connection.mission.move_map_relative(dx=-2.0, dy=2, dz=2.0, speed_mps=1, rate_hz=10)
 
         elif cmd == 'set_geo':
             self.publish_data.set_fence()
