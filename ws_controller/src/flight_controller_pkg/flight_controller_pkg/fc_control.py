@@ -23,36 +23,33 @@ LatLon = Tuple[float, float]
 finallPosition = []
 finallOrientation = []
 
+# Kompleksowy zbiór danych o dronie jakie posiada ten program
 @dataclass
 class MissionParams:
-    xGoal: float = 0.0
+    xGoal: float = 0.0  # Cel - odległości - misji lotu
     yGoal: float = 0.0
     zGoal: float = 0.0
-    yawGoal: float = 0.0
-    xVelocity: float = 0.0
+    yawGoal: float = 0.0    # Cel - orientacja - misji obrotu
+    xVelocity: float = 0.0  # Oczekiwana prędkośc misji lotu
     yVelocity: float = 0.0
     zVelocity: float = 0.0
     yawVelocity: float = 0.0
-    xReal: float = 0.0
-    yReal: float = 0.0
-    zReal: float = 0.0
-    yawReal: float = 0.0
-    duration: float = 10
-    elapsed: float = 0
+    duration: float = 10    # Przewidywany czas trwania misji
+    elapsed: float = 0  # Czas misji który upłyną
     start: int = 0
-    autonomyOn: bool = False
+    autonomyOn: bool = False    # Flagi statusu
     movementOn: bool = False
     isArmed: bool = False
-    heading: float = 0.0
     inSearchMode: bool = False
-    searchPoint: int = 0
     durningTakeoff: bool = False
     foundTarget: bool = False
-    xTarget: float = 0.0
+    approachingTarget: bool = False
+    heading: float = 0.0    # Znana orientacja drona
+    searchPoint: int = 0    # aktualny punkt na liście Misji poszukiwawczej
+    xTarget: float = 0.0    # Odległości do wykrytego Arucotaga
     yTarget: float = 0.0
     zTarget: float = 0.0
-    approachingTarget: bool = False
-    targetHoverTimer: float = 0
+    targetHoverTimer: float = 0  # Licznik czasu dla zawisu nad celem
 missionStatus = MissionParams()
 
 
@@ -144,6 +141,7 @@ class MisionController:
         else:
             self._log = logger
 
+        # Maski ruchu - ta sama komenda mavlink może mieć rózny skótek w zaleznści od zastosowanej maski
         self._FRAME_BODY_NED = mavutil.mavlink.MAV_FRAME_BODY_NED
         self._FRAME_LOCAL_NED = mavutil.mavlink.MAV_FRAME_LOCAL_NED
         self._TYPE_MASK_USE_VELOCITY = 0b0000111111000111   # używaj tylko vx, vy, vz
@@ -151,48 +149,7 @@ class MisionController:
         self._TYPE_MASK_USE_YAW = 0b000010111111111   # używaj tylko yaw
         self._TYPE_MASK_USE_ROT_VELOCITY = 0b000000111111111   # używaj tylko vx, vy, vz
 
-    def takeoff_and_hover(self, alt=5.0, loiter_time_s=0):
-        # musimy znać aktualną pozycję do LOITER
-        pos = self.master.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=5)
-        if not pos: raise RuntimeError("Brak GLOBAL_POSITION_INT.")
-        lat, lon = pos.lat, pos.lon
-        frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
-
-        if loiter_time_s > 0:
-            cmd = mavutil.mavlink.MAV_CMD_NAV_LOITER_TIME
-            p1 = loiter_time_s
-        else:
-            cmd = mavutil.mavlink.MAV_CMD_NAV_LOITER_UNLIM
-            p1 = 0
-
-        mi0 = mavutil.mavlink.MAVLink_mission_item_int_message(
-            self.master.target_system, self.master.target_component, 1, frame,
-            cmd, 0, 1,
-            p1, 0, 0, float('nan'), lat, lon, alt
-        )
-
-        mission = [mi0]
-
-        self.master.mav.mission_clear_all_send(self.master.target_system, self.master.target_component)
-        self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=3)
-
-
-        self.master.mav.mission_count_send(self.master.target_system, self.master.target_component, len(mission))
-        idx = 0
-        while True:
-            req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST'], blocking=True, timeout=5)
-            if not req: raise RuntimeError("Timeout przy uploadzie misji.")
-            if req.seq == idx:
-                self.master.mav.send(mission[idx])
-                idx += 1
-                if idx == len(mission):
-                    break
-
-        # ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=2)
-        # if not ack: raise RuntimeError("Brak MISSION_ACK.")
-        # start od 0
-        self.master.mav.mission_set_current_send(self.master.target_system, self.master.target_component, 0)
-
+    # Funkcja startu - wysyła polecenie staru na zadaną wysokość
     def takeoff(self, alt_m=10):
         # MAV_CMD_NAV_TAKEOFF:
         # param7 = docelowa wysokość (m, względem HOME), param4 = yaw (stopnie), jeśli 0 to bez zmiany
@@ -207,40 +164,82 @@ class MisionController:
         )
         self._log('info', f"Komenda TAKEOFF do {alt_m} m wysłana.")
 
-    def upload_mission(self, waypoints: list[LatLon]) -> None:
-        # Wgrywa prostą misję waypointów (lat, lon, alt).
-        wp_loader = mavwp.MAVWPLoader()
-        seq = 0
-        frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
-        for lat, lon, alt in waypoints:
-            msg = mavutil.mavlink.MAVLink_mission_item_int_message(
-                self.master.target_system, self.master.target_component,
-                seq, frame, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT,
-                0, 1, 0, 0, 0, 0, int(lat*1e7), int(lon*1e7), alt
-            )
-            wp_loader.add(msg)
-            seq += 1
+    # Stary kod testowy - obecnie niewykorzystany
+    #
+    # def takeoff_and_hover(self, alt=5.0, loiter_time_s=0):
+    #     # musimy znać aktualną pozycję do LOITER
+    #     pos = self.master.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=5)
+    #     if not pos: raise RuntimeError("Brak GLOBAL_POSITION_INT.")
+    #     lat, lon = pos.lat, pos.lon
+    #     frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
+    #
+    #     if loiter_time_s > 0:
+    #         cmd = mavutil.mavlink.MAV_CMD_NAV_LOITER_TIME
+    #         p1 = loiter_time_s
+    #     else:
+    #         cmd = mavutil.mavlink.MAV_CMD_NAV_LOITER_UNLIM
+    #         p1 = 0
+    #
+    #     mi0 = mavutil.mavlink.MAVLink_mission_item_int_message(
+    #         self.master.target_system, self.master.target_component, 1, frame,
+    #         cmd, 0, 1,
+    #         p1, 0, 0, float('nan'), lat, lon, alt
+    #     )
+    #
+    #     mission = [mi0]
+    #
+    #     self.master.mav.mission_clear_all_send(self.master.target_system, self.master.target_component)
+    #     self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=3)
+    #
+    #     self.master.mav.mission_count_send(self.master.target_system, self.master.target_component, len(mission))
+    #     idx = 0
+    #     while True:
+    #         req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST'], blocking=True, timeout=5)
+    #         if not req: raise RuntimeError("Timeout przy uploadzie misji.")
+    #         if req.seq == idx:
+    #             self.master.mav.send(mission[idx])
+    #             idx += 1
+    #             if idx == len(mission):
+    #                 break
+    #     # ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=2)
+    #     # if not ack: raise RuntimeError("Brak MISSION_ACK.")
+    #     # start od 0
+    #     self.master.mav.mission_set_current_send(self.master.target_system, self.master.target_component, 0)
+    #
+    # def upload_mission(self, waypoints: list[LatLon]) -> None:
+    #     # Wgrywa prostą misję waypointów (lat, lon, alt).
+    #     wp_loader = mavwp.MAVWPLoader()
+    #     seq = 0
+    #     frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
+    #     for lat, lon, alt in waypoints:
+    #         msg = mavutil.mavlink.MAVLink_mission_item_int_message(
+    #             self.master.target_system, self.master.target_component,
+    #             seq, frame, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT,
+    #             0, 1, 0, 0, 0, 0, int(lat*1e7), int(lon*1e7), alt
+    #         )
+    #         wp_loader.add(msg)
+    #         seq += 1
+    #
+    #     self._log('info', f'🔄 Wysyłam {wp_loader.count()} waypointy')
+    #     self.master.waypoint_clear_all_send()
+    #     self.master.waypoint_count_send(wp_loader.count())
+    #
+    #     for _ in range(wp_loader.count()):
+    #         req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST_INT'], blocking=True, timeout=5)
+    #         if not req:
+    #             raise RuntimeError('Timeout przy żądaniu waypointu')
+    #         idx = int(req.seq)
+    #         self.master.mav.send(wp_loader.wp(idx))
+    #
+    #     # ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=5)
+    #     # if not ack:
+    #     #     raise RuntimeError('Brak MISSION_ACK')
+    #     # if ack.type != mavutil.mavlink.MAV_MISSION_ACCEPTED:
+    #     #     raise RuntimeError(f'MISSION_ACK niepowodzenie (type={ack.type})')
+    #     self._log('info', '✅ Misja wgrana')
 
-        self._log('info', f'🔄 Wysyłam {wp_loader.count()} waypointy')
-        self.master.waypoint_clear_all_send()
-        self.master.waypoint_count_send(wp_loader.count())
 
-        for _ in range(wp_loader.count()):
-            req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST_INT'], blocking=True, timeout=5)
-            if not req:
-                raise RuntimeError('Timeout przy żądaniu waypointu')
-            idx = int(req.seq)
-            self.master.mav.send(wp_loader.wp(idx))
-
-        # ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=5)
-        # if not ack:
-        #     raise RuntimeError('Brak MISSION_ACK')
-        # if ack.type != mavutil.mavlink.MAV_MISSION_ACCEPTED:
-        #     raise RuntimeError(f'MISSION_ACK niepowodzenie (type={ack.type})')
-        self._log('info', '✅ Misja wgrana')
-
-
-
+    # Funkcja do liczenia jakiegoś składnika poleceń mavlink
     def _time_boot_ms(self) -> int:
         import time
         if not hasattr(self, "_boot0"):
@@ -248,7 +247,7 @@ class MisionController:
         # ms od "startu" obiektu; uint32 wrap dla pewności
         return int((time.monotonic() - self._boot0) * 1000) & 0xFFFFFFFF
 
-
+    # Wysłanie chwilowej prędkości w osiach x, y i z do kontrolera względem aktualnej orientacji drona (punkt 0,0,0 w środku drona)
     def _send_body_velocity(self, vx: float, vy: float, vz: float) -> None:
         """
         Wyślij pojedynczy setpoint prędkości w BODY_NED:
@@ -266,6 +265,7 @@ class MisionController:
             0, 0               # yaw, yaw_rate – ignorowane
         )
 
+    # Wysłanie chwilowej prędkości w osiach x, y i z do kontrolera względem globalnej orientacji drona (punkt 0,0,0 w środku drona)
     def _send_local_velocity(self, vx: float, vy: float, vz: float) -> None:
         """
         Prędkości w układzie LOCAL_NED (mapa): x=N, y=E, z=Down [m/s].
@@ -282,6 +282,7 @@ class MisionController:
             0, 0           # yaw, yaw_rate ignorowane
         )
 
+    # Wysłanie orientacji kontowej jaką ma osiągnąć dron (wartość orientacji kompasu)
     def _send_local_velocity_rotation(self, yaw_rate: float) -> None:
         """
         Prędkości w układzie LOCAL_NED (mapa).
@@ -299,6 +300,7 @@ class MisionController:
             yaw_rate
         )
 
+    # Wyznaczenie orientacji jaką ma osiągnąć dron by obrócić się o zadany kąt
     def condition_yaw(self, target_angle_deg, yaw_speed_dps, direction, relative=True) -> None:
         """
         direction:  1 = CW, -1 = CCW
@@ -359,7 +361,7 @@ class MisionController:
             )
 
 
-
+    # Wysłanie komendy zerujacej prędkośc drona
     def stop(self, repeats: int = 5, rate_hz: int = 10) -> None:
         """
         Wyhamuj do zera (wysyłając kilka ramek 0,0,0).
@@ -371,6 +373,7 @@ class MisionController:
             time.sleep(period)
         self._log('info', '🛑 Zatrzymano setpoint prędkości')
 
+    # Obliczenie prędkości w osiach i czasu aby porószyć dorna o zadaną wartość względem orientacji drona
     def move_body_relative(self, dx: float = 0.0, dy: float = 0.0, dz: float = 0.0,
                            speed_mps: float = 1.0, rate_hz: int = 10) -> None:
         """
@@ -382,7 +385,7 @@ class MisionController:
 
         global missionStatus
 
-        if missionStatus.movementOn == False:
+        if missionStatus.movementOn == False: # Weryfikacja flag - czy autonomia jest w odpowiednim stanie
 
             if missionStatus.autonomyOn == False:
                 self._log('warn', f'Tryb autonomiczny wyłączony - pomijam')
@@ -413,19 +416,13 @@ class MisionController:
         self._log('info', f'➡️ Ruch BODY_NED: dx={dx:.2f} dy={dy:.2f} dz={dz:.2f} (L={L:.2f} m) '
                           f'v≈({vx:.2f},{vy:.2f},{vz:.2f}) m/s przez ~{duration:.2f} s')
 
-
+        # Wyliczone wartości są wpisywane do zmiennej globalnej 
         missionStatus.xVelocity = vx
         missionStatus.yVelocity = vy
         missionStatus.zVelocity = vz
         missionStatus.duration = duration
 
-        # while time.time() < t_end:
-        #     self._send_body_velocity(vx, vy, vz)
-        #     time.sleep(period)
-
-        # self.stop(rate_hz=rate_hz)
-        # self._log('info', '✅ Zrealizowano ruch względny BODY_NED')
-
+    # Obliczenie prędkości w osiach i czasu aby porószyć dorna o zadaną wartość względem mapy (osie zgodnie w kierunkami geograficznymi "+x = Północ")
     def move_map_relative(self, dx: float = 0.0, dy: float = 0.0, dz: float = 0.0,
                           speed_mps: float = 1.0, rate_hz: int = 10) -> None:
         """
@@ -472,103 +469,110 @@ class MisionController:
 
             self._log('info', 'Zadano ruch względny LOCAL_NED')
 
-    def rotate_map_relative(self, yaw: float = 0.0, speed_rps: float = 1.0, rate_hz: int = 10) -> None:
-        """
-        Przemieść o (dx,dy,dz) w METRACH względem mapy (LOCAL_NED).
-        x>0=północ, y>0=wschód, z>0=w dół. Utrzymanie wysokości -> dz=0 (vz=0).
-        Realizacja przez stałą prędkość w LOCAL_NED => tor PROSTY w świecie.
-        """
-        global missionStatus
-        missionStatus.yawGoal = yaw
 
-        if speed_rps <= 0:
-            raise ValueError("speed_rps musi być > 0")
+    # Sekcja kodu testowego - obecnie niewykorzystany
+    # -------------------------------------------------------
+    # def rotate_map_relative(self, yaw: float = 0.0, speed_rps: float = 1.0, rate_hz: int = 10) -> None:
+    #     """
+    #     Przemieść o (dx,dy,dz) w METRACH względem mapy (LOCAL_NED).
+    #     x>0=północ, y>0=wschód, z>0=w dół. Utrzymanie wysokości -> dz=0 (vz=0).
+    #     Realizacja przez stałą prędkość w LOCAL_NED => tor PROSTY w świecie.
+    #     """
+    #     global missionStatus
+    #     missionStatus.yawGoal = yaw
 
-        if yaw == 0:
-            self._log('warning', 'Zadano zerowy obrót — pomijam')
-            return
+    #     if speed_rps <= 0:
+    #         raise ValueError("speed_rps musi być > 0")
 
-        duration = yaw / speed_rps
+    #     if yaw == 0:
+    #         self._log('warning', 'Zadano zerowy obrót — pomijam')
+    #         return
 
-        self._log('info', f'➡️ Obrót LOCAL_NED: yaw=({yaw:.2f}'
-                          f'omega≈({speed_rps:.2f} rps t≈{duration:.2f}s')
+    #     duration = yaw / speed_rps
 
-        missionStatus.yawVelocity = speed_rps
-        missionStatus.duration = duration
+    #     self._log('info', f'➡️ Obrót LOCAL_NED: yaw=({yaw:.2f}'
+    #                       f'omega≈({speed_rps:.2f} rps t≈{duration:.2f}s')
 
-        self._log('info', 'Zadano ruch względny LOCAL_NED')
+    #     missionStatus.yawVelocity = speed_rps
+    #     missionStatus.duration = duration
 
-    def move_map_offset_position(self, dx: float, dy: float, dz: float,
-                                    hold_s: float = 5.0, rate_hz: int = 10) -> None:
-        """
-        Przesunięcie pozycyjne: podaj offset (dx,dy,dz) względem aktualnej pozycji LOCAL_NED.
-        Wymaga odbierania bieżącej pozycji LOCAL_POSITION_NED.
-        """
-        import time, math
-        # Pobierz aktualną pozycję LOCAL_POSITION_NED
-        msg = self.master.recv_match(type='LOCAL_POSITION_NED', blocking=True, timeout=1.0)
-        if msg is None:
-            self._log('error', 'Brak LOCAL_POSITION_NED – EKF/local frame niegotowy?')
-            return
-        x0, y0, z0 = msg.x, msg.y, msg.z
-        xt, yt, zt = x0 + dx, y0 + dy, z0 + dz
+    #     self._log('info', 'Zadano ruch względny LOCAL_NED')
 
-        self._log('info', f'🎯 Cel pozycji LOCAL_NED: ({xt:.2f}, {yt:.2f}, {zt:.2f}) [m]')
-        period = 1.0 / rate_hz
-        t_end = time.time() + hold_s
-        while time.time() < t_end:
-            self._send_local_position_target(xt, yt, zt)
-            time.sleep(period)
 
-        self._log('info', '✅ Wysłano cel pozycyjny (LOCAL_NED)')
+    # def move_map_offset_position(self, dx: float, dy: float, dz: float,
+    #                                 hold_s: float = 5.0, rate_hz: int = 10) -> None:
+    #     """
+    #     Przesunięcie pozycyjne: podaj offset (dx,dy,dz) względem aktualnej pozycji LOCAL_NED.
+    #     Wymaga odbierania bieżącej pozycji LOCAL_POSITION_NED.
+    #     """
+    #     import time, math
+    #     # Pobierz aktualną pozycję LOCAL_POSITION_NED
+    #     msg = self.master.recv_match(type='LOCAL_POSITION_NED', blocking=True, timeout=1.0)
+    #     if msg is None:
+    #         self._log('error', 'Brak LOCAL_POSITION_NED – EKF/local frame niegotowy?')
+    #         return
+    #     x0, y0, z0 = msg.x, msg.y, msg.z
+    #     xt, yt, zt = x0 + dx, y0 + dy, z0 + dz
 
-    def move_right(self, distance_m: float = 10.0, speed_mps: float = 1.0, rate_hz: int = 10) -> None:
-        """
-        Szybka komenda: „w prawo o distance_m”.
-        """
-        self.move_body_relative(dx=0.0, dy=distance_m, dz=0.0,
-                                speed_mps=speed_mps, rate_hz=rate_hz)
+    #     self._log('info', f'🎯 Cel pozycji LOCAL_NED: ({xt:.2f}, {yt:.2f}, {zt:.2f}) [m]')
+    #     period = 1.0 / rate_hz
+    #     t_end = time.time() + hold_s
+    #     while time.time() < t_end:
+    #         self._send_local_position_target(xt, yt, zt)
+    #         time.sleep(period)
 
-    def _read_local_position_ned(self):
-        """
-        Szybki odczyt ostatniego LOCAL_POSITION_NED z MAVLink (bez blokowania).
-        Zwraca tuple: (x, y, z, vx, vy, vz) lub None, jeśli brak świeżych danych.
-        """
-        msg = self.master.recv_match(type='LOCAL_POSITION_NED', blocking=False)
-        if msg is None:
-            return None
-        # x,y,z [m], vx,vy,vz [m/s] względem LOCAL_NED
-        return (float(getattr(msg, 'x', 0.0)),
-                float(getattr(msg, 'y', 0.0)),
-                float(getattr(msg, 'z', 0.0)),
-                float(getattr(msg, 'vx', 0.0)),
-                float(getattr(msg, 'vy', 0.0)),
-                float(getattr(msg, 'vz', 0.0)))
+    #     self._log('info', '✅ Wysłano cel pozycyjny (LOCAL_NED)')
+
+    # def move_right(self, distance_m: float = 10.0, speed_mps: float = 1.0, rate_hz: int = 10) -> None:
+    #     """
+    #     Szybka komenda: „w prawo o distance_m”.
+    #     """
+    #     self.move_body_relative(dx=0.0, dy=distance_m, dz=0.0,
+    #                             speed_mps=speed_mps, rate_hz=rate_hz)
+
+    # def _read_local_position_ned(self):
+    #     """
+    #     Szybki odczyt ostatniego LOCAL_POSITION_NED z MAVLink (bez blokowania).
+    #     Zwraca tuple: (x, y, z, vx, vy, vz) lub None, jeśli brak świeżych danych.
+    #     """
+    #     msg = self.master.recv_match(type='LOCAL_POSITION_NED', blocking=False)
+    #     if msg is None:
+    #         return None
+    #     # x,y,z [m], vx,vy,vz [m/s] względem LOCAL_NED
+    #     return (float(getattr(msg, 'x', 0.0)),
+    #             float(getattr(msg, 'y', 0.0)),
+    #             float(getattr(msg, 'z', 0.0)),
+    #             float(getattr(msg, 'vx', 0.0)),
+    #             float(getattr(msg, 'vy', 0.0)),
+    #             float(getattr(msg, 'vz', 0.0)))
 
     # ======== (Opcjonalnie) Setpoint POZYCJI w LOCAL_NED ========
     # Wysyłanie pozycji w LOCAL_NED też da prostą trajektorię.
     # Tu prosta wersja: wysyłamy cel wielokrotnie przez określony czas.
-    def _send_local_position_target(self, x: float, y: float, z: float) -> None:
-        """
-        Cel pozycyjny w LOCAL_NED (metry od punktu odniesienia EKF).
-        """
-        self.master.mav.set_position_target_local_ned_send(
-            self._time_boot_ms(),
-            self.master.target_system,
-            self.master.target_component,
-            self._FRAME_LOCAL_NED,
-            self._TYPE_MASK_USE_POSITION,
-            x, y, z,       # pozycja [m]
-            0, 0, 0,       # prędkości ignorowane
-            0, 0, 0,       # przyspieszenia ignorowane
-            0, 0           # yaw, yaw_rate ignorowane
-        )
+    # def _send_local_position_target(self, x: float, y: float, z: float) -> None:
+    #     """
+    #     Cel pozycyjny w LOCAL_NED (metry od punktu odniesienia EKF).
+    #     """
+    #     self.master.mav.set_position_target_local_ned_send(
+    #         self._time_boot_ms(),
+    #         self.master.target_system,
+    #         self.master.target_component,
+    #         self._FRAME_LOCAL_NED,
+    #         self._TYPE_MASK_USE_POSITION,
+    #         x, y, z,       # pozycja [m]
+    #         0, 0, 0,       # prędkości ignorowane
+    #         0, 0, 0,       # przyspieszenia ignorowane
+    #         0, 0           # yaw, yaw_rate ignorowane
+    #     )
+    # -------------------------------------------------------
+
+    # Wysłanie polecenia wyczyszczenia misji po punktach jeśli jest wprowadzona do kontrolera lotu
     def clear_mission(self):
         self.master.mav.mission_clear_all_send(self.master.target_system, self.master.target_component)
         # ACK (opcjonalnie)
         self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=3)
 
-
+    # Wysłanie polecenia rozpoczęcia misji po punktach jeśli jest wprowadzona do kontrolera lotu
     def start_mission(self):
         # Wyślij wyraźny start misji
         self.master.mav.command_long_send(
@@ -581,7 +585,7 @@ class MisionController:
 # =============================================================================
 # -- MAVLink Adapter -----------------------------------------------------------
 # =============================================================================
-class MavLinkConfigurator:
+class MavLinkConfigurator: # Inicjalizacja połączenia z kontrolerem lotu
     def __init__(self, conn_str: str = 'udpin:0.0.0.0:14550', logger=None) -> None:
         self.master = mavutil.mavlink_connection(conn_str)
         self.master.wait_heartbeat()
@@ -595,11 +599,15 @@ class MavLinkConfigurator:
         self.geofence = GeoFenceConfigurator(self.master)
         self.mission = MisionController(self.master)
 
-        # ---- Stan ARM (jak u Ciebie) ----
+        # Notatka
+        # Aby nie blokować działania głównej pętli programu - wartości i stany z kontrolera lotu pobierane są w oddzielnych wątkach.
+        # Kontroler lotu publikuje je "losowo" więc musimy oczekiwać na komende z konkretnym nagłówkiem i dopiero odczytac dane
+
+        # ---- Stan ARM  ----
         self._armed = False
         self._armed_lock = threading.Lock()
 
-        # ---- Stan headingu (nowe) ----
+        # ---- Stan headingu  ----
         self._heading_deg = None           # ostatnio znana wartość [0..360)
         self._heading_ts = 0.0             # unix time ostatniej aktualizacji
         self._heading_lock = threading.Lock()
@@ -607,19 +615,19 @@ class MavLinkConfigurator:
         # Wspólny sygnał stop
         self._stop_evt = threading.Event()
 
-        # Wątek heartbeat (jak u Ciebie)
+        # Wątek heartbeat 
         self._thr_hb = threading.Thread(target=self._watch_heartbeat, daemon=True)
         self._thr_hb.start()
 
-        # Wątek kompasu/headingu (nowe)
+        # Wątek kompasu/headingu 
         self._thr_hdg = threading.Thread(target=self._watch_heading, daemon=True)
         self._thr_hdg.start()
         
-        # publikacja potrzebnych ramek w zadanej częstotliwości
+        # publikacja (przez kontroler lotu) potrzebnych ramek w zadanej częstotliwości
         try:
-            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_GLOBAL_POSITION_INT, 5)  # id=33
-            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_VFR_HUD, 5)              # id=74
-            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_ATTITUDE, 5)             # id=30
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_GLOBAL_POSITION_INT, 5)  # id=33 częśtotliwość 5 Hz
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_VFR_HUD, 5)              # id=74 częśtotliwość 5 Hz
+            self.request_message_interval(mavutil.mavlink.MAVLINK_MSG_ID_ATTITUDE, 5)             # id=30 częśtotliwość 5 Hz
         except Exception:
             pass
 
@@ -636,6 +644,7 @@ class MavLinkConfigurator:
             pass
 
     # -------------------- Odczyty z timeoutami (bez rekursji) -----------------
+    # Odebraie i przetworzenie danych geograficznych z systemu EKF
     def EKF_position(self, timeout: float = 0.5) -> Optional[list]:
         msg = self.master.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=timeout)
         if not msg:
@@ -646,6 +655,7 @@ class MavLinkConfigurator:
         rel_alt = msg.relative_alt / 1000  # Względem Home
         return [lat, lon, alt, rel_alt]
 
+    # Funkcja odczytania danych publikowanyc przez kontroler lotu z konkretnym nagłówkiem
     def request_message(self, mess_type: str = 'HIGHRES_IMU', timeout: float = 0.5):
         try:
             mes = self.master.recv_match(type=mess_type, blocking=True, timeout=timeout)
@@ -653,6 +663,7 @@ class MavLinkConfigurator:
         except Exception:
             return None
 
+    # Funkcja deklaracji częstotliwości z jaką konkretne nagłówki (i dane) mają byc publikowane w mavlink przez kontroler lotu
     def request_message_interval(self, message_id: int, frequency_hz: float) -> None:
         self.master.mav.command_long_send(
             self.master.target_system, self.master.target_component,
@@ -679,11 +690,13 @@ class MavLinkConfigurator:
             with self._armed_lock:
                 self._armed = armed_flag
 
+    # Przepisanie stanu usbrojenia drona
     def is_drone_armed(self) -> bool:
         """Szybkie, nieblokujące – zwraca ostatnio znany stan."""
         with self._armed_lock:
             return self._armed      
 
+    # Przeliczenie orientacji kompasu drona
     def heading_deg(self, timeout: float = 0.5):
         """Zwraca kierunek (kompas) w stopniach [0..360)."""
         # 1) GLOBAL_POSITION_INT.hdg (centy-stopnie)
@@ -717,7 +730,7 @@ class MavLinkConfigurator:
                 return None, None
             return self._heading_deg
 
-    # -------------------- Wątek: heading z kilku źródeł -------------------
+    # -------------------- Wątek: heading    -------------------
     def _watch_heading(self):
         """
         Nasłuchuje tylko ramek z kierunkiem i aktualizuje ostatnio znaną wartość.
@@ -762,7 +775,8 @@ class MavLinkConfigurator:
                     self._heading_deg = new_deg
                     self._heading_ts = time.time()
 
-    # ---------------------- Przykładowe polecenia trybów ----------------------
+    # ---------------------- Polecenia trybów ----------------------
+    # Wysłanie konkretnego stanu do kontrolera lotu
     def set_mode(self, mode = 'AUTO') -> None:
         if mode not in self.master.mode_mapping():
             raise RuntimeError(f"Tryb {mode} nie dostępny")
@@ -774,6 +788,7 @@ class MavLinkConfigurator:
         )
         self._log('info', f'Ustawiono tryb {mode}')
 
+    # Wysłanie by dron się uzbroił
     def arm_drone(self) -> None:
         self.master.mav.command_long_send(
             self.master.target_system,
@@ -783,6 +798,7 @@ class MavLinkConfigurator:
         )
         self._log('info', '✅ Drone uzbrojony!')
 
+    # Wysłanie by dron się rozbroił
     def disarm_drone(self) -> None:
         self.master.mav.command_long_send(
             self.master.target_system,
@@ -794,7 +810,9 @@ class MavLinkConfigurator:
         # self.master.motors_disarmed_wait()
         self._log('info', '✅ Drone rozbrojony!')
 
-    # ------------------------------ Inne - dźwięki ----------------------------------
+
+
+    # ------------------------------ Sekcja "Inne" - dźwięki buzzera ----------------------------------
 
     def tune_short(self, tune= "t200 o2 a8 a4") -> None:
         sysid = self.master.target_system
@@ -836,22 +854,26 @@ class MainData:
         self._last_imu_data.gyro = GyroData()
         self._last_imtu_data_timer = 0
         self._stop = False
+
+        # Wątki na odczyt danych
         t = threading.Thread(target=self._mav_loop, daemon=True)
         t.start()
 
+        # Wątek na odczyt IMU - do usunięcia w przyszłości
         imuThread = threading.Thread(target=self._imu_loop, daemon=True)
         imuThread.start()
 
-        # HIGHRES_IMU data request at 250 Hz
+        # Usyawienia dancy HIGHRES_IMU data request na 250 Hz - nieosiągalne ale kontroler lotu będzie próbował
         self.connection.request_message_interval(105, 250)
 
-    # prosty adapter na logger ROS2
+    # adapter na logger ROS2
     def _log(self, level: str, msg: str) -> None:
         if self._ros_logger:
             getattr(self._ros_logger, level)(msg)
         else:
             print(msg)
 
+    # Aktualizowanie ostatnio odebranych danych pozycji EKF i baterii
     def _mav_loop(self) -> None:
         while not self._stop:
             try:
@@ -868,6 +890,7 @@ class MainData:
                 pass
             time.sleep(0.001)
 
+    # Aktualizowanie ostatnio odebranych z imu kontrolera lotu
     def _imu_loop(self) -> None:
         while not self._stop:            
             try:
@@ -886,15 +909,15 @@ class MainData:
             except Exception:
                 pass
 
+    # Weryfikacja czy nowe dane imu są "młodsze" od ostanich i publikacja na topic jeśli true
     def publish_imu(self):
         if self._last_imu_data.timestamp > self._last_imtu_data_timer:
             self._last_imtu_data_timer = self._last_imu_data.timestamp
             msg = self._last_imu_data
             return msg
 
-    # API używane przez node
+    # Magia publikacji - wpisywanie aktualnych stanów i wartości do wiadomości wysyłanej do procesu serwera flask
     def do_magic(self) -> DroneStatus:
-        # zwróć kopię prostych pól; przy potrzebie głębokiej kopii – rozważ dataclasses.asdict
         global missionStatus
         missionStatus.heading = self.connection.get_heading_deg()
         msg = DroneStatus()
@@ -912,7 +935,7 @@ class MainData:
         msg.ekf_position.altitude = self._last_status.ekf_position.altitude
         return msg
 
-    # GeoFence passthrough
+    # Wywołanie wysłania do kontrolera lotu komendy dotyczących GeoFence 
     def read_fence(self, gd: GeoData) -> None:
         self.connection.geofence.read_fence(gd)
 
@@ -941,18 +964,18 @@ class FlightControllerNode(Node):
         )
 
         # Publikator telemetrii – QoS pod dane sensorowe
-        self.publisher_ = self.create_publisher(DroneStatus, 'drone_status', qos_profile_sensor_data)
-        self.publisher__ = self.create_publisher(ImuData, "fc_imu_data", qos)
+        self.publisher_ = self.create_publisher(DroneStatus, 'drone_status', qos_profile_sensor_data) # wysyłanie na serwer flask
+        self.publisher__ = self.create_publisher(ImuData, "fc_imu_data", qos) # Wysyłanie danych imu - do usunięcia w przyszłości
 
         # Subskrypcje; nie trzeba przechowywać referencji w polach
-        self.create_subscription(String, 'flask_commands', self.listener_flask_callback, 10)
-        self.create_subscription(GeoData, 'geo_points', self.listener_geo_points, 10)
-        self.create_subscription(TagLocation, 'goal_location', self.listener_tag_location, 10)
+        self.create_subscription(String, 'flask_commands', self.listener_flask_callback, 10) # Odbieranie komend z serwera flask
+        self.create_subscription(GeoData, 'geo_points', self.listener_geo_points, 10) # Odbieranie punktów klatki z serwera flask
+        self.create_subscription(TagLocation, 'goal_location', self.listener_tag_location, 10) # Odbieranie odczytów ARuco tag
 
         # Timer
-        self.timer_ = self.create_timer(0.25, self.timer_function)
-        self.timer__ = self.create_timer(0.1, self.mission_timer)
-        self.timer___ = self.create_timer(1/1000, self.imu_publisher_timer)
+        self.timer_ = self.create_timer(0.25, self.timer_function) # Wysyłanie danych na serwer flask
+        self.timer__ = self.create_timer(0.1, self.mission_timer) # Timer do obliczania przebytego dystansu
+        self.timer___ = self.create_timer(1/1000, self.imu_publisher_timer) # Timer pod wysyłanie danych z imu - do usunięcia w przyszłości
 
         # Sprzątanie
         #rclpy.on_shutdown(self._on_shutdown)
@@ -978,7 +1001,7 @@ class FlightControllerNode(Node):
     def mission_timer(self) -> None:
         global missionStatus
 
-        missionPlan = [
+        missionPlan = [  # Zakodowana trasa na latanie po klatce ERC
                     [0.0, 0.0, 0.0],
                     [0.0, 10.0, 1.0],
                     [1.95, 0.0, 0.0],
@@ -1007,14 +1030,13 @@ class FlightControllerNode(Node):
                     ]
 
         if missionStatus.autonomyOn is True:
-            if missionStatus.autonomyOn is False:
+            if missionStatus.autonomyOn is False: # Jesli flaga Autonomi znika to pozostałe procesy zostają przerwane
                 missionStatus.inSearchMode = False
                 missionStatus.inSearchMode = False
                 missionStatus.durningTakeoff = False
                 missionStatus.foundTarget = False
 
-            elif missionStatus.movementOn is True:
-
+            elif missionStatus.movementOn is True: # Gdy dron ma się poruszać - wykonać misje - liczy czas i wysyła do kontrolera lotu (co 0.1 s) prędkośc jaką ten ma utrzymać
                 if missionStatus.xGoal != 0.0 or missionStatus.yGoal != 0.0 or missionStatus.zGoal != 0.0:
                     if missionStatus.elapsed < 0.95 * missionStatus.duration:
                         if missionStatus.approachingTarget is False:
@@ -1023,7 +1045,7 @@ class FlightControllerNode(Node):
                             self.publish_data.connection.mission._send_body_velocity(missionStatus.xVelocity, missionStatus.yVelocity, missionStatus.zVelocity)
                         missionStatus.elapsed += 0.1
 
-                    # Wyhamuj
+                    # Po 95% czasu misji wyhamuj
                     if missionStatus.elapsed >= 0.95 * missionStatus.duration and missionStatus.elapsed < 1.25 * missionStatus.duration:
                         if missionStatus.approachingTarget is False:
                             self.publish_data.connection.mission._send_local_velocity(0.0, 0.0, 0.0)
@@ -1031,6 +1053,7 @@ class FlightControllerNode(Node):
                             self.publish_data.connection.mission._send_body_velocity(0.0, 0.0, 0.0)
                         missionStatus.elapsed += 0.1
 
+                    # Gdy misja się zakończy - upłynie cały czas - wyczyść stany i wartości
                     if missionStatus.elapsed >= 1.25 * missionStatus.duration:
                         self.get_logger().info('✅ Zrealizowano ruch względny LOCAL_NED')
                         self.publish_data.connection.tune_long()
@@ -1049,9 +1072,9 @@ class FlightControllerNode(Node):
                             missionStatus.inSearchMode = True
                             missionStatus.searchPoint = len(missionPlan) + 1
 
-
+                # Dla misji obrotu nie trzeba wysyłać ciągle wartości prędkości - robi to sam kontroler lotu
                 elif missionStatus.yawGoal != 0.0:
-                    if missionStatus.elapsed >= 1.25 * missionStatus.duration:
+                    if missionStatus.elapsed >= 1.25 * missionStatus.duration: # Po zakończonej misji następuje czyszczenie stanów i wartości
                         self.get_logger().info('✅ Zrealizowano obrót względny LOCAL_NED')
                         self.publish_data.connection.tune_long()
                         missionStatus.movementOn = False
@@ -1060,8 +1083,9 @@ class FlightControllerNode(Node):
                     else:
                         missionStatus.elapsed += 0.1
 
-                else:
-                    if missionStatus.elapsed >= 1.1 * missionStatus.duration:
+                # Obsługa specialnej procedury take off
+                else: 
+                    if missionStatus.elapsed >= 1.1 * missionStatus.duration: # Zakończenie procedury Take off
                         self.get_logger().info('✅ Zrealizowano procedurę Takeoff')
                         self.publish_data.connection.tune_long()
                         missionStatus.movementOn = False
@@ -1069,13 +1093,15 @@ class FlightControllerNode(Node):
                         missionStatus.elapsed = 0
                     missionStatus.elapsed += 0.1
             
+            # Wysłanie proceddury Take off
             elif missionStatus.durningTakeoff is True:
                 if missionStatus.isArmed is True:
                     missionStatus.movementOn = True
                     self.get_logger().info('TAKEOFF')
-                    missionStatus.duration = 10
-                    self.publish_data.connection.mission.takeoff(4)
+                    missionStatus.duration = 10 # Czas na sztywno 
+                    self.publish_data.connection.mission.takeoff(4) # <-- take off na 4 m nad ziemią 
             
+            # Zakończenie misji poszukiwania ArucoTagów - skończyły się punkty misji więc wyląduj 
             elif missionStatus.inSearchMode is True and missionStatus.searchPoint == len(missionPlan):
                 self.get_logger().info('Koniec poszukiwań - nie udało się znaleźć celu')
                 missionStatus.inSearchMode = False
@@ -1083,23 +1109,27 @@ class FlightControllerNode(Node):
                 self.get_logger().warn('Rozpoczynam procedurę lądowania')
                 self.publish_data.connection.set_mode('LAND')            
             
+            # Realizacja misji poszukiwania ArucoTagów
             elif missionStatus.inSearchMode is True:
-                fly_speed = 0.25
+                fly_speed = 0.25 # Prędkośc na sztywno 0.25 m/s
                 
+                # Faza 1
                 if missionStatus.searchPoint == 0:
                     self.get_logger().info('Rozpoczynam fazę 1 - start')
                     self.hover_mission()
                     missionStatus.searchPoint += 1
 
+                # Faza 2
                 elif missionStatus.searchPoint == 1:
                     self.get_logger().info('Rozpoczynam fazę 2 - rotacja')
-                    self.publish_data.connection.mission.condition_yaw(0, 10, 1, False)
+                    self.publish_data.connection.mission.condition_yaw(0, 10, 1, False) # Ustawienie drona na północ
                     missionStatus.searchPoint += 1
 
+                # Faza - osiągnięto Arucotaga
                 elif missionStatus.searchPoint == len(missionPlan) + 1:
                     self.get_logger().info('Zawis nad celem - oczekuje potwierdzenia')
 
-
+                # Faza pośrednia - realizacja kolejnych punktów
                 elif missionStatus.searchPoint != 0 and missionStatus.searchPoint != len(missionPlan) + 1:
                     dx = missionPlan[missionStatus.searchPoint][0]
                     dy = missionPlan[missionStatus.searchPoint][1]
@@ -1107,22 +1137,27 @@ class FlightControllerNode(Node):
                     self.publish_data.connection.mission.move_map_relative(dx, dy, dz, speed_mps=fly_speed, rate_hz=10)
                     missionStatus.searchPoint += 1
 
+            # Realizacja zbliżenia się do ArucoTaga
             elif missionStatus.foundTarget == True and missionStatus.approachingTarget is False:
                 dx = missionStatus.xTarget
                 dy = missionStatus.yTarget
                 dz = missionStatus.zTarget
                 
-                if missionStatus.targetHoverTimer >= 10:
+                # Bufor 10 s przed wylądowaniem jeśli w odpowiedniej odległości od ArucoTaga
+                if missionStatus.targetHoverTimer >= 10: 
                     self.publish_data.connection.set_mode('LAND')
                     missionStatus.autonomyOn = False
                     missionStatus.targetHoverTimer = 0
 
+                # Procedura zbliżania się do ArucoTaga
                 if abs(dx) <= 0.2 and abs(dy) <= 0.2:
                     missionStatus.targetHoverTimer += 0.1
                 elif dx != 0 or dy != 0 or dz != 0:
                     missionStatus.approachingTarget = True
                     self.publish_data.connection.mission.move_map_relative(dx, dy, 0.0, speed_mps=0.25, rate_hz=10)
 
+
+    # Misja "wystartuj i zawiśnij"
     def hover_mission(self) -> None:
         global missionStatus
         if missionStatus.autonomyOn is True:
@@ -1141,16 +1176,21 @@ class FlightControllerNode(Node):
         else:
             self.get_logger().warn('Tryb autonomiczny wyłączony - pomijam')
 
+    # --------------------------------------------------
+    # Tłumacz komend tekstowych z flask serwer na proces skótkujący zrobieniem czegoś
+    # --------------------------------------------------
     def listener_flask_callback(self, msg: String) -> None:
         global missionStatus
         cmd = msg.data
         self.get_logger().info(f'cmd: {cmd}')
 
+        # Uzbrajanie i rozbrajanie
         if cmd == 'set_arm':
             self.publish_data.connection.arm_drone()
         elif cmd == 'set_disarm':
             self.publish_data.connection.disarm_drone()
 
+        # Tryby kontrolera lotu
         elif cmd == 'land_now':
             self.publish_data.connection.set_mode('LAND')
         elif cmd == 'stabilize':
@@ -1160,6 +1200,7 @@ class FlightControllerNode(Node):
         elif cmd == 'guided':
             self.publish_data.connection.set_mode('GUIDED')
 
+        # Tryby autonomi tego programu
         elif cmd == 'takeoff':
             self.get_logger().info('Takeoff start')
             self.hover_mission()
@@ -1174,6 +1215,7 @@ class FlightControllerNode(Node):
             missionStatus.inSearchMode = True
             self.publish_data.connection.tune_short()
         
+        # Scenariusze testowe
         elif cmd == 'test_1':
             self.get_logger().info('Test 1 - Lot 1 m na Północ (0,5 m/s)')
             self.publish_data.connection.tune_short()
@@ -1211,6 +1253,7 @@ class FlightControllerNode(Node):
             self.get_logger().info('Lot w tył 2, prawo 2 i w dół 2 (1 m/s)')
             self.publish_data.connection.mission.move_map_relative(dx=-2.0, dy=2, dz=2.0, speed_mps=1, rate_hz=10)
 
+        # GeoFence
         elif cmd == 'set_geo':
             self.publish_data.set_fence()
             self.get_logger().info('Geofence data set')
@@ -1218,6 +1261,7 @@ class FlightControllerNode(Node):
             self.publish_data.clear_fence()
             self.get_logger().info('Geofence data cleared')
         
+        # Komendy pozostałe
         elif cmd == 'play_Barka':
             self.publish_data.connection.play_Barka()
             self.get_logger().info('🎵 Barka')
@@ -1227,10 +1271,12 @@ class FlightControllerNode(Node):
         else:
             self.get_logger().warn(f'Nieznane polecenie: {cmd}')
 
+    # Nasłuch punktów do nowego GeoFence
     def listener_geo_points(self, msg: GeoData) -> None:
         self.get_logger().info('New fence data')
         self.publish_data.read_fence(msg)
 
+    # Nasłuch odległości w osiach x, y i z do wykrytego ArucoTaga
     def listener_tag_location(self, msg: TagLocation) -> None:
         global missionStatus
         self.get_logger().info('New goal data')
