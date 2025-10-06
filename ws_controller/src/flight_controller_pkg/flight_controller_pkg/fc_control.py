@@ -164,80 +164,6 @@ class MisionController:
         )
         self._log('info', f"Komenda TAKEOFF do {alt_m} m wysłana.")
 
-    # Stary kod testowy - obecnie niewykorzystany
-    #
-    # def takeoff_and_hover(self, alt=5.0, loiter_time_s=0):
-    #     # musimy znać aktualną pozycję do LOITER
-    #     pos = self.master.recv_match(type='GLOBAL_POSITION_INT', blocking=True, timeout=5)
-    #     if not pos: raise RuntimeError("Brak GLOBAL_POSITION_INT.")
-    #     lat, lon = pos.lat, pos.lon
-    #     frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
-    #
-    #     if loiter_time_s > 0:
-    #         cmd = mavutil.mavlink.MAV_CMD_NAV_LOITER_TIME
-    #         p1 = loiter_time_s
-    #     else:
-    #         cmd = mavutil.mavlink.MAV_CMD_NAV_LOITER_UNLIM
-    #         p1 = 0
-    #
-    #     mi0 = mavutil.mavlink.MAVLink_mission_item_int_message(
-    #         self.master.target_system, self.master.target_component, 1, frame,
-    #         cmd, 0, 1,
-    #         p1, 0, 0, float('nan'), lat, lon, alt
-    #     )
-    #
-    #     mission = [mi0]
-    #
-    #     self.master.mav.mission_clear_all_send(self.master.target_system, self.master.target_component)
-    #     self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=3)
-    #
-    #     self.master.mav.mission_count_send(self.master.target_system, self.master.target_component, len(mission))
-    #     idx = 0
-    #     while True:
-    #         req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST'], blocking=True, timeout=5)
-    #         if not req: raise RuntimeError("Timeout przy uploadzie misji.")
-    #         if req.seq == idx:
-    #             self.master.mav.send(mission[idx])
-    #             idx += 1
-    #             if idx == len(mission):
-    #                 break
-    #     # ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=2)
-    #     # if not ack: raise RuntimeError("Brak MISSION_ACK.")
-    #     # start od 0
-    #     self.master.mav.mission_set_current_send(self.master.target_system, self.master.target_component, 0)
-    #
-    # def upload_mission(self, waypoints: list[LatLon]) -> None:
-    #     # Wgrywa prostą misję waypointów (lat, lon, alt).
-    #     wp_loader = mavwp.MAVWPLoader()
-    #     seq = 0
-    #     frame = mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT
-    #     for lat, lon, alt in waypoints:
-    #         msg = mavutil.mavlink.MAVLink_mission_item_int_message(
-    #             self.master.target_system, self.master.target_component,
-    #             seq, frame, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT,
-    #             0, 1, 0, 0, 0, 0, int(lat*1e7), int(lon*1e7), alt
-    #         )
-    #         wp_loader.add(msg)
-    #         seq += 1
-    #
-    #     self._log('info', f'🔄 Wysyłam {wp_loader.count()} waypointy')
-    #     self.master.waypoint_clear_all_send()
-    #     self.master.waypoint_count_send(wp_loader.count())
-    #
-    #     for _ in range(wp_loader.count()):
-    #         req = self.master.recv_match(type=['MISSION_REQUEST', 'MISSION_REQUEST_INT'], blocking=True, timeout=5)
-    #         if not req:
-    #             raise RuntimeError('Timeout przy żądaniu waypointu')
-    #         idx = int(req.seq)
-    #         self.master.mav.send(wp_loader.wp(idx))
-    #
-    #     # ack = self.master.recv_match(type='MISSION_ACK', blocking=True, timeout=5)
-    #     # if not ack:
-    #     #     raise RuntimeError('Brak MISSION_ACK')
-    #     # if ack.type != mavutil.mavlink.MAV_MISSION_ACCEPTED:
-    #     #     raise RuntimeError(f'MISSION_ACK niepowodzenie (type={ack.type})')
-    #     self._log('info', '✅ Misja wgrana')
-
 
     # Funkcja do liczenia jakiegoś składnika poleceń mavlink
     def _time_boot_ms(self) -> int:
@@ -602,6 +528,7 @@ class MavLinkConfigurator: # Inicjalizacja połączenia z kontrolerem lotu
         # Notatka
         # Aby nie blokować działania głównej pętli programu - wartości i stany z kontrolera lotu pobierane są w oddzielnych wątkach.
         # Kontroler lotu publikuje je "losowo" więc musimy oczekiwać na komende z konkretnym nagłówkiem i dopiero odczytac dane
+        # KURWA
 
         # ---- Stan ARM  ----
         self._armed = False
