@@ -22,11 +22,9 @@ class MavlinkInterface:
                 "Mavlink interface did not in fact connect to a flight controller, could not provide master"
             )
             return False
-
-    def send_command_long(
+    
+    def post_command_long(
         self,
-        system_id,
-        component_id,
         command,
         confirmation=0,
         command_param_1=0,
@@ -35,15 +33,26 @@ class MavlinkInterface:
         command_param_4=0,
         command_param_5=0,
         command_param_6=0,
-        command_param_7=0,
-    ):
-    """Sends a MAVLink COMMAND_LONG message to a target system and component.
+        command_param_7=0):
+        self._master.master.mav.command_long_send(
+            self._master.target_system,
+            self._master.target_component,
+            command,
+            confirmation,
+            command_param_1,
+            command_param_2,
+            command_param_3,
+            command_param_4,
+            command_param_5,
+            command_param_6,
+            command_param_7)
+        """Sends a MAVLink COMMAND_LONG message to a target system and component.
 
-    This method is a wrapper for the pymavlink `command_long_send` function,
-    facilitating the transmission of commands that require up to seven
-    floating-point parameters.
+        This method is a wrapper for the pymavlink `command_long_send` function,
+        facilitating the transmission of commands that require up to seven
+        floating-point parameters.
 
-    Args:
+        Args:
         system_id (int): The system ID of the target vehicle (e.g., 1 for the first drone).
         component_id (int): The component ID of the target (e.g., 1 for autopilot).
         command (int): The MAVLink command ID to be executed. These are defined in
@@ -57,20 +66,7 @@ class MavlinkInterface:
         command_param_5 (float, optional): Parameter 5 for the specific command. Defaults to 0.
         command_param_6 (float, optional): Parameter 6 for the specific command. Defaults to 0.
         command_param_7 (float, optional): Parameter 7 for the specific command. Defaults to 0.
-    """
-    self._master.master.mav.command_long_send(
-        system_id,
-        component_id,
-        command,
-        confirmation,
-        command_param_1,
-        command_param_2,
-        command_param_3,
-        command_param_4,
-        command_param_5,
-        command_param_6,
-        command_param_7,
-    )
+        """
     
     def set_position_target_local_ned(
         self,
@@ -119,6 +115,11 @@ class MavlinkInterface:
             yaw,
             yaw_rate
         )
+    def post_play_tune(self,tune) -> None:
+        self.master.mav.play_tune_send(self._master.target_system, self._master.target_component, tune.encode())
+
+    def get_topic(self):
+        return True
 
    
 

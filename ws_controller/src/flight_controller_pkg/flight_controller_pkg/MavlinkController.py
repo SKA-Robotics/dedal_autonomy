@@ -1,12 +1,20 @@
 from MavlinkInterface import MavlinkInterface
 
 class MavlinkController:
-    def __init__(self,interface = None):
+    def __init__(self,interface : MavlinInterface):
         self.interface = interface
-        self.master = interface.get_master()
     
-     def reboot_autopilot(self, delay_sec=1):
-        """Sends a command to reboot the autopilot.
+    def arm_drone(self):
+        self.interface.post_command_long(mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
+            0, 1, 0, 0, 0, 0, 0, 0)
+    def disarm_drone(self):
+        self.interface.post_command_long(mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,
+            0, 0, 0, 0, 0, 0, 0, 0)
+
+    
+    def reboot_autopilot(self, delay_sec=1):
+        """
+        Sends a command to reboot the autopilot.
 
         This function uses the MAV_CMD_PREFL_IGHT_REBOOT_SHUTDOWN command to
         restart the vehicle's main flight controller. A short delay is
@@ -23,9 +31,7 @@ class MavlinkController:
                                      connection is lost. Defaults to 1.
         """
         print("Sending reboot command to autopilot...")
-        self._master.mav.command_long_send(
-            self._master.target_system,
-            self._master.target_component,
+        self.interface.post_command_long(
             mavutil.mavlink.MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN,
             0,  # confirmation
             1.0,  # param1: 1 to target autopilot
@@ -39,7 +45,8 @@ class MavlinkController:
         # Give the command time to be sent before the script might end
         time.sleep(delay_sec)
         print("Reboot command sent. The connection will be lost.")
-
+    def set_position_target_local_ned(self,[x,y,z]):
+        
     def end_connection(self) -> None:
         self._stop_evt.set()
         try:
